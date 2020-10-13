@@ -1,0 +1,11 @@
+schema: https://ajaxtown.com/graphql
+documents:
+  - components/*.tsx
+  - pages/*.tsx
+generates:
+  lib/graphql.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+    config:
+      exportFragmentSpreadSubTypes: true
