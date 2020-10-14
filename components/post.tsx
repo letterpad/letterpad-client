@@ -1,5 +1,6 @@
 import gql from "graphql-tag";
 import { PostDetailsFragment } from "lib/graphql";
+import { setResponsiveImages } from "lib/imageUtils";
 import Head from "next/head";
 import { FloatingHeader, StyledPost } from "./post.css";
 
@@ -18,6 +19,7 @@ export const postDetailsFragment = gql`
 `;
 
 export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
+  const content = setResponsiveImages(postDetails.html);
   return (
     <>
       <Head>
@@ -64,7 +66,7 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
           <section className="post-full-content">
             {/* <Article post={postDetails} settings={settings} helpers={helpers} /> */}
             <article className="post-content">
-              <div dangerouslySetInnerHTML={{ __html: postDetails.html }} />
+              <div dangerouslySetInnerHTML={{ __html: content }} />
             </article>
           </section>
 

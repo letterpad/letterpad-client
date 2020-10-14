@@ -11,7 +11,6 @@ interface IArticleItem {
 class ArticleItem extends Component<IArticleItem> {
   render() {
     const { post } = this.props;
-
     return (
       <Article className="post-card post">
         <Link href={post.slug}>
