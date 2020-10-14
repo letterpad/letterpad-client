@@ -1,4 +1,7 @@
 {
+  "name": "next-letterpad",
+  "version": "0.0.1",
+  "license": "MIT",
   "scripts": {
     "dev": "concurrently -k 'next' 'graphql-codegen -w'",
     "build": "yarn generate && next build && next export",
