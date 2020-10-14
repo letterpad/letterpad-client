@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "concurrently -k 'next' 'graphql-codegen -w'",
     "build": "yarn generate && next build && next export",
-    "generate": "graphql-codegen"
+    "generate": "graphql-codegen",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "graphql": "^15.3.0",

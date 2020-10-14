@@ -1,3 +1,4 @@
+import SiteLayout, { layoutFragment } from "components/layout";
 import { Menu, menuFragment } from "components/menu";
 import { allPostsFragment, Posts } from "components/posts";
 import gql from "graphql-tag";
@@ -8,19 +9,23 @@ const query = gql`
   query HomeQuery {
     ...allPosts
     ...menu
+    ...layout
   }
   ${allPostsFragment}
   ${menuFragment}
+  ${layoutFragment}
 `;
 
 export default function Home({ data, errors }: PageProps<HomeQueryQuery>) {
   if (errors) return <div>Error occurred</div>;
 
   return (
-    <div>
-      <Menu menu={data} />
-      <Posts allPosts={data} />
-    </div>
+    <SiteLayout layout={data}>
+      <div>
+        <Menu menu={data} />
+        <Posts allPosts={data} />
+      </div>
+    </SiteLayout>
   );
 }
 

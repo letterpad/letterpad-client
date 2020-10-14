@@ -1,3 +1,4 @@
+import SiteLayout, { layoutFragment } from "components/layout";
 import { postDetailsFragment, Post } from "components/post";
 import gql from "graphql-tag";
 import { executeQuery, fetchProps, PageProps } from "lib/client";
@@ -12,8 +13,10 @@ const query = gql`
     post(filters: { slug: $slug }) {
       ...postDetails
     }
+    ...layout
   }
   ${postDetailsFragment}
+  ${layoutFragment}
 `;
 
 const pathsQuery = gql`
@@ -30,9 +33,11 @@ export default function PostPage({ data, errors }: PageProps<PostQueryQuery>) {
   if (errors) return <div>{errors}</div>;
 
   return (
-    <div>
-      <Post postDetails={data.post}></Post>
-    </div>
+    <SiteLayout layout={data}>
+      <div>
+        <Post postDetails={data.post}></Post>
+      </div>
+    </SiteLayout>
   );
 }
 
