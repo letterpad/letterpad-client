@@ -758,10 +758,13 @@ export type AllPostsFragment = (
     { __typename?: 'PostsNode' }
     & { rows: Array<(
       { __typename?: 'Post' }
-      & Pick<Post, 'id' | 'title' | 'slug'>
+      & Pick<Post, 'id' | 'title' | 'slug' | 'reading_time' | 'excerpt'>
       & { cover_image: (
         { __typename?: 'Image' }
         & Pick<Image, 'src'>
+      ), author: (
+        { __typename?: 'Author' }
+        & Pick<Author, 'avatar'>
       ) }
     )> }
   ) }
