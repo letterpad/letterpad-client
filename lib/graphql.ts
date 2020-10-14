@@ -773,14 +773,6 @@ export type AllPostsFragment = (
   ) }
 );
 
-export type LayoutQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type LayoutQueryQuery = (
-  { __typename?: 'Query' }
-  & LayoutFragment
-);
-
 export type HomeQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -788,6 +780,7 @@ export type HomeQueryQuery = (
   { __typename?: 'Query' }
   & AllPostsFragment
   & MenuFragment
+  & LayoutFragment
 );
 
 export type PostQueryQueryVariables = Exact<{
@@ -801,6 +794,7 @@ export type PostQueryQuery = (
     { __typename?: 'Post' }
     & PostDetailsFragment
   )> }
+  & LayoutFragment
 );
 
 export type PostPathQueryQueryVariables = Exact<{ [key: string]: never; }>;
