@@ -15,6 +15,5 @@ export const menuFragment = gql`
 `;
 
 export function Menu({ menu }: { menu: MenuFragment }) {
-  console.log("menu :>> ", menu);
   return <ul></ul>;
 }

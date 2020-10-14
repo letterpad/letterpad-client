@@ -711,24 +711,27 @@ export enum TaxonomyTypes {
   Tags = 'tags'
 }
 
+export type HeaderSettingsFragment = (
+  { __typename?: 'Setting' }
+  & Pick<Setting, 'site_title' | 'site_description' | 'social_facebook' | 'social_twitter' | 'social_github'>
+  & { banner: (
+    { __typename?: 'Image' }
+    & Pick<Image, 'src'>
+  ), site_logo: (
+    { __typename?: 'Image' }
+    & Pick<Image, 'src'>
+  ), menu: Array<(
+    { __typename?: 'Navigation' }
+    & Pick<Navigation, 'type' | 'slug' | 'label'>
+  )> }
+);
+
 export type LayoutFragment = (
   { __typename?: 'Query' }
   & { settings: (
     { __typename?: 'Setting' }
-    & Pick<Setting, 'site_title' | 'site_tagline' | 'site_footer' | 'site_description' | 'social_twitter' | 'social_github' | 'social_instagram' | 'social_facebook' | 'subscribe_embed'>
-    & { site_logo: (
-      { __typename?: 'Image' }
-      & Pick<Image, 'src'>
-    ), site_favicon: (
-      { __typename?: 'Image' }
-      & Pick<Image, 'src'>
-    ), banner: (
-      { __typename?: 'Image' }
-      & Pick<Image, 'src'>
-    ), menu: Array<(
-      { __typename?: 'Navigation' }
-      & Pick<Navigation, 'type' | 'slug' | 'original_name' | 'label'>
-    )> }
+    & Pick<Setting, 'site_footer' | 'subscribe_embed' | 'social_github' | 'social_facebook' | 'social_twitter'>
+    & HeaderSettingsFragment
   ) }
 );
 

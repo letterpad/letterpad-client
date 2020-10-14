@@ -2,18 +2,38 @@ import { HeaderContent, Navigation, StyledHeader } from "./Layout.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
-import { LayoutFragment } from "lib/graphql";
+import { HeaderSettingsFragment } from "lib/graphql";
+import gql from "graphql-tag";
 
-interface IHeaderProps {
-  settings: LayoutFragment["settings"];
-}
+export const headerFragment = gql`
+  fragment headerSettings on Setting {
+    site_title
+    site_description
+    social_facebook
+    social_twitter
+    social_github
+    banner {
+      src
+    }
+    site_logo {
+      src
+    }
+    menu {
+      type
+      slug
+      label
+    }
+  }
+`;
 
-const Header: React.FC<IHeaderProps> = ({ settings }) => {
+export const Header: React.FC<{ settings: HeaderSettingsFragment }> = ({
+  settings,
+}) => {
   const { banner, site_logo, menu } = settings;
   const router = useRouter();
   const headerWithBanner = !router.route.match("/post|page/") ?? true;
-  console.log("headerWithBanner :>> ", headerWithBanner);
   const displayInlineLogo = !headerWithBanner;
+
   return (
     <StyledHeader bg={banner.src} className="site-header outer">
       <div className="inner">
@@ -103,8 +123,6 @@ const Header: React.FC<IHeaderProps> = ({ settings }) => {
     </StyledHeader>
   );
 };
-
-export default Header;
 
 const GithubIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

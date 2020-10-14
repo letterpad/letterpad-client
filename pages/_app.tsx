@@ -1,8 +1,8 @@
 import gql from "graphql-tag";
 import { fetchProps } from "lib/client";
-import "../assets/css/style.css";
-import "../assets/css/typography.css";
-import "../assets/css/prism.css";
+import "assets/css/style.css";
+import "assets/css/typography.css";
+import "assets/css/prism.css";
 
 import SiteLayout, { layoutFragment } from "../components/layout";
 
