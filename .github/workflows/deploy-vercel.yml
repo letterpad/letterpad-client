@@ -5,7 +5,7 @@ on:
       - master
 
 jobs:
-  deploy-to-vercel:
+  build-check:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -49,6 +49,13 @@ jobs:
           NODE_ENV: production
         run: |
           yarn build
+
+  deploy-to-vercel:
+    needs: build-check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
 
       - uses: amondnet/vercel-action@v19
         with:
