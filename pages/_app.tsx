@@ -1,10 +1,11 @@
 import gql from "graphql-tag";
-import { fetchProps } from "lib/client";
+import { fetchProps, PageProps } from "lib/client";
 import "assets/css/style.css";
 import "assets/css/typography.css";
 import "assets/css/prism.css";
 
 import SiteLayout, { layoutFragment } from "../components/layout";
+import { LayoutQueryQuery } from "lib/graphql";
 
 const query = gql`
   query LayoutQuery {
@@ -13,14 +14,24 @@ const query = gql`
   ${layoutFragment}
 `;
 
-export default function MyApp({ Component, pageProps, props }) {
+interface AppProps {
+  Component: React.ComponentClass;
+  pageProps: any;
+  props: PageProps<LayoutQueryQuery>;
+}
+
+export default function App({ Component, pageProps, props }: AppProps) {
+  const { data, errors } = props;
+
+  if (errors) return <div>{errors}</div>;
+
   return (
-    <SiteLayout layout={props.data}>
+    <SiteLayout layout={data}>
       <Component {...pageProps} />
     </SiteLayout>
   );
 }
 
-MyApp.getInitialProps = (appContext) => {
+App.getInitialProps = function getInitialProps() {
   return fetchProps(query);
 };

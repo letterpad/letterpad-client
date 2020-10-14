@@ -24,6 +24,6 @@ export default function Home({ data, errors }: PageProps<HomeQueryQuery>) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   return fetchProps<HomeQueryQuery>(query);
 }

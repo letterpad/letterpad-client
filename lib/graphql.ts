@@ -802,3 +802,17 @@ export type PostQueryQuery = (
     & PostDetailsFragment
   )> }
 );
+
+export type PostPathQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PostPathQueryQuery = (
+  { __typename?: 'Query' }
+  & { posts: (
+    { __typename?: 'PostsNode' }
+    & { rows: Array<(
+      { __typename?: 'Post' }
+      & Pick<Post, 'slug'>
+    )> }
+  ) }
+);

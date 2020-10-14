@@ -6,24 +6,36 @@ export interface PageProps<Data> {
   errors: GraphQLFormattedError[];
 }
 
-export async function fetchProps<Data, Variables extends object = any>(
+export async function executeQuery<Data, Variables extends object = any>(
   query: DocumentNode,
   variables: Variables = {} as any
-): Promise<{ props: PageProps<Data> }> {
-  const response = await fetch("https://ajaxtown.com/graphql", {
+): Promise<PageProps<Data>> {
+  const queryText = print(query);
+
+  const resp = await fetch("https://ajaxtown.com/graphql", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ query: print(query), variables }),
-  }).then((resp) => {
-    if (resp.status != 200) {
-      return resp.text().then((txt) => Promise.reject(new Error(txt)));
-    }
-    return resp.json();
+    body: JSON.stringify({ query: queryText, variables }),
   });
 
-  const { data, errors } = response;
+  if (resp.status != 200) {
+    const txt = await resp.text();
+    return Promise.reject(new Error(txt));
+  }
+
+  return resp.json();
+}
+
+export async function fetchProps<Data, Variables extends object = any>(
+  query: DocumentNode,
+  variables: Variables = {} as any
+): Promise<{ props: PageProps<Data> }> {
+  const { data, errors } = await executeQuery<Data, Variables>(
+    query,
+    variables
+  );
 
   return {
     props: {

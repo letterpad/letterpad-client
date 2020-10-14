@@ -1,6 +1,5 @@
 import gql from "graphql-tag";
 import { AllPostsFragment } from "lib/graphql";
-import Link from "next/link";
 import { Container } from "./posts.css";
 import ArticleItem from "./ArticleItem";
 
@@ -28,8 +27,8 @@ export function Posts({ allPosts }: { allPosts: AllPostsFragment }) {
   return (
     <Container className="inner">
       <div className="post-feed">
-        {allPosts.posts.rows.map((item) => (
-          <ArticleItem post={item} />
+        {allPosts.posts.rows.map((item, i) => (
+          <ArticleItem post={item} key={i} />
         ))}
       </div>
     </Container>

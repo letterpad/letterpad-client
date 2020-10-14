@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "concurrently -k 'next' 'graphql-codegen -w'",
-    "static": "npm run build && next export",
+    "build": "yarn generate && next build && next export",
     "generate": "graphql-codegen"
   },
   "dependencies": {
