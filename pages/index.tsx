@@ -1,14 +1,16 @@
+import { Menu, menuFragment } from "components/menu";
 import { allPostsFragment, Posts } from "components/posts";
 import gql from "graphql-tag";
 import { fetchProps, PageProps } from "lib/client";
 import { HomeQueryQuery } from "lib/graphql";
-import Head from "next/head";
 
 const query = gql`
   query HomeQuery {
     ...allPosts
+    ...menu
   }
   ${allPostsFragment}
+  ${menuFragment}
 `;
 
 export default function Home({ data, errors }: PageProps<HomeQueryQuery>) {
@@ -16,13 +18,8 @@ export default function Home({ data, errors }: PageProps<HomeQueryQuery>) {
 
   return (
     <div>
-      <Head>
-        <title>Letterpad</title>
-      </Head>
-      <div>
-        <h1>Posts</h1>
-        <Posts allPosts={data} />
-      </div>
+      <Menu menu={data} />
+      <Posts allPosts={data} />
     </div>
   );
 }
