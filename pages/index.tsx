@@ -1,6 +1,7 @@
 import { allPostsFragment, Posts } from "components/posts";
 import gql from "graphql-tag";
-import { fetchProps } from "lib/client";
+import { fetchProps, PageProps } from "lib/client";
+import { HomeQueryQuery } from "lib/graphql";
 import Head from "next/head";
 
 const query = gql`
@@ -10,8 +11,8 @@ const query = gql`
   ${allPostsFragment}
 `;
 
-export default function Home({ data, error }) {
-  if (error) return <div>Error occurred</div>;
+export default function Home({ data, errors }: PageProps<HomeQueryQuery>) {
+  if (errors) return <div>Error occurred</div>;
 
   return (
     <div>
@@ -27,5 +28,5 @@ export default function Home({ data, error }) {
 }
 
 export async function getServerSideProps() {
-  return fetchProps(query);
+  return fetchProps<HomeQueryQuery>(query);
 }

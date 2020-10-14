@@ -1,7 +1,7 @@
 schema: https://ajaxtown.com/graphql
 documents:
-  - components/*.tsx
-  - pages/*.tsx
+  - components/**/*.tsx
+  - pages/**/*.tsx
 generates:
   lib/graphql.ts:
     plugins:

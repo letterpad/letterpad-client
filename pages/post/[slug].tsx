@@ -1,6 +1,7 @@
 import { postDetailsFragment, Post } from "components/post";
 import gql from "graphql-tag";
-import { fetchProps } from "lib/client";
+import { fetchProps, PageProps } from "lib/client";
+import { PostQueryQuery, PostQueryQueryVariables } from "lib/graphql";
 import Link from "next/link";
 
 const query = gql`
@@ -12,8 +13,8 @@ const query = gql`
   ${postDetailsFragment}
 `;
 
-export default function PostPage({ data, error }) {
-  if (error) return <div>{error}</div>;
+export default function PostPage({ data, errors }: PageProps<PostQueryQuery>) {
+  if (errors) return <div>{errors}</div>;
 
   return (
     <div>
@@ -26,7 +27,7 @@ export default function PostPage({ data, error }) {
 }
 
 export function getServerSideProps(context) {
-  return fetchProps(query, {
+  return fetchProps<PostQueryQuery, PostQueryQueryVariables>(query, {
     slug: context.query.slug,
   });
 }

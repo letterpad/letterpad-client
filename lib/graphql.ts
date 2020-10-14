@@ -734,3 +734,16 @@ export type HomeQueryQuery = (
   { __typename?: 'Query' }
   & AllPostsFragment
 );
+
+export type PostQueryQueryVariables = Exact<{
+  slug?: Maybe<Scalars['String']>;
+}>;
+
+
+export type PostQueryQuery = (
+  { __typename?: 'Query' }
+  & { post?: Maybe<(
+    { __typename?: 'Post' }
+    & PostDetailsFragment
+  )> }
+);
