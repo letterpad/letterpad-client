@@ -1,7 +1,7 @@
 import { print } from "graphql";
 
 export async function fetchProps(query, variables = {}) {
-  const response = await fetch("https://ajaxtown.com/graphql", {
+  const response = await fetch("https://letterpad.app/demo/graphql", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

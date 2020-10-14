@@ -1,6 +1,8 @@
 import gql from "graphql-tag";
 import { AllPostsFragment } from "lib/graphql";
 import Link from "next/link";
+import { Container } from "./posts.css";
+import ArticleItem from "./ArticleItem";
 
 export const allPostsFragment = gql`
   fragment allPosts on Query {
@@ -9,6 +11,14 @@ export const allPostsFragment = gql`
         id
         title
         slug
+        cover_image {
+          src
+        }
+        author {
+          avatar
+        }
+        reading_time
+        excerpt
       }
     }
   }
@@ -16,14 +26,12 @@ export const allPostsFragment = gql`
 
 export function Posts({ allPosts }: { allPosts: AllPostsFragment }) {
   return (
-    <ul>
-      {allPosts.posts.rows.map((row) => (
-        <li key={row.id}>
-          <Link href={row.slug}>
-            <a>{row.title}</a>
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <Container className="inner">
+      <div className="post-feed">
+        {allPosts.posts.rows.map((item) => (
+          <ArticleItem post={item} />
+        ))}
+      </div>
+    </Container>
   );
 }

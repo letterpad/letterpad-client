@@ -711,9 +711,45 @@ export enum TaxonomyTypes {
   Tags = 'tags'
 }
 
+export type LayoutFragment = (
+  { __typename?: 'Query' }
+  & { settings: (
+    { __typename?: 'Setting' }
+    & Pick<Setting, 'site_title' | 'site_tagline' | 'site_footer' | 'site_description' | 'social_twitter' | 'social_github' | 'social_instagram' | 'social_facebook' | 'subscribe_embed'>
+    & { site_logo: (
+      { __typename?: 'Image' }
+      & Pick<Image, 'src'>
+    ), site_favicon: (
+      { __typename?: 'Image' }
+      & Pick<Image, 'src'>
+    ), banner: (
+      { __typename?: 'Image' }
+      & Pick<Image, 'src'>
+    ), menu: Array<(
+      { __typename?: 'Navigation' }
+      & Pick<Navigation, 'type' | 'slug' | 'original_name' | 'label'>
+    )> }
+  ) }
+);
+
+export type MenuFragment = (
+  { __typename?: 'Query' }
+  & { settings: (
+    { __typename?: 'Setting' }
+    & { menu: Array<(
+      { __typename?: 'Navigation' }
+      & Pick<Navigation, 'type' | 'slug' | 'original_name' | 'label'>
+    )> }
+  ) }
+);
+
 export type PostDetailsFragment = (
   { __typename?: 'Post' }
-  & Pick<Post, 'id' | 'slug' | 'title' | 'reading_time' | 'html'>
+  & Pick<Post, 'id' | 'slug' | 'title' | 'reading_time' | 'html' | 'publishedAt'>
+  & { cover_image: (
+    { __typename?: 'Image' }
+    & Pick<Image, 'src'>
+  ) }
 );
 
 export type AllPostsFragment = (
@@ -723,8 +759,20 @@ export type AllPostsFragment = (
     & { rows: Array<(
       { __typename?: 'Post' }
       & Pick<Post, 'id' | 'title' | 'slug'>
+      & { cover_image: (
+        { __typename?: 'Image' }
+        & Pick<Image, 'src'>
+      ) }
     )> }
   ) }
+);
+
+export type LayoutQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type LayoutQueryQuery = (
+  { __typename?: 'Query' }
+  & LayoutFragment
 );
 
 export type HomeQueryQueryVariables = Exact<{ [key: string]: never; }>;
@@ -733,4 +781,5 @@ export type HomeQueryQueryVariables = Exact<{ [key: string]: never; }>;
 export type HomeQueryQuery = (
   { __typename?: 'Query' }
   & AllPostsFragment
+  & MenuFragment
 );

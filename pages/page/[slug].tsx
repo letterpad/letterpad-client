@@ -1,6 +1,7 @@
 import { postDetailsFragment, Post } from "components/post";
 import gql from "graphql-tag";
 import { fetchProps } from "lib/client";
+import Link from "next/link";
 
 const query = gql`
   query PostQuery($slug: String) {
@@ -11,7 +12,7 @@ const query = gql`
   ${postDetailsFragment}
 `;
 
-export default function PostPage({ data, error }) {
+export default function StaticPage({ data, error }) {
   if (error) return <div>{error}</div>;
 
   return (

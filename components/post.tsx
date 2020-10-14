@@ -1,6 +1,7 @@
 import gql from "graphql-tag";
 import { PostDetailsFragment } from "lib/graphql";
 import Head from "next/head";
+import { FloatingHeader, StyledPost } from "./post.css";
 
 export const postDetailsFragment = gql`
   fragment postDetails on Post {
@@ -9,18 +10,74 @@ export const postDetailsFragment = gql`
     title
     reading_time
     html
+    publishedAt
+    cover_image {
+      src
+    }
   }
 `;
 
 export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
   return (
-    <div>
+    <>
       <Head>
         <title>{postDetails.title}</title>
       </Head>
-      <h1>{postDetails.title}</h1>
-      <div>{postDetails.reading_time}</div>
-      <div dangerouslySetInnerHTML={{ __html: postDetails.html }}></div>
-    </div>
+      <FloatingHeader className="floating-header">
+        <div>
+          <div className="floating-header-logo">
+            {/* <a href="https://eueung.github.io/">
+              {settings.site_logo.src ? (
+                <img src={settings.site_logo.src} alt={postDetails.title} />
+              ) : (
+                settings.site_title
+              )}
+            </a> */}
+          </div>
+          <span className="floating-header-divider">—</span>
+          <div className="floating-header-title">{postDetails.title}</div>
+        </div>
+        {/* <Progress height="3px" barColor="#555" /> */}
+      </FloatingHeader>
+
+      <StyledPost className="inner">
+        <div className="post-full post">
+          <header className="post-full-header">
+            <section className="post-full-meta">
+              <time
+                className="post-full-meta-date"
+                dateTime={postDetails.publishedAt}
+              >
+                {postDetails.publishedAt}
+              </time>
+            </section>
+            <h1 className="post-full-title">{postDetails.title}</h1>
+          </header>
+
+          <figure
+            className="post-full-image"
+            style={{
+              backgroundImage: `url(${postDetails.cover_image.src})`,
+            }}
+          ></figure>
+
+          <section className="post-full-content">
+            {/* <Article post={postDetails} settings={settings} helpers={helpers} /> */}
+            <article className="post-content">
+              <div dangerouslySetInnerHTML={{ __html: postDetails.html }} />
+            </article>
+          </section>
+
+          {/* <footer className="post-full-footer">
+            {displayAuthor && <Author post={post} />}
+          </footer>
+
+          <Comments
+            disqusConfig={disqusConfig}
+            disqusShortname={disqusShortname}
+          /> */}
+        </div>
+      </StyledPost>
+    </>
   );
 }
