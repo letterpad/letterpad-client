@@ -4,6 +4,9 @@ import { LayoutFragment } from "lib/graphql";
 import { Container, Footer, Main } from "./Layout.css";
 import { Header, headerFragment } from "./Header";
 import Head from "next/head";
+import { NormalizeStyle } from "assets/css/style.css";
+import { PrismStyle } from "assets/css/prism.css";
+import { TypographyStyle } from "assets/css/typography.css";
 
 export const layoutFragment = gql`
   fragment layout on Query {
@@ -35,6 +38,9 @@ export default function SiteLayout({
       <Head>
         <title>Letterpad</title>
       </Head>
+      <PrismStyle />
+      <TypographyStyle />
+      <NormalizeStyle />
       <Header settings={settings}></Header>
 
       <Main className="outer">{children}</Main>
