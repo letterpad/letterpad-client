@@ -15,12 +15,12 @@ class ArticleItem extends Component<IArticleItem> {
       <Article className="post-card post">
         <Link href={post.slug}>
           <a className="post-card-image-link">
-            {/* <div
+            <div
               className="post-card-image"
               style={{
                 backgroundImage: `url(${post.cover_image.src})`,
               }}
-            ></div> */}
+            ></div>
           </a>
         </Link>
         <div className="post-card-content">
