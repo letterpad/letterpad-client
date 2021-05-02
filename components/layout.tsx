@@ -48,7 +48,7 @@ export default function SiteLayout({
   metaProps: MetaProps;
 }) {
   const { settings } = layout;
-
+  if (settings.__typename === "SettingError") return null;
   return (
     <Container className="theme-casper">
       <Head>

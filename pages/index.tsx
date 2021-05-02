@@ -18,7 +18,7 @@ const query = gql`
 
 export default function Home({ data, errors }: PageProps<HomeQueryQuery>) {
   if (errors) return <div>Error occurred</div>;
-
+  if (data.settings.__typename === "SettingError") return null;
   return (
     <SiteLayout
       layout={data}
