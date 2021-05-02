@@ -20,7 +20,17 @@ export default function Home({ data, errors }: PageProps<HomeQueryQuery>) {
   if (errors) return <div>Error occurred</div>;
 
   return (
-    <SiteLayout layout={data}>
+    <SiteLayout
+      layout={data}
+      metaProps={{
+        title: data.settings.site_title,
+        description: data.settings.site_description,
+        image: data.settings.banner.src,
+        type: "website",
+        url: "",
+        author: "",
+      }}
+    >
       <div>
         <Menu menu={data} />
         <Posts allPosts={data} />

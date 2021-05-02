@@ -12,6 +12,11 @@ export const postDetailsFragment = gql`
     reading_time
     html
     publishedAt
+    updatedAt
+    excerpt
+    author {
+      name
+    }
     cover_image {
       src
     }
@@ -55,7 +60,6 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
             </section>
             <h1 className="post-full-title">{postDetails.title}</h1>
           </header>
-
           <figure
             className="post-full-image"
             style={{

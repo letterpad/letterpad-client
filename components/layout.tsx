@@ -11,11 +11,13 @@ import { TypographyStyle } from "assets/css/typography.css";
 export const layoutFragment = gql`
   fragment layout on Query {
     settings {
-      site_footer
-      subscribe_embed
-      social_github
-      social_facebook
-      social_twitter
+      ... on Setting {
+        site_footer
+        subscribe_embed
+        social_github
+        social_facebook
+        social_twitter
+      }
 
       ...headerSettings
     }
@@ -24,19 +26,50 @@ export const layoutFragment = gql`
   ${headerFragment}
 `;
 
+interface MetaProps {
+  type: string;
+  author: string;
+  title: string;
+  description: string;
+  image: string;
+  url: string;
+  twitterHandle?: string;
+  publishedAt?: string;
+  updatedAt?: string;
+}
+
 export default function SiteLayout({
   children,
   layout,
+  metaProps,
 }: {
   children: any;
   layout: LayoutFragment;
+  metaProps: MetaProps;
 }) {
   const { settings } = layout;
 
   return (
     <Container className="theme-casper">
       <Head>
-        <title>Letterpad</title>
+        <title>{metaProps.title}</title>
+        <meta name="author" content={metaProps.author} />
+        <meta property="og:type" content={metaProps.type} />
+        <meta property="og:title" content={metaProps.title} />
+        <meta property="og:description" content={metaProps.description} />
+        <meta property="og:image" content={metaProps.image} />
+        <meta property="og:url" content={metaProps.url} />
+        <meta property="og:site_name" content={settings.site_title} />
+        <meta
+          property="article:published_time"
+          content={metaProps.publishedAt}
+        />
+        <meta property="article:updated_time" content={metaProps.updatedAt} />
+        <meta name="twitter:title" content={metaProps.title} />
+        <meta name="twitter:description" content={metaProps.description} />
+        <meta name="twitter:image" content={metaProps.image} />
+        <meta name="twitter:site" content={"@" + metaProps.twitterHandle} />
+        <meta name="twitter:creator" content={"@" + metaProps.twitterHandle} />
       </Head>
       <PrismStyle />
       <TypographyStyle />

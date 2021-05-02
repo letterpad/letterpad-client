@@ -12,10 +12,11 @@ export async function executeQuery<Data, Variables extends object = any>(
 ): Promise<PageProps<Data>> {
   const queryText = print(query);
 
-  const resp = await fetch("https://ajaxtown.com/graphql", {
+  const resp = await fetch("http://localhost:3000/admin/api/graphql", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjE5ODUwMTM2fQ.fO8xJ1IrrNtTIWsynGdzaGEmGi-lx2rcEBXu7LRa23c`,
     },
     body: JSON.stringify({ query: queryText, variables }),
   });
@@ -36,6 +37,8 @@ export async function fetchProps<Data, Variables extends object = any>(
     query,
     variables
   );
+
+  console.log(errors);
 
   return {
     props: {

@@ -3,13 +3,15 @@ import { postDetailsFragment, Post } from "components/post";
 import gql from "graphql-tag";
 import { executeQuery, fetchProps, PageProps } from "lib/client";
 import {
-  PostPathQueryQuery,
-  PostQueryQuery,
-  PostQueryQueryVariables,
+  PagePathQueryQuery,
+  PagePathQueryQueryVariables,
+  PageQueryQuery,
+  PageQueryQueryVariables,
+  PostTypes,
 } from "lib/graphql";
 
 const query = gql`
-  query PostQuery($slug: String) {
+  query PageQuery($slug: String) {
     post(filters: { slug: $slug }) {
       ...postDetails
       __typename
@@ -21,8 +23,8 @@ const query = gql`
 `;
 
 const pathsQuery = gql`
-  query PostPathQuery {
-    posts {
+  query PagePathQuery($type: PostTypes) {
+    posts(filters: { type: $type }) {
       ... on PostsNode {
         rows {
           slug
@@ -32,8 +34,9 @@ const pathsQuery = gql`
   }
 `;
 
-export default function PostPage({ data, errors }: PageProps<PostQueryQuery>) {
+export default function PostPage({ data, errors }: PageProps<PageQueryQuery>) {
   if (errors) return <div>{errors}</div>;
+
   if (data.post.__typename === "PostError") return null;
   return (
     <SiteLayout
@@ -42,7 +45,7 @@ export default function PostPage({ data, errors }: PageProps<PostQueryQuery>) {
         title: data.post.title,
         description: data.post.excerpt,
         image: data.post.cover_image.src,
-        type: "article",
+        type: "website",
         url: data.post.slug,
         author: data.post.author.name,
         publishedAt: data.post.publishedAt,
@@ -57,13 +60,18 @@ export default function PostPage({ data, errors }: PageProps<PostQueryQuery>) {
 }
 
 export function getStaticProps(context) {
-  return fetchProps<PostQueryQuery, PostQueryQueryVariables>(query, {
+  return fetchProps<PageQueryQuery, PageQueryQueryVariables>(query, {
     slug: context.params.slug,
   });
 }
 
 export async function getStaticPaths() {
-  const result = await executeQuery<PostPathQueryQuery>(pathsQuery);
+  const result = await executeQuery<
+    PagePathQueryQuery,
+    PagePathQueryQueryVariables
+  >(pathsQuery, {
+    type: PostTypes.Page,
+  });
 
   if (result.errors) {
     throw new Error(result.errors[0].message);
@@ -84,8 +92,8 @@ export async function getStaticPaths() {
 
 function normalizeSlug(slug: string) {
   const s = decodeURIComponent(slug);
-  if (s.startsWith("/post/")) {
-    return s.slice("/post/".length);
+  if (s.startsWith("/page/")) {
+    return s.slice("/page/".length);
   }
   return s;
 }

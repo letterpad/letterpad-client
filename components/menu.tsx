@@ -4,11 +4,13 @@ import { MenuFragment } from "lib/graphql";
 export const menuFragment = gql`
   fragment menu on Query {
     settings {
-      menu {
-        type
-        slug
-        original_name
-        label
+      ... on Setting {
+        menu {
+          type
+          slug
+          original_name
+          label
+        }
       }
     }
   }

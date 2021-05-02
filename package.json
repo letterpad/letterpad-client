@@ -3,10 +3,11 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "dev": "concurrently -k 'next' 'graphql-codegen -w'",
+    "dev": "concurrently -k 'next -p 4040' 'graphql-codegen -w'",
     "build": "yarn generate && next build && next export",
     "generate": "graphql-codegen",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "start": "next start"
   },
   "dependencies": {
     "graphql": "^15.3.0",
