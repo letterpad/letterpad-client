@@ -18,6 +18,7 @@ const query = gql`
 
 export default function Home({ data, errors }: PageProps<HomeQueryQuery>) {
   if (errors) return <div>Error occurred</div>;
+  if (!data) return null;
   if (data.settings.__typename === "SettingError") return null;
   return (
     <SiteLayout
@@ -39,6 +40,6 @@ export default function Home({ data, errors }: PageProps<HomeQueryQuery>) {
   );
 }
 
-export async function getStaticProps() {
-  return fetchProps<HomeQueryQuery>(query);
+export async function getServerSideProps(context) {
+  return fetchProps<HomeQueryQuery>(query, {}, context.req.headers.host);
 }

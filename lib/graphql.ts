@@ -22,6 +22,7 @@ export type Author = {
   __typename?: 'Author';
   id: Scalars['Int'];
   email: Scalars['String'];
+  username: Scalars['String'];
   name: Scalars['String'];
   social?: Maybe<Social>;
   bio: Scalars['String'];

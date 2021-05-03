@@ -1,22 +1,29 @@
 import { print } from "graphql";
 import type { DocumentNode, GraphQLFormattedError } from "graphql";
+import { useRouter } from "next/router";
 
 export interface PageProps<Data> {
   data: Data;
   errors: GraphQLFormattedError[];
 }
 
-export async function executeQuery<Data, Variables extends object = any>(
+export async function executeQuery<
+  Data,
+  Variables extends object,
+  identifier = string
+>(
   query: DocumentNode,
-  variables: Variables = {} as any
+  variables: Variables,
+  identifier: string
 ): Promise<PageProps<Data>> {
   const queryText = print(query);
 
-  const resp = await fetch("http://localhost:3000/admin/api/graphql", {
+  const resp = await fetch(process.env.API_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Basic eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjE5ODUwMTM2fQ.fO8xJ1IrrNtTIWsynGdzaGEmGi-lx2rcEBXu7LRa23c`,
+      identifier: identifier,
+      Authorization: `Basic ${process.env.CLIENT_ID}`,
     },
     body: JSON.stringify({ query: queryText, variables }),
   });
@@ -29,13 +36,19 @@ export async function executeQuery<Data, Variables extends object = any>(
   return resp.json();
 }
 
-export async function fetchProps<Data, Variables extends object = any>(
+export async function fetchProps<
+  Data,
+  Variables extends object = any,
+  host = ""
+>(
   query: DocumentNode,
-  variables: Variables = {} as any
+  variables: Variables,
+  host: string
 ): Promise<{ props: PageProps<Data> }> {
-  const { data, errors } = await executeQuery<Data, Variables>(
+  const { data, errors } = await executeQuery<Data, Variables, string>(
     query,
-    variables
+    variables,
+    host
   );
 
   console.log(errors);

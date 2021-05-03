@@ -59,41 +59,45 @@ export default function PostPage({ data, errors }: PageProps<PageQueryQuery>) {
   );
 }
 
-export function getStaticProps(context) {
-  return fetchProps<PageQueryQuery, PageQueryQueryVariables>(query, {
-    slug: context.params.slug,
-  });
+export function getServerSideProps(context) {
+  return fetchProps<PageQueryQuery, PageQueryQueryVariables>(
+    query,
+    {
+      slug: context.params.slug,
+    },
+    context.req.headers.host
+  );
 }
 
-export async function getStaticPaths() {
-  const result = await executeQuery<
-    PagePathQueryQuery,
-    PagePathQueryQueryVariables
-  >(pathsQuery, {
-    type: PostTypes.Page,
-  });
+// export async function getStaticPaths() {
+//   const result = await executeQuery<
+//     PagePathQueryQuery,
+//     PagePathQueryQueryVariables
+//   >(pathsQuery, {
+//     type: PostTypes.Page,
+//   });
 
-  if (result.errors) {
-    throw new Error(result.errors[0].message);
-  }
+//   if (result.errors) {
+//     throw new Error(result.errors[0].message);
+//   }
 
-  if (result.data.posts.__typename === "PostError") {
-    return null;
-  }
-  return {
-    paths: result.data.posts.rows.map((row) => ({
-      params: {
-        slug: normalizeSlug(row.slug),
-      },
-    })),
-    fallback: false,
-  };
-}
+//   if (result.data.posts.__typename === "PostError") {
+//     return null;
+//   }
+//   return {
+//     paths: result.data.posts.rows.map((row) => ({
+//       params: {
+//         slug: normalizeSlug(row.slug),
+//       },
+//     })),
+//     fallback: false,
+//   };
+// }
 
-function normalizeSlug(slug: string) {
-  const s = decodeURIComponent(slug);
-  if (s.startsWith("/page/")) {
-    return s.slice("/page/".length);
-  }
-  return s;
-}
+// function normalizeSlug(slug: string) {
+//   const s = decodeURIComponent(slug);
+//   if (s.startsWith("/page/")) {
+//     return s.slice("/page/".length);
+//   }
+//   return s;
+// }
