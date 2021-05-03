@@ -55,5 +55,4 @@ jobs:
           port: ${{ secrets.PORT }}
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
-            yarn install --production=false 
             pm2 restart letterpad-client
