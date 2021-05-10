@@ -37,6 +37,9 @@ jobs:
       - name: Type check
         run: yarn type-check
 
+      - name: Build
+        run: yarn build
+
       - name: Deploy to Google
         uses: appleboy/scp-action@master
         with:

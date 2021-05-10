@@ -1,2 +1,2 @@
-schema: https://ajaxtown.com/graphql
+schema: https://letterpad.app/admin/api/graphql
 documents: "pages/**/*.{graphql,tsx,ts}"

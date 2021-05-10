@@ -90,6 +90,12 @@ export type MeResponse = Author | AuthorNotFoundError;
 
 export type CreateAuthorResponse = Author | CreateAuthorError;
 
+export type ForgotPasswordResponse = {
+  __typename?: 'ForgotPasswordResponse';
+  ok: Scalars['Boolean'];
+  message?: Maybe<Scalars['String']>;
+};
+
 export type Query = {
   __typename?: 'Query';
   me?: Maybe<MeResponse>;
@@ -126,6 +132,8 @@ export type Mutation = {
   login?: Maybe<LoginResponse>;
   updateAuthor?: Maybe<AuthorResponse>;
   createAuthor?: Maybe<CreateAuthorResponse>;
+  forgotPassword: ForgotPasswordResponse;
+  resetPassword: ForgotPasswordResponse;
   /** insertMedia(url: String): Media */
   deleteMedia?: Maybe<MediaDeleteResponse>;
   updateMedia?: Maybe<MediaUpdateResponse>;
@@ -149,6 +157,17 @@ export type MutationUpdateAuthorArgs = {
 
 export type MutationCreateAuthorArgs = {
   data: InputCreateAuthor;
+};
+
+
+export type MutationForgotPasswordArgs = {
+  email: Scalars['String'];
+};
+
+
+export type MutationResetPasswordArgs = {
+  password: Scalars['String'];
+  token: Scalars['String'];
 };
 
 
