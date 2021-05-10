@@ -16,7 +16,7 @@ html {
 
 body {
   color: #3c484e;
-  font-family: "Lora", serif;
+  font-family: "Rubik", sans-serif;
   font-size: 1.5rem;
   line-height: 1.6em;
   font-weight: 400;
@@ -41,7 +41,7 @@ h6 {
   line-height: 1.15;
   font-weight: 700;
   text-rendering: optimizeLegibility;
-  font-family: "Roboto", sans-serif;
+  font-family: "Libre Baskerville", serif;
 }
 
 h1 {

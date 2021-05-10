@@ -6,7 +6,6 @@ export const TypographyStyle = createGlobalStyle`
   margin: 0 auto;
   padding: 70px 180px 0;
   min-height: 230px;
-  font-family: "Lora", serif;
   font-weight: 300;
   font-size: 2rem;
   line-height: 1.6em;
@@ -140,7 +139,7 @@ export const TypographyStyle = createGlobalStyle`
   }
   pre[class*="language-"] {
     margin: 4rem 0;
-    font-family: "IBM Plex Mono", monospace;
+    font-family: "Fira Code", monospace;
   }
   ul,
   ol {

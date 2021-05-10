@@ -42,14 +42,10 @@ export default class MyDocument extends Document {
           <meta charSet="utf-8" />
           {/* PWA primary color */}
 
-          {/* <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,500&display=swap"
-          />
           <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Lora|Roboto:300,400,500,700&display=swap"
-          /> */}
+            href="https://fonts.googleapis.com/css?family=Fira+Code:400|Rubik:wght@300|Libre+Baskerville:400,400i,700,700i&display=swap"
+          />
         </Head>
         <body>
           <Main />
