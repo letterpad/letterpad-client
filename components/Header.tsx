@@ -26,14 +26,17 @@ export const headerFragment = gql`
   }
 `;
 
-export const Header: React.FC<{ settings: HeaderSettingsFragment }> = ({
-  settings,
-}) => {
+export const Header: React.FC<{
+  settings: HeaderSettingsFragment;
+  displayBanner?: boolean;
+}> = ({ settings, displayBanner = true }) => {
   const { banner, site_logo, menu } = settings;
   const router = useRouter();
-  const headerWithBanner = !router.route.match("/post|page/") ?? true;
+  let headerWithBanner = !router.route.match("/post|page/") ?? true;
+  if (!displayBanner) {
+    headerWithBanner = false;
+  }
   const displayInlineLogo = !headerWithBanner;
-
   return (
     <StyledHeader bg={banner.src} className="site-header outer">
       <div className="inner">

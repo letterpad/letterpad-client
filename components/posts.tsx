@@ -27,6 +27,7 @@ export const allPostsFragment = gql`
 `;
 
 export function Posts({ allPosts }: { allPosts: AllPostsFragment }) {
+  console.log("allPosts :>> ", allPosts);
   if (allPosts.posts.__typename === "PostError") {
     return null;
   }

@@ -33,6 +33,7 @@ const pathsQuery = gql`
 `;
 
 export default function PostPage({ data, errors }: PageProps<PostQueryQuery>) {
+  console.log("data, errors :>> ", data, errors);
   if (errors) return <div>{errors}</div>;
   if (data.post.__typename === "PostError") return null;
   return (

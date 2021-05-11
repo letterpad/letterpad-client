@@ -7,6 +7,7 @@ import Head from "next/head";
 import { NormalizeStyle } from "assets/css/style.css";
 import { PrismStyle } from "assets/css/prism.css";
 import { TypographyStyle } from "assets/css/typography.css";
+import { ThemeStyle } from "assets/css/theme.css";
 
 export const layoutFragment = gql`
   fragment layout on Query {
@@ -42,15 +43,17 @@ export default function SiteLayout({
   children,
   layout,
   metaProps,
+  displayBanner,
 }: {
   children: any;
   layout: LayoutFragment;
   metaProps: MetaProps;
+  displayBanner?: boolean;
 }) {
   const { settings } = layout;
   if (settings.__typename === "SettingError") return null;
   return (
-    <Container className="theme-casper">
+    <Container className="theme-casper dark">
       <Head>
         <title>{metaProps.title}</title>
         <meta name="author" content={metaProps.author} />
@@ -74,7 +77,8 @@ export default function SiteLayout({
       <PrismStyle />
       <TypographyStyle />
       <NormalizeStyle />
-      <Header settings={settings}></Header>
+      <ThemeStyle />
+      <Header settings={settings} displayBanner={displayBanner}></Header>
 
       <Main className="outer">{children}</Main>
 

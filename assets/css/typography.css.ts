@@ -7,7 +7,7 @@ export const TypographyStyle = createGlobalStyle`
   padding: 70px 180px 0;
   min-height: 230px;
   font-weight: 300;
-  font-size: 2rem;
+  font-size: 1.8rem;
   line-height: 1.6em;
   background: #fff;
   margin-bottom: 60px;
@@ -38,9 +38,8 @@ export const TypographyStyle = createGlobalStyle`
     transform: rotate(5deg);
   }
   blockquote {
-    min-width: 100%;
     margin-top: 1.5em;
-    padding: 0 1.5em;
+    padding: 0 1em;
     border-left: 3px solid #3eb0ef;
     blockquote {
       padding-right: 0px;
@@ -50,7 +49,7 @@ export const TypographyStyle = createGlobalStyle`
       color: inherit;
       font-size: inherit;
       line-height: inherit;
-      font-style: italic;
+      font-size: 95%;
       &:last-child {
         margin-bottom: 0;
       }
@@ -67,19 +66,25 @@ export const TypographyStyle = createGlobalStyle`
   h6 {
     min-width: 100%;
     color: #090a0b;
-    font-family: "Roboto", sans-serif;
+    font-family: "Libre Baskerville", serif;
   }
   h1 {
     margin-top: 1.95em;
     margin-bottom: -0.28em;
     font-size: 4.6rem;
     font-weight: 400;
+    +p {
+      margin-top: 2.6rem;
+    }
   }
   h2 {
     margin-top: 1.6em;
     margin-bottom: -0.21em;
     font-size: 3.6rem;
     font-weight: 400;
+    +p {
+      margin-top: 2.6rem;
+    }
   }
   h3 {
     margin-top: 1.2em;
@@ -116,7 +121,6 @@ export const TypographyStyle = createGlobalStyle`
     margin-bottom: -0.46em;
   }
   pre {
-    min-width: 100%;
     overflow-x: auto;
     margin: 1.5em 0 3em;
     padding: 20px;
@@ -143,7 +147,6 @@ export const TypographyStyle = createGlobalStyle`
   }
   ul,
   ol {
-    min-width: 100%;
     margin-top: 2.5rem;
   }
   li {
@@ -180,7 +183,7 @@ export const TypographyStyle = createGlobalStyle`
   img {
     display: block;
     margin: 1.5em auto;
-    max-width: 1040px;
+    max-width: 100%;
     width: auto;
     max-height: 500px;
     + {
@@ -364,7 +367,7 @@ export const TypographyStyle = createGlobalStyle`
     padding: 5vw 7vw 0;
   }
   @media (max-width: 800px) {
-    font-size: 1.9rem;
+    font-size: 1.7rem;
   }
   @media (max-width: 1040px) {
     img {
@@ -381,9 +384,15 @@ export const TypographyStyle = createGlobalStyle`
   @media (max-width: 500px) {
     h1 {
       font-size: 2.8rem;
+      +p {
+        margin-top: 1.6rem
+      }
     }
     h2 {
       font-size: 2.6rem;
+      +p {
+        margin-top: 1.6rem
+      }
     }
     h3 {
       font-size: 2.2rem;

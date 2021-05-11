@@ -10,7 +10,7 @@ import {
   PostTypes,
 } from "lib/graphql";
 
-const query = gql`
+export const pageQuery = gql`
   query PageQuery($slug: String) {
     post(filters: { slug: $slug }) {
       ...postDetails
@@ -34,12 +34,17 @@ const pathsQuery = gql`
   }
 `;
 
-export default function PostPage({ data, errors }: PageProps<PageQueryQuery>) {
+export default function PostPage({
+  data,
+  errors,
+  isHome,
+}: PageProps<PageQueryQuery> & { isHome: boolean }) {
   if (errors) return <div>{errors}</div>;
 
   if (data.post.__typename === "PostError") return null;
   return (
     <SiteLayout
+      displayBanner={!isHome}
       layout={data}
       metaProps={{
         title: data.post.title,
@@ -61,7 +66,7 @@ export default function PostPage({ data, errors }: PageProps<PageQueryQuery>) {
 
 export function getServerSideProps(context) {
   return fetchProps<PageQueryQuery, PageQueryQueryVariables>(
-    query,
+    pageQuery,
     {
       slug: context.params.slug,
     },

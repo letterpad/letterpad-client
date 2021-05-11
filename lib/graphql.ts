@@ -668,7 +668,6 @@ export type HomeQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type HomeQueryQuery = (
   { __typename?: 'Query' }
-  & AllPostsFragment
   & MenuFragment
   & LayoutFragment
 );
@@ -729,4 +728,29 @@ export type PostPathQueryQuery = (
       & Pick<Post, 'slug'>
     )> }
   ) | { __typename?: 'PostError' } }
+);
+
+export type PostsQueryQueryVariables = Exact<{
+  tagSlug?: Maybe<Scalars['String']>;
+}>;
+
+
+export type PostsQueryQuery = (
+  { __typename?: 'Query' }
+  & { posts: (
+    { __typename?: 'PostsNode' }
+    & Pick<PostsNode, 'count'>
+    & { rows: Array<(
+      { __typename?: 'Post' }
+      & Pick<Post, 'id' | 'title' | 'slug' | 'reading_time' | 'excerpt'>
+      & { cover_image: (
+        { __typename?: 'Image' }
+        & Pick<Image, 'src'>
+      ), author: (
+        { __typename?: 'Author' }
+        & Pick<Author, 'avatar'>
+      ) }
+    )> }
+  ) | { __typename?: 'PostError' } }
+  & LayoutFragment
 );

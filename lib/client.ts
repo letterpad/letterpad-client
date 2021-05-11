@@ -1,6 +1,5 @@
 import { print } from "graphql";
 import type { DocumentNode, GraphQLFormattedError } from "graphql";
-import { useRouter } from "next/router";
 
 export interface PageProps<Data> {
   data: Data;
@@ -50,8 +49,6 @@ export async function fetchProps<
     variables,
     host
   );
-
-  console.log(errors);
 
   return {
     props: {
