@@ -125,7 +125,7 @@ export const TypographyStyle = createGlobalStyle`
     margin: 1.5em 0 3em;
     padding: 20px;
     max-width: 100%;
-    border: 1px solid #000;
+    border: 1px solid var(--color-border);
     color: #e5eff5;
     font-size: 1.4rem;
     line-height: 1.5em;
@@ -287,7 +287,7 @@ export const TypographyStyle = createGlobalStyle`
         background-repeat: no-repeat;
       }
       padding: 6px 12px;
-      border: 1px solid #e3ecf3;
+      border: 1px solid var(--color-border);
     }
     th {
       font-size: 1.2rem;
@@ -296,7 +296,7 @@ export const TypographyStyle = createGlobalStyle`
       text-align: left;
       text-transform: uppercase;
       padding: 6px 12px;
-      border: 1px solid #e3ecf3;
+      border: 1px solid var(--color-border);
       width: 100%;
     }
   }
