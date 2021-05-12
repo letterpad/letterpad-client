@@ -48,6 +48,7 @@ export const Header: React.FC<{
                   className="site-logo"
                   src={site_logo.src}
                   alt={settings.site_title}
+                  height={40}
                 />
               ) : (
                 settings.site_title
