@@ -2,6 +2,7 @@ import gql from "graphql-tag";
 import { PostDetailsFragment } from "lib/graphql";
 import { setResponsiveImages } from "lib/imageUtils";
 import Head from "next/head";
+import Link from "next/link";
 import { FloatingHeader, StyledPost } from "./post.css";
 
 export const postDetailsFragment = gql`
@@ -14,6 +15,10 @@ export const postDetailsFragment = gql`
     publishedAt
     updatedAt
     excerpt
+    tags {
+      name
+      slug
+    }
     author {
       name
     }
@@ -57,8 +62,17 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
               >
                 {postDetails.publishedAt}
               </time>
+              <span className="separator">|</span>
+              <span>{postDetails.reading_time}</span>
             </section>
             <h1 className="post-full-title">{postDetails.title}</h1>
+            <div className="tags-wrapper">
+              {postDetails.tags.map((tag) => (
+                <span className="tag">
+                  <Link href={tag.slug}>{"#" + tag.name}</Link>
+                </span>
+              ))}
+            </div>
           </header>
           <figure
             className="post-full-image"

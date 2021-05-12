@@ -4,7 +4,17 @@ export const StyledPost = styled.div`
   .post-full {
     position: relative;
     z-index: 50;
-
+    .separator {
+      margin: 0px 10px;
+    }
+    .tags-wrapper {
+      margin-top: 20px;
+      .tag a {
+        color: var(--color-primary);
+        margin-right: 8px;
+        text-transform: lowercase;
+      }
+    }
     .post-full-header {
       margin: 0 auto;
       padding: 6vw 3vw 3vw;
@@ -14,21 +24,20 @@ export const StyledPost = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-        color: #738a94;
         font-size: 1.4rem;
         font-weight: 600;
         text-transform: uppercase;
+        margin-bottom: 20px;
+        color: var(--color-text-dull);
         @media (max-width: 500px) {
           font-size: 1.2rem;
           line-height: 1.3em;
         }
-        .post-full-meta-date {
-          color: #3eb0ef;
-        }
       }
       .post-full-title {
         margin: 0;
-        color: #090a0b;
+        font-weight: 500;
+        color: var(--color-text);
         @media (max-width: 500px) {
           font-size: 2.9rem;
         }
@@ -100,7 +109,7 @@ export const FloatingHeader = styled.div`
     flex: 1;
     overflow: hidden;
     margin: 0;
-    color: #2e2e2e;
+    color: var(--color-text);
     font-size: 1.6rem;
     line-height: 1.3em;
     font-weight: 700;
@@ -121,7 +130,7 @@ export const FloatingHeader = styled.div`
     a {
       display: flex;
       align-items: center;
-      color: #15171a;
+      color: var(--color-text);
       line-height: 1.1em;
       font-weight: 700;
     }

@@ -635,7 +635,10 @@ export type MenuFragment = (
 export type PostDetailsFragment = (
   { __typename?: 'Post' }
   & Pick<Post, 'id' | 'slug' | 'title' | 'reading_time' | 'html' | 'publishedAt' | 'updatedAt' | 'excerpt'>
-  & { author: (
+  & { tags: Array<(
+    { __typename?: 'Tags' }
+    & Pick<Tags, 'name' | 'slug'>
+  )>, author: (
     { __typename?: 'Author' }
     & Pick<Author, 'name'>
   ), cover_image: (

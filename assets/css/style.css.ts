@@ -13,7 +13,10 @@ html {
   box-sizing: border-box;
   font-family: sans-serif;
 }
-
+.dark {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
 body {
   color: #3c484e;
   font-family: "Rubik", sans-serif;
@@ -91,7 +94,7 @@ section {
   display: block;
 }
 h1 {
-  font-size: 2em;
+  font-size: 3em;
   margin: 0.67em 0;
 }
 h1,

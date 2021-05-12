@@ -9,11 +9,10 @@ interface IHeaderProps {
   bg?: string;
 }
 export const StyledHeader = styled.header<IHeaderProps>`
-  background: url(${p => p.bg}) #090a0b no-repeat 50%;
+  background: url(${(p) => p.bg}) var(--color-bg-2) no-repeat 50%;
   position: relative;
   padding-top: 12px;
   padding-bottom: 12px;
-  color: #fff;
   background-size: cover;
 
   &:after {
@@ -110,7 +109,7 @@ export const Navigation = styled.nav<INavProps>`
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   @media (min-width: 900px) {
     position: relative;
-    ${p => (!p.displayInlineLogo ? `top: -70px;` : "")}
+    ${(p) => (!p.displayInlineLogo ? `top: -70px;` : "")}
   }
 
   .site-nav-left {
@@ -119,7 +118,7 @@ export const Navigation = styled.nav<INavProps>`
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     margin-right: 10px;
-    ${p => (!p.displayInlineLogo ? `padding-bottom: 80px;` : "")}
+    ${(p) => (!p.displayInlineLogo ? `padding-bottom: 80px;` : "")}
     letter-spacing: 0.4px;
     white-space: nowrap;
     &::-webkit-scrollbar {
@@ -144,7 +143,7 @@ export const Navigation = styled.nav<INavProps>`
       display: block;
       margin-right: 24px;
       padding: 11px 0;
-      color: #fff;
+      color: var(--color-primary);
       font-size: 1.7rem;
       line-height: 1em;
       font-weight: 700;
@@ -168,7 +167,7 @@ export const Navigation = styled.nav<INavProps>`
         text-transform: uppercase;
         a {
           padding: 10px 12px;
-          color: #fff;
+          color: var(--color-text);
           opacity: 0.8;
         }
       }
@@ -187,7 +186,7 @@ export const Navigation = styled.nav<INavProps>`
       align-items: center;
       margin: 0;
       padding: 10px;
-      color: #fff;
+      color: var(--color-text);
       opacity: 0.8;
 
       svg {
@@ -220,7 +219,7 @@ export const Footer = styled.footer`
   position: relative;
   padding-top: 20px;
   padding-bottom: 60px;
-  color: #fff;
+  color: var(--color-text-dull);
   background: #000;
   padding-bottom: 20px !important;
 
@@ -244,7 +243,7 @@ export const Footer = styled.footer`
       line-height: 1.3em;
       span {
         font-size: 0.8em;
-        color: #555;
+        color: var(--color-text-dull);
       }
     }
     .subscribe {

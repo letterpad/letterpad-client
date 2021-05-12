@@ -35,7 +35,7 @@ export const ThemeStyle = createGlobalStyle`
             --color-border: #444c56;
             --color-bg: #1e2228;
             --color-bg-2: rgba(205, 217, 229, 0.15);
-            --color-post-bg: rgba(9, 11, 13, 0.5);
+            --color-post-bg: rgba(9, 11, 13, 0.8);
             --color-pre-bg: #2d333b;
             --color-pre-fg: #cdd9e5;
         }

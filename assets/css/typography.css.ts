@@ -9,7 +9,7 @@ export const TypographyStyle = createGlobalStyle`
   font-weight: 300;
   font-size: 1.8rem;
   line-height: 1.6em;
-  background: #fff;
+  background: var(--color-bg);;
   margin-bottom: 60px;
   &:before {
     left: -5px;
@@ -40,7 +40,7 @@ export const TypographyStyle = createGlobalStyle`
   blockquote {
     margin-top: 1.5em;
     padding: 0 1em;
-    border-left: 3px solid #3eb0ef;
+    border-left: 3px solid var(--color-primary);
     blockquote {
       padding-right: 0px;
     }
@@ -65,13 +65,13 @@ export const TypographyStyle = createGlobalStyle`
   h5,
   h6 {
     min-width: 100%;
-    color: #090a0b;
+    color: var(--color-text);;
     font-family: "Libre Baskerville", serif;
   }
   h1 {
     margin-top: 1.95em;
     margin-bottom: -0.28em;
-    font-size: 4.6rem;
+    font-size:4.6rem;
     font-weight: 400;
     +p {
       margin-top: 2.6rem;
@@ -163,18 +163,18 @@ export const TypographyStyle = createGlobalStyle`
     margin-bottom: 1.9rem;
   }
   a {
-    color: #000;
-    box-shadow: inset 0 -1px 0 #3eb0ef;
+    color: var(--color-primary);
+    box-shadow: inset 0 -1px 0 var(--color-primary);
     &:hover {
-      color: #3eb0ef;
+      color: var(--color-primary);
       text-decoration: none;
     }
   }
   em {
-    color: #090a0b;
+    color: var(--color-text);;
   }
   strong {
-    color: #090a0b;
+    color: var(--color-text);;
   }
   small {
     display: inline-block;
@@ -357,7 +357,7 @@ export const TypographyStyle = createGlobalStyle`
     margin-bottom: 30px;
   }
   .footnote-backref {
-    color: #3eb0ef !important;
+    color: var(--color-primary) !important;
     font-size: 1.2rem;
     font-weight: 700;
     text-decoration: none !important;

@@ -7,7 +7,7 @@ export const Article = styled.article`
   overflow: hidden;
   margin: 0 20px 40px;
   min-height: 300px;
-  background: #fff 50%;
+  background: var(--color-post-bg);
   background-size: cover;
   border-radius: 5px;
   box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06),
@@ -47,7 +47,7 @@ export const Article = styled.article`
         position: relative;
         display: block;
 
-        color: #15171a;
+        color: var(--color-text);
 
         .post-card-title {
           margin-top: 0;
