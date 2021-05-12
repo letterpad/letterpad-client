@@ -1,7 +1,7 @@
 import ArticleItem from "components/ArticleItem";
 import gql from "graphql-tag";
 import { PostsQueryQuery, PostsQueryQueryVariables } from "lib/graphql";
-import { Container } from "./tag.css";
+import { Container } from "../../components/tag.css";
 import { fetchProps } from "lib/client";
 import SiteLayout, { layoutFragment } from "components/layout";
 
@@ -31,7 +31,6 @@ export const postsQuery = gql`
 `;
 
 export default function Tag({ data }: { data: PostsQueryQuery }) {
-  console.log("data :>> ", data);
   if (
     data.posts.__typename === "PostError" ||
     data.settings.__typename === "SettingError"
