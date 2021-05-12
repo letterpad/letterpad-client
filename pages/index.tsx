@@ -79,7 +79,7 @@ export default function Home({
       }}
     >
       <div>
-        <Menu menu={data} />
+        <Menu menu={data as any} />
         {isHomePageACollectionOfPosts && <Posts allPosts={data} />}
       </div>
     </SiteLayout>
