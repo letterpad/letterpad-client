@@ -63,6 +63,7 @@ export const Article = styled.article`
         justify-content: center;
         svg {
           width: 20px;
+          color: var(--color-border);
         }
       }
       .author-profile-image {

@@ -46,9 +46,7 @@ class ArticleItem extends Component<IArticleItem> {
               <span className="post-card-author">{post.author.name}</span>
             </div>
             <div>
-              <span>
-                <TimeIcon />
-              </span>
+              <TimeIcon />
               <span className="post-card-readtime">
                 {post.reading_time.replace("read", "")}
               </span>
