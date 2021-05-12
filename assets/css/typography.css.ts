@@ -268,20 +268,20 @@ export const TypographyStyle = createGlobalStyle`
     background-repeat: no-repeat;
     td {
       &:first-child {
-        background-image: linear-gradient(
+        /* background-image: linear-gradient(
           90deg,
           #fff 50%,
           rgba(255, 255, 255, 0)
-        );
+        ); */
         background-size: 20px 100%;
         background-repeat: no-repeat;
       }
       &:last-child {
-        background-image: linear-gradient(
+        /* background-image: linear-gradient(
           270deg,
           #fff 50%,
           rgba(255, 255, 255, 0)
-        );
+        ); */
         background-position: 100% 0;
         background-size: 20px 100%;
         background-repeat: no-repeat;
@@ -290,13 +290,11 @@ export const TypographyStyle = createGlobalStyle`
       border: 1px solid #e3ecf3;
     }
     th {
-      color: #15171a;
       font-size: 1.2rem;
       font-weight: 700;
       letter-spacing: 0.2px;
       text-align: left;
       text-transform: uppercase;
-      background-color: #f4f8fb;
       padding: 6px 12px;
       border: 1px solid #e3ecf3;
       width: 100%;
