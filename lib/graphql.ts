@@ -640,7 +640,7 @@ export type PostDetailsFragment = (
     & Pick<Tags, 'name' | 'slug'>
   )>, author: (
     { __typename?: 'Author' }
-    & Pick<Author, 'name'>
+    & Pick<Author, 'name' | 'avatar'>
   ), cover_image: (
     { __typename?: 'Image' }
     & Pick<Image, 'src'>

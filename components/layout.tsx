@@ -5,8 +5,8 @@ import { Container, Footer, Main } from "./Layout.css";
 import { Header, headerFragment } from "./Header";
 import Head from "next/head";
 import { NormalizeStyle } from "assets/css/style.css";
-import { PrismStyle } from "assets/css/prism.css";
-import { TypographyStyle } from "assets/css/typography.css";
+// import { PrismStyle } from "assets/css/prism.css";
+// import { TypographyStyle } from "assets/css/typography.css";
 import { ThemeStyle } from "assets/css/theme.css";
 
 export const layoutFragment = gql`
@@ -74,8 +74,8 @@ export default function SiteLayout({
         <meta name="twitter:site" content={"@" + metaProps.twitterHandle} />
         <meta name="twitter:creator" content={"@" + metaProps.twitterHandle} />
       </Head>
-      <PrismStyle />
-      <TypographyStyle />
+      {/* <PrismStyle /> */}
+      {/* <TypographyStyle /> */}
       <NormalizeStyle />
       <ThemeStyle />
       <Header settings={settings} displayBanner={displayBanner}></Header>

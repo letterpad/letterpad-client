@@ -1,7 +1,5 @@
 import React from "react";
-
 import { Article } from "./ArticleItem.css";
-// import LazyImage from "../../../../helpers/LazyImage";
 import Link from "next/link";
 import { getImageAttrs } from "lib/imageUtils";
 
