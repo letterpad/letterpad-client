@@ -21,6 +21,7 @@ export const postDetailsFragment = gql`
     }
     author {
       name
+      avatar
     }
     cover_image {
       src
