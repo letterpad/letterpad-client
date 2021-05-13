@@ -1,5 +1,14 @@
 {
-  "presets": ["next/babel"],
+  "presets": [
+    [
+      "next/babel",
+      {
+        "styled-jsx": {
+          "plugins": ["styled-jsx-plugin-sass"]
+        }
+      }
+    ]
+  ],
   "plugins": [
     [
       "styled-components",
@@ -8,7 +17,6 @@
         "displayName": true,
         "preprocess": false
       }
-    ],
-    ["styled-jsx/babel", { "plugins": ["styled-jsx-plugin-postcss"] }]
+    ]
   ]
 }
