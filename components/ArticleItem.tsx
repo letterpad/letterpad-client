@@ -3,60 +3,57 @@ import React, { Component } from "react";
 import { Article } from "./ArticleItem.css";
 // import LazyImage from "../../../../helpers/LazyImage";
 import Link from "next/link";
+import { Post } from "lib/graphql";
+import { getImageAttrs } from "lib/imageUtils";
 
 interface IArticleItem {
-  post: any;
+  post: Post;
 }
 
-class ArticleItem extends Component<IArticleItem> {
-  render() {
-    const { post } = this.props;
-    return (
-      <Article className="post-card post">
-        <Link href={post.slug}>
-          <a className="post-card-image-link">
-            <div
-              className="post-card-image"
-              style={{
-                backgroundImage: `url(${post.cover_image.src})`,
-              }}
-            ></div>
-          </a>
-        </Link>
-        <div className="post-card-content">
-          <div className="post-card-content-top">
-            <Link href={post.slug}>
-              <a className="post-card-content-link">
-                <header className="post-card-header">
-                  <h2 className="post-card-title">{post.title}</h2>
-                </header>
-                <section className="post-card-excerpt">
-                  <p>{post.excerpt}</p>
-                </section>
-              </a>
-            </Link>
-          </div>
-          <footer className="post-card-meta">
-            <div>
-              <img
-                className="author-profile-image"
-                src={post.author.avatar || ""}
-                alt="Author"
-              />
-              <span className="post-card-author">{post.author.name}</span>
-            </div>
-            <div>
-              <TimeIcon />
-              <span className="post-card-readtime">
-                {post.reading_time.replace("read", "")}
-              </span>
-            </div>
-          </footer>
+const ArticleItem = (props: IArticleItem) => {
+  const { post } = props;
+  const { className, ...imgAttrs } = getImageAttrs(post.cover_image.src);
+
+  return (
+    <Article className="post-card post">
+      <Link href={post.slug}>
+        <a className="post-card-image-link">
+          <img className={"post-card-image " + className} {...imgAttrs} />
+        </a>
+      </Link>
+      <div className="post-card-content">
+        <div className="post-card-content-top">
+          <Link href={post.slug}>
+            <a className="post-card-content-link">
+              <header className="post-card-header">
+                <h2 className="post-card-title">{post.title}</h2>
+              </header>
+              <section className="post-card-excerpt">
+                <p>{post.excerpt}</p>
+              </section>
+            </a>
+          </Link>
         </div>
-      </Article>
-    );
-  }
-}
+        <footer className="post-card-meta">
+          <div>
+            <img
+              className="author-profile-image"
+              src={post.author.avatar || ""}
+              alt="Author"
+            />
+            <span className="post-card-author">{post.author.name}</span>
+          </div>
+          <div>
+            <TimeIcon />
+            <span className="post-card-readtime">
+              {post.reading_time.replace("read", "")}
+            </span>
+          </div>
+        </footer>
+      </div>
+    </Article>
+  );
+};
 
 export default ArticleItem;
 

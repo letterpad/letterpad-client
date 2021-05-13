@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 import { PostDetailsFragment } from "lib/graphql";
-import { setResponsiveImages } from "lib/imageUtils";
+import { getImageAttrs, setResponsiveImages } from "lib/imageUtils";
 import Head from "next/head";
 import Link from "next/link";
 import { FloatingHeader, StyledPost } from "./post.css";
@@ -30,6 +30,7 @@ export const postDetailsFragment = gql`
 
 export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
   const content = setResponsiveImages(postDetails.html);
+  const { className, ...imgAttrs } = getImageAttrs(postDetails.cover_image.src);
   return (
     <>
       <Head>
@@ -74,12 +75,13 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
               ))}
             </div>
           </header>
-          <figure
+          <img className={"post-full-image " + className} {...imgAttrs} />
+          {/* <figure
             className="post-full-image"
             style={{
               backgroundImage: `url(${postDetails.cover_image.src})`,
             }}
-          ></figure>
+          ></figure> */}
 
           <section className="post-full-content">
             {/* <Article post={postDetails} settings={settings} helpers={helpers} /> */}

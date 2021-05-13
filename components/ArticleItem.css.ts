@@ -22,10 +22,9 @@ export const Article = styled.article`
     overflow: hidden;
     border-radius: 5px 5px 0 0;
     .post-card-image {
-      width: auto;
+      width: 100%;
       height: 200px;
-      background: #c5d2d9 no-repeat 50%;
-      background-size: cover;
+      object-fit: cover;
     }
   }
   .post-card-content {

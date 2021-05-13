@@ -45,22 +45,24 @@ export const StyledPost = styled.div`
     }
 
     .post-full-image {
-      margin: 0 -10vw -165px;
-      height: 800px;
-      background: #c5d2d9 50%;
-      background-size: cover;
+      /* margin: 0 -8vw -165px; */
+      height: 700px;
       border-radius: 5px;
+      width: 100%;
+      max-width: 100vw;
+      object-fit: cover;
       @media (max-width: 1170px) {
         margin: 0 -4vw -100px;
-        height: 600px;
         border-radius: 0;
+        width: 100vw;
+        /* margin: 0 -4vw 4vw -4vw; */
       }
       @media (max-width: 800px) {
         height: 400px;
       }
       @media (max-width: 500px) {
-        margin-bottom: 4vw;
         height: 350px;
+        margin: 0 -4vw 4vw -4vw;
       }
     }
 
