@@ -1,7 +1,7 @@
 import ArticleItem from "components/ArticleItem";
 import gql from "graphql-tag";
 import { PostsQueryQuery, PostsQueryQueryVariables } from "lib/graphql";
-import { Container } from "../../components/tag.css";
+import { styles } from "../../components/tag.css";
 import { fetchProps } from "lib/client";
 import SiteLayout, { layoutFragment } from "components/layout";
 
@@ -49,13 +49,14 @@ export default function Tag({ data }: { data: PostsQueryQuery }) {
         author: "",
       }}
     >
-      <Container className="inner">
+      <div className="inner">
         <div className="post-feed">
           {data.posts.rows.map((item, i) => (
             <ArticleItem post={item} key={i} />
           ))}
         </div>
-      </Container>
+      </div>
+      <style jsx>{styles}</style>
     </SiteLayout>
   );
 }

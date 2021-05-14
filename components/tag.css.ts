@@ -1,6 +1,6 @@
-import styled from "styled-components";
+import css from "styled-jsx/css";
 
-export const Container = styled.div`
+export const styles = css.scope`
   .post-feed {
     display: flex;
     @media (min-width: 900px) {

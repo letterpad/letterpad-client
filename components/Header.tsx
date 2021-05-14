@@ -1,9 +1,9 @@
-import { HeaderContent, Navigation, StyledHeader } from "./Layout.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
 import { HeaderSettingsFragment } from "lib/graphql";
 import gql from "graphql-tag";
+import { headerStyles, navigationStyles } from "./header.css";
 
 export const headerFragment = gql`
   fragment headerSettings on Setting {
@@ -37,11 +37,17 @@ export const Header: React.FC<{
     headerWithBanner = false;
   }
   const displayInlineLogo = !headerWithBanner;
+
+  const navcss = navigationStyles(displayInlineLogo);
+  const headerCss = headerStyles(banner.src);
+  const headerclass = headerWithBanner
+    ? "has-banner site-header-content "
+    : "no-banner";
   return (
-    <StyledHeader bg={banner.src} className="site-header outer">
-      <div className="inner">
-        {headerWithBanner && (
-          <HeaderContent className="site-header-content">
+    <>
+      <header className="site-header outer">
+        <div className="inner">
+          <div className={headerclass}>
             <h1 className="site-title">
               {site_logo.src ? (
                 <img
@@ -55,12 +61,15 @@ export const Header: React.FC<{
               )}
             </h1>
             <h2 className="site-description">{settings.site_description}</h2>
-          </HeaderContent>
-        )}
+          </div>
 
-        <Navigation className="site-nav" displayInlineLogo={displayInlineLogo}>
-          <div className="site-nav-left">
-            {displayInlineLogo && (
+          <nav
+            className={
+              "site-nav " + (!displayInlineLogo ? "logo-inline" : "logo-hide")
+            }
+          >
+            <div className="site-nav-left">
+              {/* {displayInlineLogo && ( */}
               <Link href="/">
                 <a className="site-nav-logo">
                   {site_logo.src ? (
@@ -70,61 +79,68 @@ export const Header: React.FC<{
                   )}
                 </a>
               </Link>
-            )}
-            <ul className="nav" role="menu">
-              {menu.map((item, i) => {
-                return (
-                  <li className="" key={i} role="menuitem">
-                    {item.type === "custom" ? (
-                      <a href={item.slug}>{item.label}</a>
-                    ) : (
-                      <Link href={i === 0 ? "/" : item.slug}>{item.label}</Link>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-
-          <div className="site-nav-right">
-            <div className="social-links">
-              {settings.social_facebook && (
-                <a
-                  className="social-link social-link-fb"
-                  href={settings.social_facebook}
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <FacebookIcon />
-                </a>
-              )}
-
-              {settings.social_twitter && (
-                <a
-                  className="social-link social-link-tw"
-                  href={settings.social_twitter}
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <TwitterIcon />
-                </a>
-              )}
-
-              {settings.social_github && (
-                <a
-                  className="social-link"
-                  href={settings.social_github}
-                  target="_blank"
-                  rel="noopener"
-                >
-                  <GithubIcon />
-                </a>
-              )}
+              {/* )} */}
+              <ul className="nav" role="menu">
+                {menu.map((item, i) => {
+                  return (
+                    <li className="" key={i} role="menuitem">
+                      {item.type === "custom" ? (
+                        <a href={item.slug}>{item.label}</a>
+                      ) : (
+                        <Link href={i === 0 ? "/" : item.slug}>
+                          {item.label}
+                        </Link>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-          </div>
-        </Navigation>
-      </div>
-    </StyledHeader>
+
+            <div className="site-nav-right">
+              <div className="social-links">
+                {settings.social_facebook && (
+                  <a
+                    className="social-link social-link-fb"
+                    href={settings.social_facebook}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <FacebookIcon />
+                  </a>
+                )}
+
+                {settings.social_twitter && (
+                  <a
+                    className="social-link social-link-tw"
+                    href={settings.social_twitter}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <TwitterIcon />
+                  </a>
+                )}
+
+                {settings.social_github && (
+                  <a
+                    className="social-link"
+                    href={settings.social_github}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <GithubIcon />
+                  </a>
+                )}
+              </div>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <style jsx global>
+        {headerCss}
+      </style>
+      <style jsx>{navcss}</style>
+    </>
   );
 };
 

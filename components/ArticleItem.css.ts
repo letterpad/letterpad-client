@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import { css } from "styled-jsx/css";
 
-export const Article = styled.article`
+export const styles = css.scope`
+.post {
   display: flex;
   flex: 1 1 300px;
   flex-direction: column;
@@ -109,4 +110,5 @@ export const Article = styled.article`
       }
     }
   }
+}
 `;

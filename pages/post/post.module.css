@@ -1,7 +1,4 @@
-import { createGlobalStyle } from "styled-components";
-
-export const TypographyStyle = createGlobalStyle`
-.post-full-content {
+div {
   position: relative;
   margin: 0 auto;
   padding: 70px 180px 0;
@@ -9,7 +6,7 @@ export const TypographyStyle = createGlobalStyle`
   font-weight: 300;
   font-size: 1.8rem;
   line-height: 1.6em;
-  background: var(--color-bg);;
+  background: var(--color-bg);
   margin-bottom: 60px;
   &:before {
     left: -5px;
@@ -37,7 +34,7 @@ export const TypographyStyle = createGlobalStyle`
     right: -5px;
     transform: rotate(5deg);
   }
-  blockquote {
+  :global(blockquote) {
     margin-top: 1.5em;
     padding: 0 1em;
     border-left: 3px solid var(--color-primary);
@@ -65,15 +62,15 @@ export const TypographyStyle = createGlobalStyle`
   h5,
   h6 {
     min-width: 100%;
-    color: var(--color-text);;
+    color: var(--color-text);
     font-family: "Libre Baskerville", serif;
   }
-  h1 {
+  :global(h1) {
     margin-top: 1.95em;
     margin-bottom: -0.28em;
-    font-size:4.6rem;
+    font-size: 4.6rem;
     font-weight: 400;
-    +p {
+    + p {
       margin-top: 2.6rem;
     }
   }
@@ -82,7 +79,7 @@ export const TypographyStyle = createGlobalStyle`
     margin-bottom: -0.21em;
     font-size: 3.6rem;
     font-weight: 400;
-    +p {
+    + p {
       margin-top: 2.6rem;
     }
   }
@@ -171,10 +168,10 @@ export const TypographyStyle = createGlobalStyle`
     }
   }
   em {
-    color: var(--color-text);;
+    color: var(--color-text);
   }
   strong {
-    color: var(--color-text);;
+    color: var(--color-text);
   }
   small {
     display: inline-block;
@@ -382,14 +379,14 @@ export const TypographyStyle = createGlobalStyle`
   @media (max-width: 500px) {
     h1 {
       font-size: 2.8rem;
-      +p {
-        margin-top: 1.6rem
+      + p {
+        margin-top: 1.6rem;
       }
     }
     h2 {
       font-size: 2.6rem;
-      +p {
-        margin-top: 1.6rem
+      + p {
+        margin-top: 1.6rem;
       }
     }
     h3 {
@@ -435,5 +432,120 @@ export const TypographyStyle = createGlobalStyle`
   .post-content {
     margin-bottom: 80px;
   }
+
+  code[class*="language-"],
+  pre[class*="language-"] {
+    color: #f8f8f2;
+    background: none;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+    font-family: "Fira Code", monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  /* Code blocks */
+  pre[class*="language-"] {
+    padding: 1em;
+    margin: 0.5em 0;
+    overflow: auto;
+    border-radius: 0.3em;
+  }
+
+  :not(pre) > code[class*="language-"],
+  pre[class*="language-"] {
+    background: #282a36;
+  }
+
+  /* Inline code */
+  :not(pre) > code[class*="language-"] {
+    padding: 0.1em;
+    border-radius: 0.3em;
+    white-space: normal;
+  }
+
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .token.cdata {
+    color: #6272a4;
+  }
+
+  .token.punctuation {
+    color: #f8f8f2;
+  }
+
+  .namespace {
+    opacity: 0.7;
+  }
+
+  .token.property,
+  .token.tag,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    color: #ff79c6;
+  }
+
+  .token.boolean,
+  .token.number {
+    color: #bd93f9;
+  }
+
+  .token.selector,
+  .token.attr-name,
+  .token.string,
+  .token.char,
+  .token.builtin,
+  .token.inserted {
+    color: #50fa7b;
+  }
+
+  .token.operator,
+  .token.entity,
+  .token.url,
+  .language-css .token.string,
+  .style .token.string,
+  .token.variable {
+    color: #f8f8f2;
+  }
+
+  .token.atrule,
+  .token.attr-value,
+  .token.function,
+  .token.class-name {
+    color: #f1fa8c;
+  }
+
+  .token.keyword {
+    color: #8be9fd;
+  }
+
+  .token.regex,
+  .token.important {
+    color: #ffb86c;
+  }
+
+  .token.important,
+  .token.bold {
+    font-weight: bold;
+  }
+
+  .token.italic {
+    font-style: italic;
+  }
+
+  .token.entity {
+    cursor: help;
+  }
 }
-`;

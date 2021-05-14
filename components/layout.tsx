@@ -1,13 +1,10 @@
 import gql from "graphql-tag";
 
 import { LayoutFragment } from "lib/graphql";
-import { Container, Footer, Main } from "./Layout.css";
+import { footerStyles, themeVars } from "./Layout.css";
 import { Header, headerFragment } from "./Header";
 import Head from "next/head";
-import { NormalizeStyle } from "assets/css/style.css";
-// import { PrismStyle } from "assets/css/prism.css";
-// import { TypographyStyle } from "assets/css/typography.css";
-import { ThemeStyle } from "assets/css/theme.css";
+import { globalStyles } from "assets/css/style.css";
 
 export const layoutFragment = gql`
   fragment layout on Query {
@@ -53,7 +50,7 @@ export default function SiteLayout({
   const { settings } = layout;
   if (settings.__typename === "SettingError") return null;
   return (
-    <Container className="theme-casper dark">
+    <div className="theme-casper dark">
       <Head>
         <title>{metaProps.title}</title>
         <meta name="author" content={metaProps.author} />
@@ -74,15 +71,11 @@ export default function SiteLayout({
         <meta name="twitter:site" content={"@" + metaProps.twitterHandle} />
         <meta name="twitter:creator" content={"@" + metaProps.twitterHandle} />
       </Head>
-      {/* <PrismStyle /> */}
-      {/* <TypographyStyle /> */}
-      <NormalizeStyle />
-      <ThemeStyle />
       <Header settings={settings} displayBanner={displayBanner}></Header>
 
-      <Main className="outer">{children}</Main>
+      <main className="outer">{children}</main>
 
-      <Footer className="site-footer outer">
+      <footer className="site-footer outer">
         <div className="site-footer-content inner">
           <section className="copyright">
             <SetDangerousHTML html={settings.site_footer} />
@@ -111,8 +104,18 @@ export default function SiteLayout({
             )}
           </nav>
         </div>
-      </Footer>
-    </Container>
+      </footer>
+
+      <style jsx global>
+        {themeVars}
+      </style>
+      <style jsx global>
+        {footerStyles}
+      </style>
+      <style jsx global>
+        {globalStyles}
+      </style>
+    </div>
   );
 }
 
