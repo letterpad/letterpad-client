@@ -9,7 +9,7 @@ export const postWrapperStyles = css.scope`
     }
     .tags-wrapper {
       margin-top: 20px;
-      .tag a {
+      :global(.tag a) {
         color: var(--color-primary);
         margin-right: 8px;
         text-transform: lowercase;
@@ -368,7 +368,7 @@ export const postStyles = css.global`
       font-size: 0.8em;
       line-height: 1em;
       font-weight: 400 !important;
-      background: #e5eff5;
+      background: var(--color-bg-2);
       border-radius: 3px;
     }
     .fluid-width-video-wrapper {

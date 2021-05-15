@@ -69,7 +69,6 @@ export const Header: React.FC<{
             }
           >
             <div className="site-nav-left">
-              {/* {displayInlineLogo && ( */}
               <Link href="/">
                 <a className="site-nav-logo">
                   {site_logo.src ? (
@@ -79,7 +78,6 @@ export const Header: React.FC<{
                   )}
                 </a>
               </Link>
-              {/* )} */}
               <ul className="nav" role="menu">
                 {menu.map((item, i) => {
                   return (

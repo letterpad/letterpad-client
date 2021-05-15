@@ -61,9 +61,10 @@ export const styles = css.scope`
       > div {
         display: flex;
         justify-content: center;
-        svg {
+        :global(svg) {
           width: 20px;
-          color: var(--color-border);
+          fill: var(--color-border);
+          margin-right: 4px;  
         }
       }
       .author-profile-image {

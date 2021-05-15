@@ -48,7 +48,9 @@ export default function Tag({ data }: { data: PostsQueryQuery }) {
         url: "",
         author: "",
       }}
+      displayBanner={false}
     >
+      <div className="tag-banner">Tag: #home</div>
       <div className="inner">
         <div className="post-feed">
           {data.posts.rows.map((item, i) => (

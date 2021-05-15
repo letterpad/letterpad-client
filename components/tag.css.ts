@@ -13,4 +13,14 @@ export const styles = css.scope`
     margin: 0 -20px;
     padding: 40px 0 0;
   }
+  .tag-banner {
+    width: 100vw;
+    height: 300px;
+    background: var(--color-bg-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 110px;
+    margin-left: -60px;
+  }
 `;
