@@ -4,6 +4,7 @@ import { PostsQueryQuery, PostsQueryQueryVariables } from "lib/graphql";
 import { styles } from "../../components/tag.css";
 import { fetchProps } from "lib/client";
 import SiteLayout, { layoutFragment } from "components/layout";
+import { useRouter } from "next/router";
 
 export const postsQuery = gql`
   query PostsQuery($tagSlug: String) {
@@ -37,6 +38,7 @@ export default function Tag({ data }: { data: PostsQueryQuery }) {
   ) {
     return null;
   }
+  const router = useRouter();
   return (
     <SiteLayout
       layout={data}
@@ -50,7 +52,7 @@ export default function Tag({ data }: { data: PostsQueryQuery }) {
       }}
       displayBanner={false}
     >
-      <div className="tag-banner">Tag: #home</div>
+      <div className="tag-banner">#{router.query.slug}</div>
       <div className="inner">
         <div className="post-feed">
           {data.posts.rows.map((item, i) => (
