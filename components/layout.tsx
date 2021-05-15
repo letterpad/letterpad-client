@@ -49,15 +49,17 @@ export default function SiteLayout({
 }) {
   const { settings } = layout;
   if (settings.__typename === "SettingError") return null;
+
+  const description = metaProps.description || settings.site_description;
   return (
     <div className="theme-casper dark">
       <Head>
         <title>{metaProps.title}</title>
-        <meta name="description" content={metaProps.description} />
+        <meta name="description" content={description} />
         <meta name="author" content={metaProps.author} />
         <meta property="og:type" content={metaProps.type} />
         <meta property="og:title" content={metaProps.title} />
-        <meta property="og:description" content={metaProps.description} />
+        <meta property="og:description" content={description} />
         <meta property="og:image" content={metaProps.image} />
         <meta property="og:url" content={metaProps.url} />
         <meta property="og:site_name" content={settings.site_title} />

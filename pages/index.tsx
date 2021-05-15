@@ -25,28 +25,6 @@ const query = gql`
   ${layoutFragment}
 `;
 
-// const postsQuery = gql`
-//   query PostsQuery($tagSlug: String) {
-//     posts(filters: { tagSlug: $tagSlug }) {
-//       ... on PostsNode {
-//         count
-//         rows {
-//           id
-//           title
-//           slug
-//           cover_image {
-//             src
-//           }
-//           author {
-//             avatar
-//           }
-//           reading_time
-//           excerpt
-//         }
-//       }
-//     }
-//   }
-// `;
 export default function Home({
   data,
   errors,
@@ -105,22 +83,18 @@ export async function getServerSideProps(context) {
   const isHomePageASinglePage = firstItemOfMenu.type === NavigationType.Page;
 
   if (isHomePageACollectionOfPosts) {
-    const posts = await fetchProps<PostsQueryQuery, PostsQueryQueryVariables>(
+    return fetchProps<PostsQueryQuery, PostsQueryQueryVariables>(
       postsQuery,
       { tagSlug: firstItemOfMenu.slug },
       context.req.headers.host
     );
-
-    return posts;
   }
 
   if (isHomePageASinglePage) {
-    const page = await fetchProps<PageQueryQuery, PageQueryQueryVariables>(
+    return fetchProps<PageQueryQuery, PageQueryQueryVariables>(
       pageQuery,
       { slug: firstItemOfMenu.slug },
       context.req.headers.host
     );
-
-    return page;
   }
 }
