@@ -38,11 +38,13 @@ const ArticleItem = (props: IArticleItem) => {
           </div>
           <footer className="post-card-meta">
             <div>
-              <img
-                className="author-profile-image"
-                src={post.author.avatar || ""}
-                alt="Author"
-              />
+              {post.author.avatar && (
+                <img
+                  className="author-profile-image"
+                  src={post.author.avatar}
+                  alt="Author"
+                />
+              )}
               <span className="post-card-author">{post.author.name}</span>
             </div>
             <div>

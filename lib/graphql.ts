@@ -65,6 +65,7 @@ export type InputCreateAuthor = {
   email: Scalars['String'];
   site_title: Scalars['String'];
   name: Scalars['String'];
+  username: Scalars['String'];
   password: Scalars['String'];
   token: Scalars['String'];
 };
