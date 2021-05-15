@@ -53,6 +53,7 @@ export default function SiteLayout({
     <div className="theme-casper dark">
       <Head>
         <title>{metaProps.title}</title>
+        <meta name="description" content={metaProps.description} />
         <meta name="author" content={metaProps.author} />
         <meta property="og:type" content={metaProps.type} />
         <meta property="og:title" content={metaProps.title} />
