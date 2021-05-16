@@ -17,7 +17,9 @@ export const postWrapperStyles = css.scope`
     }
     .post-full-header {
       margin: 0 auto;
-      padding: 6vw 3vw 3vw;
+
+      margin-top: 60px;
+      padding: 20px 3vw 3vw;
       max-width: 1040px;
       text-align: center;
       .post-full-meta {
@@ -108,7 +110,6 @@ export const headerStyles = css.scope`
     line-height: 1em;
   }
   .floating-header-title {
-    -ms-flex: 1;
     flex: 1;
     overflow: hidden;
     margin: 0;

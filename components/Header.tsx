@@ -32,7 +32,7 @@ export const Header: React.FC<{
 }> = ({ settings, displayBanner = true }) => {
   const { banner, site_title, site_description } = settings;
   const router = useRouter();
-  let headerWithBanner = !router.route.match("/post|page/") ?? true;
+  let headerWithBanner = !router.route.match("/post|page|preview/") ?? true;
   if (!displayBanner) {
     headerWithBanner = false;
   }

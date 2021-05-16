@@ -43,21 +43,15 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
       <Head>
         <title>{postDetails.title}</title>
       </Head>
-      <div className="floating-header">
+      {/* <div className="floating-header">
         <div>
           <div className="floating-header-logo">
-            {/* <a href="https://eueung.github.io/">
-              {settings.site_logo.src ? (
-                <img src={settings.site_logo.src} alt={postDetails.title} />
-              ) : (
-                settings.site_title
-              )}
-            </a> */}
+            
           </div>
           <span className="floating-header-divider">—</span>
           <div className="floating-header-title">{postDetails.title}</div>
         </div>
-      </div>
+      </div> */}
 
       <div className="inner">
         <div className="post-full post">

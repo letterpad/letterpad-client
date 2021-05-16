@@ -30,17 +30,12 @@ export type Author = {
   permissions: Array<Permissions>;
   avatar: Scalars['String'];
   verified?: Maybe<Scalars['Boolean']>;
+  accessToken?: Maybe<Scalars['String']>;
 };
 
 export type LoginData = {
   email: Scalars['String'];
   password: Scalars['String'];
-};
-
-export type LoginResponse = {
-  __typename?: 'LoginResponse';
-  status: Scalars['Boolean'];
-  data?: Maybe<Author>;
 };
 
 export type InputSocial = {
@@ -87,9 +82,16 @@ export type CreateAuthorError = LetterpadError & {
   message: Scalars['String'];
 };
 
+export type LoginError = LetterpadError & {
+  __typename?: 'LoginError';
+  message: Scalars['String'];
+};
+
 export type MeResponse = Author | AuthorNotFoundError;
 
 export type CreateAuthorResponse = Author | CreateAuthorError;
+
+export type LoginResponse = Author | LoginError;
 
 export type ForgotPasswordResponse = {
   __typename?: 'ForgotPasswordResponse';
@@ -732,6 +734,20 @@ export type PostPathQueryQuery = (
       & Pick<Post, 'slug'>
     )> }
   ) | { __typename?: 'PostError' } }
+);
+
+export type PreviewQueryQueryVariables = Exact<{
+  previewHash?: Maybe<Scalars['String']>;
+}>;
+
+
+export type PreviewQueryQuery = (
+  { __typename?: 'Query' }
+  & { post: (
+    { __typename: 'Post' }
+    & PostDetailsFragment
+  ) | { __typename: 'PostError' } }
+  & LayoutFragment
 );
 
 export type PostsQueryQueryVariables = Exact<{
