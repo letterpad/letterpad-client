@@ -1,91 +1,5 @@
 import css from "styled-jsx/css";
 
-export const headerStyles = (bg) => {
-  return css.global`
-    .site-header {
-      background: url(${bg}) var(--color-bg-2) no-repeat 50%;
-      position: relative;
-      padding-top: 12px;
-      padding-bottom: 12px;
-      background-size: cover;
-
-      &:after {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 10;
-        display: block;
-      }
-
-      &:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 10;
-        display: block;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.18);
-      }
-
-      &:after {
-        bottom: auto;
-        height: 80px;
-        background: linear-gradient(rgba(0, 0, 0, 0.1), transparent);
-      }
-
-      :global(.site-header-content) {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 10vw 4vw;
-        min-height: 200px;
-        max-height: 450px;
-        text-align: center;
-      }
-      :global(.no-banner) {
-        display: none;
-      }
-      .site-title {
-        z-index: 10;
-        margin: 0;
-        padding: 0;
-        font-size: 3.8rem;
-        font-weight: 700;
-      }
-
-      .site-logo {
-        max-height: 45px;
-      }
-
-      .site-description {
-        z-index: 10;
-        margin: 0;
-        padding: 5px 0;
-        font-size: 2.2rem;
-        font-weight: 300;
-        letter-spacing: 0.5px;
-        opacity: 0.8;
-      }
-
-      @media (min-width: 900px) {
-        :global(.home-template .site-nav) {
-          position: relative;
-          top: -70px;
-        }
-      }
-      @media (max-width: 700px) {
-        padding-right: 0;
-        padding-left: 0;
-      }
-    }
-  `;
-};
-
 export const navigationStyles = (displayInlineLogo) => {
   return css.scope`
     .site-nav {
@@ -106,7 +20,6 @@ export const navigationStyles = (displayInlineLogo) => {
         :global(&.logo-inline) {
           @media (min-width: 900px) {
             position: relative;
-            top:-70px;
           }
         }
       
@@ -117,7 +30,6 @@ export const navigationStyles = (displayInlineLogo) => {
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         margin-right: 10px;
-        padding-bottom: ${!displayInlineLogo ? "80px" : ""};
         letter-spacing: 0.4px;
         white-space: nowrap;
         &::-webkit-scrollbar {
@@ -131,7 +43,7 @@ export const navigationStyles = (displayInlineLogo) => {
         &::-webkit-scrollbar-thumb {
           background-color: transparent;
         }
-        @media (max-width: 700px) {
+        @media (max-width: 1040px) {
           margin-right: 0;
           padding-left: 4vw;
         }

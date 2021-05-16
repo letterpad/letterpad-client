@@ -11,7 +11,6 @@ export const styles = css.scope`
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     margin: 0 -20px;
-    padding: 40px 0 0;
   }
   .tag-banner {
     height: 250px;

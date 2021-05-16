@@ -17,5 +17,5 @@ export const menuFragment = gql`
 `;
 
 export function Menu({ menu }: { menu: MenuFragment }) {
-  return <ul></ul>;
+  return null;
 }
