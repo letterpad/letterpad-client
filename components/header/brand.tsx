@@ -40,12 +40,18 @@ const Brand = ({ src, title, description, showBanner }: IProps) => {
           padding: 30px 40px;
           border-radius: 6px;
           color: var(--color-pre-fg);
+          @media (max-width: 900px) {
+            padding: 10px 20px;
+          }
 
           .site-title,
           .site-description {
             padding: 0px;
             margin: 0px;
             font-size: 4rem;
+            @media (max-width: 900px) {
+              font-size: 2rem;
+            }
           }
           .site-description {
             margin-top: 20px;
@@ -56,6 +62,9 @@ const Brand = ({ src, title, description, showBanner }: IProps) => {
             line-height: 27px;
             font-weight: 500;
             font-style: italic;
+            @media (max-width: 900px) {
+              font-size: 1.4rem;
+            }
           }
         }
 

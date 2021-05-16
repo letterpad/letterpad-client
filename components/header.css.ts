@@ -80,6 +80,7 @@ export const navigationStyles = (displayInlineLogo) => {
               padding: 10px 12px;
               color: var(--color-text);
               opacity: 0.8;
+              font-weight: 600;
             }
           }
         }

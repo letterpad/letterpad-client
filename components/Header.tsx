@@ -59,14 +59,19 @@ export const Header: React.FC<{
       </header>
       <style jsx>{`
         .site-header {
-          height: ${headerWithBanner ? "500px" : "auto"};
           margin-bottom: -40px;
           background: var(--color-pre-bg);
         }
         .brand-wrapper {
           position: relative;
           text-align: center;
+        }
+        .site-header,
+        .brand-wrapper {
           height: ${headerWithBanner ? "500px" : "auto"};
+          @media (max-width: 900px) {
+            height: ${headerWithBanner ? "300px" : "auto"};
+          }
         }
       `}</style>
     </>
