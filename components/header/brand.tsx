@@ -13,7 +13,7 @@ const Brand = ({ src, title, description, showBanner }: IProps) => {
   const imgAttrs = getImageAttrs(src);
   return (
     <>
-      <img className="banner" {...imgAttrs} alt={title} />
+      <img className="banner" {...imgAttrs} alt={title} height="100%" />
       <style jsx>{`
         :global(.banner) {
           height: 100%;
