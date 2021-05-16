@@ -63,19 +63,14 @@ export const footerStyles = css.global`
   .site-footer {
     position: relative;
     padding-top: 20px;
-    padding-bottom: 60px;
     color: var(--color-text-dull);
     background: #000;
-    padding-bottom: 20px !important;
+    padding: 20px !important;
 
     .site-footer-content {
-      display: -ms-flexbox;
       display: flex;
-      -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-      -ms-flex-pack: justify;
       justify-content: space-between;
-      -ms-flex-align: center;
       align-items: center;
       font-size: 1.3rem;
       @media (max-width: 650px) {
@@ -86,6 +81,8 @@ export const footerStyles = css.global`
       }
       .copyright {
         line-height: 1.3em;
+        width: 100%;
+        text-align: center;
         span {
           font-size: 0.8em;
           color: var(--color-text-dull);
@@ -111,7 +108,6 @@ export const footerStyles = css.global`
         }
       }
       .site-footer-nav {
-        display: -ms-flexbox;
         display: flex;
         a {
           position: relative;
