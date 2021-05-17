@@ -16,12 +16,12 @@ export async function executeQuery<
   identifier: string
 ): Promise<PageProps<Data>> {
   const queryText = print(query);
-
+  console.log("host", identifier);
   const resp = await fetch(process.env.API_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      host: identifier,
+      identifier: identifier,
       Authorization: `Basic ${process.env.CLIENT_ID}`,
     },
     body: JSON.stringify({ query: queryText, variables }),
