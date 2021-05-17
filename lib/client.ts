@@ -21,7 +21,7 @@ export async function executeQuery<
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      identifier: identifier,
+      host: identifier,
       Authorization: `Basic ${process.env.CLIENT_ID}`,
     },
     body: JSON.stringify({ query: queryText, variables }),
