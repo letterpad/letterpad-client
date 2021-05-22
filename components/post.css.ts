@@ -601,16 +601,19 @@ export const postStyles = css.global`
       -moz-tab-size: 4;
       -o-tab-size: 4;
       tab-size: 4;
+      font-size: 1.2rem;
       hyphens: none;
     }
 
     /* Code blocks */
     pre[class*="language-"] {
       padding: 1em;
-      margin: 0.5em 0;
-      margin-top: 4em;
+      margin: 4em 0;
       overflow: auto;
       border-radius: 0.3em;
+      @media (width: 700px) {
+        margin: 2em 0;
+      }
     }
 
     :not(pre) > code[class*="language-"],
