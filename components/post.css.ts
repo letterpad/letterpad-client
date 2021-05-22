@@ -43,6 +43,7 @@ export const postWrapperStyles = css.scope`
         color: var(--color-text);
         @media (max-width: 500px) {
           font-size: 2.9rem;
+          line-height: 4rem;
         }
       }
     }
