@@ -1,7 +1,7 @@
 import css from "styled-jsx/css";
 
 export const themeVars = css.global`
-  .dark {
+  :root {
     --color-primary: #2188ff;
     --color-text: #24292e;
     --color-text-dull: #768390;
@@ -9,7 +9,7 @@ export const themeVars = css.global`
     --color-bg: #fefefe;
     --color-bg-2: #f0f0f0;
     --color-post-bg: #f0f0f0;
-    --color-pre-bg: #2d333b;
+    --color-pre-bg: #e1e1e1;
     --color-pre-fg: #cdd9e5;
     --font-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
@@ -29,7 +29,7 @@ export const themeVars = css.global`
     --radius: 0.5rem;
   }
   @media (prefers-color-scheme: dark) {
-    .dark {
+    :root {
       --color-primary: #539bf5;
       --color-text: #adbac7;
       --color-text-dull: #aeaeae;
@@ -49,23 +49,26 @@ export const layoutStyles = () => {
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-
-      main {
-        z-index: 100;
-        flex-grow: 1;
-        padding: 0 4vw;
-      }
+    }
+    main {
+      z-index: 100;
+      flex-grow: 1;
+      padding: 0 4vw;
+      margin-bottom: 40px;
     }
   `;
 };
 
 export const footerStyles = css.global`
   .site-footer {
-    position: relative;
+    position: fixed;
     padding-top: 20px;
     color: var(--color-text-dull);
     background: #000;
     padding: 20px !important;
+    bottom: 0px;
+    width: 100vw;
+    z-index: 9;
 
     .site-footer-content {
       display: flex;

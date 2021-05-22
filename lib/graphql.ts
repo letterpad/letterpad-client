@@ -619,7 +619,7 @@ export type LayoutFragment = (
   { __typename?: 'Query' }
   & { settings: (
     { __typename?: 'Setting' }
-    & Pick<Setting, 'site_footer' | 'subscribe_embed' | 'social_github' | 'social_facebook' | 'social_twitter'>
+    & Pick<Setting, 'site_footer' | 'subscribe_embed' | 'social_github' | 'social_facebook' | 'social_twitter' | 'css'>
     & HeaderSettingsFragment
   ) | { __typename?: 'SettingError' } }
 );

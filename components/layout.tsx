@@ -15,6 +15,7 @@ export const layoutFragment = gql`
         social_github
         social_facebook
         social_twitter
+        css
       }
 
       ...headerSettings
@@ -52,7 +53,7 @@ export default function SiteLayout({
 
   const description = metaProps.description || settings.site_description;
   return (
-    <div className="theme-casper dark">
+    <div className="theme-casper layout">
       <Head>
         <title>{metaProps.title}</title>
         <meta name="description" content={description} />
@@ -73,12 +74,13 @@ export default function SiteLayout({
         <meta name="twitter:image" content={metaProps.image} />
         <meta name="twitter:site" content={"@" + metaProps.twitterHandle} />
         <meta name="twitter:creator" content={"@" + metaProps.twitterHandle} />
+        <style>{settings.css}</style>
       </Head>
       <Header settings={settings} displayBanner={displayBanner}></Header>
 
       <main className="outer">{children}</main>
 
-      <footer className="site-footer outer">
+      <footer className="site-footer">
         <div className="site-footer-content inner">
           <section className="copyright">
             <SetDangerousHTML html={settings.site_footer} />

@@ -13,10 +13,12 @@ export const globalStyles = css.global`
     box-sizing: border-box;
     font-family: sans-serif;
   }
-  .dark {
+  .layout {
+    min-height: 100vh;
     background: var(--color-bg);
     color: var(--color-text);
   }
+
   body {
     color: #3c484e;
     font-family: "Rubik", sans-serif;
@@ -93,5 +95,12 @@ export const globalStyles = css.global`
   nav,
   section {
     display: block;
+  }
+
+  main {
+    z-index: 100;
+    flex-grow: 1;
+    padding: 0 4vw;
+    margin-bottom: 40px;
   }
 `;
