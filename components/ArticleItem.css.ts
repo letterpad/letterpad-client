@@ -33,7 +33,6 @@ export const styles = css.scope`
     flex: 1;
     min-height: 150px;
   }
-
   .post-card-content {
     flex-grow: 1;
     display: flex;
@@ -82,11 +81,14 @@ export const styles = css.scope`
       }
     }
   }
-
+  &.without-cover-image {
+    .post-card-content {
+      flex: 1 !important; 
+    }
+  }
   @media (min-width: 795px) {
-    &:nth-child(6n + 1):not(.without-cover-image) {
+    &:nth-child(6n + 1) {
       flex: 1 1 100%;
-      -ms-flex-direction: row;
       flex-direction: row;
       p {
         font-size: 1.8rem;
@@ -106,6 +108,7 @@ export const styles = css.scope`
           height: 100%;
         }
       }
+      
       .post-card-content {
         flex: 0 1 357px;
         .post-card-content-top {
