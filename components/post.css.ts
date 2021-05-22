@@ -305,6 +305,7 @@ export const postStyles = css.global`
       }
     }
     figure {
+      margin: auto -15px;
       margin-top: 1.9rem;
       margin-bottom: 1.9rem;
     }
