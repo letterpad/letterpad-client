@@ -15,12 +15,9 @@ export const globalStyles = css.global`
   }
   .layout {
     min-height: 100vh;
-    background: var(--color-bg);
-    color: var(--color-text);
   }
 
   body {
-    color: #3c484e;
     font-family: "Rubik", sans-serif;
     font-size: 1.5rem;
     line-height: 1.6em;
@@ -28,7 +25,8 @@ export const globalStyles = css.global`
     font-style: normal;
     letter-spacing: 0;
     text-rendering: optimizeLegibility;
-    background: #fff;
+    background: var(--color-bg);
+    color: var(--color-text);
     -webkit-font-smoothing: antialiased;
   }
 
