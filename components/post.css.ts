@@ -39,6 +39,7 @@ export const postWrapperStyles = css.scope`
       .post-full-title {
         margin: 0;
         font-weight: 500;
+        line-height: 7rem;
         color: var(--color-text);
         @media (max-width: 500px) {
           font-size: 2.9rem;
@@ -567,6 +568,7 @@ export const postStyles = css.global`
       }
       .post-full-title {
         font-size: 2.9rem;
+        line-height: 4rem;
       }
       .post-full-image {
         margin-bottom: 4vw;

@@ -41,7 +41,7 @@ export const globalStyles = css.global`
   h5,
   h6 {
     margin-top: 0;
-    line-height: 1.15;
+    line-height: 1.6;
     font-weight: 700;
     text-rendering: optimizeLegibility;
     font-family: "Libre Baskerville", serif;
