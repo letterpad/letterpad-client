@@ -608,7 +608,7 @@ export const postStyles = css.global`
     pre[class*="language-"] {
       padding: 1em;
       margin: 0.5em 0;
-      margin-top: 4m;
+      margin-top: 4em;
       overflow: auto;
       border-radius: 0.3em;
     }
