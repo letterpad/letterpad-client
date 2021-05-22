@@ -346,9 +346,10 @@ export const postStyles = css.global`
       }
     }
     figcaption {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       text-align: center;
       margin-top: -28px;
+      margin-bottom: 20px;
       font-style: italic;
     }
     video {
@@ -598,9 +599,6 @@ export const postStyles = css.global`
       -moz-tab-size: 4;
       -o-tab-size: 4;
       tab-size: 4;
-      -webkit-hyphens: none;
-      -moz-hyphens: none;
-      -ms-hyphens: none;
       hyphens: none;
     }
 
@@ -608,6 +606,7 @@ export const postStyles = css.global`
     pre[class*="language-"] {
       padding: 1em;
       margin: 0.5em 0;
+      margin-top: 4m;
       overflow: auto;
       border-radius: 0.3em;
     }
