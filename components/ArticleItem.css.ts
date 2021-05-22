@@ -30,7 +30,6 @@ export const styles = css.scope`
   }
 
   &.without-cover-image {
-    flex: 1;
     min-height: 150px;
   }
   .post-card-content {
