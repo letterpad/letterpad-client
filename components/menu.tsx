@@ -12,6 +12,7 @@ export const menuFragment = gql`
           label
         }
       }
+      __typename
     }
   }
 `;

@@ -28,6 +28,12 @@ export const styles = css.scope`
       object-fit: cover;
     }
   }
+
+  &.without-cover-image {
+    flex: 1;
+    min-height: 150px;
+  }
+
   .post-card-content {
     flex-grow: 1;
     display: flex;
@@ -78,7 +84,7 @@ export const styles = css.scope`
   }
 
   @media (min-width: 795px) {
-    &:nth-child(6n + 1):not(.no-image) {
+    &:nth-child(6n + 1):not(.without-cover-image) {
       flex: 1 1 100%;
       -ms-flex-direction: row;
       flex-direction: row;

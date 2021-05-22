@@ -10,10 +10,13 @@ interface IArticleItem {
 const ArticleItem = (props: IArticleItem) => {
   const { post } = props;
   const { className, ...imgAttrs } = getImageAttrs(post.cover_image.src);
+  const hasCoverImage = !!post.cover_image.src;
+
+  const rootClass = hasCoverImage ? "with-cover-image" : "without-cover-image";
 
   return (
     <>
-      <div className="post-card post">
+      <div className={"post-card post " + rootClass}>
         {imgAttrs.src && (
           <Link href={post.slug}>
             <a className="post-card-image-link">

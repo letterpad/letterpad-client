@@ -627,12 +627,12 @@ export type LayoutFragment = (
 export type MenuFragment = (
   { __typename?: 'Query' }
   & { settings: (
-    { __typename?: 'Setting' }
+    { __typename: 'Setting' }
     & { menu: Array<(
       { __typename?: 'Navigation' }
       & Pick<Navigation, 'type' | 'slug' | 'original_name' | 'label'>
     )> }
-  ) | { __typename?: 'SettingError' } }
+  ) | { __typename: 'SettingError' } }
 );
 
 export type PostDetailsFragment = (
