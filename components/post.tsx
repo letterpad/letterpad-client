@@ -75,11 +75,13 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
               ))}
             </div>
           </header>
-          <img
-            className={"post-full-image " + "className"}
-            {...imgAttrs}
-            alt={postDetails.title}
-          />
+          {imgAttrs.src && (
+            <img
+              className={"post-full-image " + "className"}
+              {...imgAttrs}
+              alt={postDetails.title}
+            />
+          )}
 
           <section className="post-full-content">
             <article className="post-content">
