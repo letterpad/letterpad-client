@@ -14,15 +14,17 @@ const ArticleItem = (props: IArticleItem) => {
   return (
     <>
       <div className="post-card post">
-        <Link href={post.slug}>
-          <a className="post-card-image-link">
-            <img
-              className={"post-card-image " + className}
-              {...imgAttrs}
-              alt={post.title}
-            />
-          </a>
-        </Link>
+        {imgAttrs.src && (
+          <Link href={post.slug}>
+            <a className="post-card-image-link">
+              <img
+                className={"post-card-image " + className}
+                {...imgAttrs}
+                alt={post.title}
+              />
+            </a>
+          </Link>
+        )}
         <div className="post-card-content">
           <div className="post-card-content-top">
             <Link href={post.slug}>

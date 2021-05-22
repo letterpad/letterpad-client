@@ -30,8 +30,8 @@ export default function Home({
   errors,
 }: PageProps<PostsQueryQuery & PageQueryQuery>) {
   if (errors) return <div>Error occurred</div>;
-  if (!data) return null;
-  if (data.settings.__typename === "SettingError") return null;
+  if (!data?.settings) return null;
+  if (data?.settings?.__typename === "SettingError") return null;
 
   const { menu } = data.settings;
 
@@ -70,7 +70,9 @@ export async function getServerSideProps(context) {
     {},
     context.req.headers.host
   );
-
+  if (!data.props.data.settings.__typename) {
+    return { props: { data: {} } };
+  }
   if (data.props.data.settings.__typename === "SettingError") return null;
 
   const { menu } = data.props.data.settings;

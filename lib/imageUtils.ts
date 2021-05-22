@@ -46,7 +46,13 @@ export const getImageAttrs = (
   sizes?: number[],
   srcSizes?: string
 ): IImageAttrsResult => {
-  if (!src) return null;
+  if (!src)
+    return {
+      src: "",
+      loading: "lazy",
+      width: "100%",
+      className: "",
+    };
   if (!sizes) sizes = [480, 720, 960, 1200, 1440, 1600, 2000];
   if (!srcSizes) srcSizes = `(max-width: 720px) 100vw, 720px`;
   const base64Url = makeCloudinaryUrl(src, 30);
@@ -55,6 +61,7 @@ export const getImageAttrs = (
       src,
       loading: "lazy",
       width: "100%",
+      className: "",
     };
   }
   const url = new URL(src);
