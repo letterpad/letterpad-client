@@ -11,7 +11,7 @@ interface IProps {
 const Nav = ({ settings, logoInline, showBanner }: IProps) => {
   const { site_title, site_logo, menu } = settings;
 
-  const navcss = navigationStyles(logoInline);
+  const navcss = navigationStyles();
   const navClass = ["site-nav"];
   if (logoInline) navClass.push("logo-inline");
   else navClass.push("logo-hide");
