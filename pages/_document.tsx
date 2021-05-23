@@ -17,6 +17,10 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
+        <script
+          src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
+          async
+        />
       </Html>
     );
   }
