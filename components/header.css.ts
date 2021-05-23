@@ -1,7 +1,7 @@
 import css from "styled-jsx/css";
 
-export const navigationStyles = (displayInlineLogo) => {
-  return css.scope`
+export const navigationStyles = () => {
+  return css`
     .site-nav {
       display: flex;
       justify-content: space-between;
@@ -10,19 +10,16 @@ export const navigationStyles = (displayInlineLogo) => {
       justify-content: space-between;
       align-items: baseline;
       height: 40px;
-      font-size: 1.2rem;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      font-size: var(--text-sm);
 
-        :global(&.logo-hide .site-nav-logo) {
-          display: none;
+      :global(&.logo-hide .site-nav-logo) {
+        display: none;
+      }
+      :global(&.logo-inline) {
+        @media (min-width: 900px) {
+          position: relative;
         }
-        :global(&.logo-inline) {
-          @media (min-width: 900px) {
-            position: relative;
-          }
-        }
-      
+      }
 
       .site-nav-left {
         display: flex;
@@ -45,7 +42,7 @@ export const navigationStyles = (displayInlineLogo) => {
         }
         @media (max-width: 1040px) {
           margin-right: 0;
-          padding-left: 4vw;
+          padding-left: var(--space-lg);
         }
 
         :global(.site-nav-logo) {
@@ -68,16 +65,15 @@ export const navigationStyles = (displayInlineLogo) => {
         }
         ul.nav {
           display: flex;
-          margin: 0 0 0 -12px;
           padding: 0;
           list-style: none;
-          font-size: 1.2rem;
           align-items: center;
           li {
             padding: 0;
             text-transform: uppercase;
-           :global(a) {
-              padding: 10px 12px;
+            :global(a) {
+              padding: var(--space-sm);
+              padding-left: 0;
               color: var(--color-text);
               opacity: 0.8;
               font-weight: 600;

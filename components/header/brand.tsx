@@ -37,25 +37,25 @@ const Brand = ({ src, title, description, showBanner }: IProps) => {
           justify-content: center;
 
           background: #0000003b;
-          padding: 30px 40px;
-          border-radius: 6px;
+          padding: var(--space-sm) var(--space-lg);
+          border-radius: var(--radius);
           color: var(--color-pre-fg);
           @media (max-width: 900px) {
-            padding: 10px 20px;
+            padding: var(--space-xs) var(--space-sm);
           }
 
           .site-title,
           .site-description {
             padding: 0px;
             margin: 0px;
-            font-size: 4rem;
+            font-size: var(--text-xxxl);
             @media (max-width: 900px) {
-              font-size: 2rem;
+              font-size: var(--text-xxl);
             }
           }
           .site-description {
-            margin-top: 20px;
-            font-size: 1.6rem;
+            margin-top: var(--space-sm);
+            font-size: var(--text-md);
             color: var(--color-text-dull);
             max-width: 400px;
             font-family: system-ui;
@@ -63,7 +63,8 @@ const Brand = ({ src, title, description, showBanner }: IProps) => {
             font-weight: 500;
             font-style: italic;
             @media (max-width: 900px) {
-              font-size: 1.4rem;
+              font-size: var(--text-sm);
+              line-height: var(--text-md);
             }
           }
         }

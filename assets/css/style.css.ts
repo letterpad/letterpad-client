@@ -5,6 +5,7 @@ export const globalStyles = css.global`
   html {
     overflow-x: hidden;
     word-break: break-word;
+    margin: 0;
   }
   html {
     overflow-y: scroll;
@@ -18,9 +19,9 @@ export const globalStyles = css.global`
   }
 
   body {
-    font-family: "Rubik", sans-serif;
-    font-size: 1.5rem;
-    line-height: 1.6em;
+    font-family: var(--font-sans-serif);
+    font-size: var(--text-lg);
+    line-height: var(--text-lg);
     font-weight: 400;
     font-style: normal;
     letter-spacing: 0;
@@ -44,18 +45,23 @@ export const globalStyles = css.global`
     line-height: 1.6;
     font-weight: 700;
     text-rendering: optimizeLegibility;
-    font-family: "Libre Baskerville", serif;
+    font-family: var(--font-serif);
   }
 
   h1 {
-    margin: 0 0 0.5em;
-    font-size: 5rem;
+    margin-bottom: var(--space-lg);
+    font-size: var(--text-xxl);
     font-weight: 700;
   }
 
   h2 {
-    margin: 1.5em 0 0.5em;
-    font-size: 2rem;
+    margin-bottom: var(--space-md);
+    font-size: var(--text-xl);
+  }
+
+  h2 {
+    margin-bottom: var(--space-sm);
+    font-size: var(--text-lg);
   }
 
   blockquote,
@@ -63,7 +69,9 @@ export const globalStyles = css.global`
   ol,
   p,
   ul {
-    margin: 0 0 1.5em;
+    margin-bottom: var(--space-sm);
+    margin-left: 0;
+    margin-right: 0;
   }
   .inner {
     margin: 0 auto;
@@ -72,20 +80,10 @@ export const globalStyles = css.global`
   }
   .outer {
     position: relative;
-    padding: 0 4vw;
+    padding: 0 var(--space-lg);
     z-index: 1;
   }
 
-  /* normalize */
-  /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
-  html {
-    line-height: 1.15;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%;
-  }
-  body {
-    margin: 0;
-  }
   article,
   aside,
   footer,
@@ -98,7 +96,7 @@ export const globalStyles = css.global`
   main {
     z-index: 100;
     flex-grow: 1;
-    padding: 0 4vw;
+    padding: 0 var(--space-lg);
     margin-bottom: 40px;
   }
 `;

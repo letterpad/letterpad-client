@@ -3,12 +3,7 @@ import { PostDetailsFragment } from "lib/graphql";
 import { getImageAttrs, setResponsiveImages } from "lib/imageUtils";
 import Head from "next/head";
 import Link from "next/link";
-import { postStyles, postWrapperStyles, headerStyles } from "./post.css";
-// import _JSXStyle from "styled-jsx/style";
-import css from "styled-jsx/css";
-// if (typeof global !== "undefined") {
-//   Object.assign(global, { _JSXStyle });
-// }
+import { postStyles, postWrapperStyles } from "./post.css";
 
 export const postDetailsFragment = gql`
   fragment postDetails on Post {
@@ -43,15 +38,6 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
       <Head>
         <title>{postDetails.title}</title>
       </Head>
-      {/* <div className="floating-header">
-        <div>
-          <div className="floating-header-logo">
-            
-          </div>
-          <span className="floating-header-divider">—</span>
-          <div className="floating-header-title">{postDetails.title}</div>
-        </div>
-      </div> */}
 
       <div className="inner">
         <div className="post-full post">
@@ -102,7 +88,6 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
       <style jsx global>
         {postStyles}
       </style>
-      <style jsx>{headerStyles}</style>
       <style jsx>{postWrapperStyles}</style>
     </>
   );

@@ -1,6 +1,6 @@
 import css from "styled-jsx/css";
 
-export const postWrapperStyles = css.scope`
+export const postWrapperStyles = css`
   .post-full {
     position: relative;
     z-index: 50;
@@ -49,24 +49,22 @@ export const postWrapperStyles = css.scope`
     }
 
     .post-full-image {
-      /* margin: 0 -8vw -165px; */
       height: 700px;
       border-radius: 5px;
       width: 100%;
       max-width: 100vw;
       object-fit: cover;
       @media (max-width: 1170px) {
-        margin: 0 -4vw -100px;
+        margin: 0 -var(--space-lg) -100px;
         border-radius: 0;
         width: 100vw;
-        /* margin: 0 -4vw 4vw -4vw; */
       }
       @media (max-width: 800px) {
         height: 400px;
       }
       @media (max-width: 500px) {
         height: 350px;
-        margin: 0 -4vw 4vw -4vw;
+        margin: 0 -var(--space-lg) var(--space-lg) -var(--space-lg);
       }
     }
 
@@ -79,73 +77,6 @@ export const postWrapperStyles = css.scope`
       display: flex;
     }
   }
-`;
-
-export const headerStyles = css.scope`
-.floating-header {
-  visibility: hidden;
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 1000;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
-  height: 60px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-  background: hsla(0, 0%, 100%, 0.95);
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  transform: translate3d(0, -120%, 0);
-  > div {
-    display: flex;
-    align-items: center;
-  }
-  &.floating-active {
-    visibility: visible;
-    transition: all 0.5s cubic-bezier(0.22, 1, 0.27, 1);
-    transform: translateZ(0);
-  }
-  .floating-header-divider {
-    margin: 0 5px;
-    line-height: 1em;
-  }
-  .floating-header-title {
-    flex: 1;
-    overflow: hidden;
-    margin: 0;
-    color: var(--color-text);
-    font-size: 1.6rem;
-    line-height: 1.3em;
-    font-weight: 700;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .floating-header-logo {
-    overflow: hidden;
-    margin: 0 0 0 20px;
-    font-size: 1.6rem;
-    line-height: 1em;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    img {
-      margin: 0 10px 0 0;
-      max-height: 20px;
-    }
-    a {
-      display: flex;
-      align-items: center;
-      color: var(--color-text);
-      line-height: 1.1em;
-      font-weight: 700;
-    }
-  }
-  .progress-bar {
-    position: fixed;
-    top: 58px;
-  }
-}
 `;
 
 export const postStyles = css.global`
@@ -405,33 +336,15 @@ export const postStyles = css.global`
       white-space: nowrap;
       vertical-align: top;
       -webkit-overflow-scrolling: touch;
-      background: radial-gradient(
-            ellipse at left,
-            rgba(0, 0, 0, 0.2) 0,
-            transparent 75%
-          )
-          0,
-        radial-gradient(ellipse at right, rgba(0, 0, 0, 0.2) 0, transparent 75%)
-          100%;
       background-attachment: scroll, scroll;
       background-size: 10px 100%, 10px 100%;
       background-repeat: no-repeat;
       td {
         &:first-child {
-          /* background-image: linear-gradient(
-      90deg,
-      #fff 50%,
-      rgba(255, 255, 255, 0)
-    ); */
           background-size: 20px 100%;
           background-repeat: no-repeat;
         }
         &:last-child {
-          /* background-image: linear-gradient(
-      270deg,
-      #fff 50%,
-      rgba(255, 255, 255, 0)
-    ); */
           background-position: 100% 0;
           background-size: 20px 100%;
           background-repeat: no-repeat;
@@ -572,7 +485,7 @@ export const postStyles = css.global`
         line-height: 4rem;
       }
       .post-full-image {
-        margin-bottom: 4vw;
+        margin-bottom: var(--space-lg);
         height: 350px;
       }
     }

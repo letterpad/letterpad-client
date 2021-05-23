@@ -1,10 +1,11 @@
 import gql from "graphql-tag";
 
 import { LayoutFragment } from "lib/graphql";
-import { footerStyles, themeVars } from "./Layout.css";
+import { footerStyles } from "./Layout.css";
 import { Header, headerFragment } from "./Header";
 import Head from "next/head";
 import { globalStyles } from "assets/css/style.css";
+import { themeVars } from "assets/css/theme.css";
 
 export const layoutFragment = gql`
   fragment layout on Query {
