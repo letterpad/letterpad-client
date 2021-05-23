@@ -78,9 +78,9 @@ export default function SiteLayout({
         <style>{settings.css}</style>
       </Head>
       <Header settings={settings} displayBanner={displayBanner}></Header>
-
-      <main className="outer">{children}</main>
-
+      <div className="outer">
+        <main>{children}</main>
+      </div>
       <footer className="site-footer">
         <div className="site-footer-content inner">
           <section className="copyright">
