@@ -96,7 +96,6 @@ export const globalStyles = css.global`
   main {
     z-index: 100;
     flex-grow: 1;
-    padding: 0 var(--space-lg);
-    margin-bottom: 40px;
+    padding-bottom: var(--space-xxl);
   }
 `;
