@@ -31,6 +31,7 @@ export const themeVars = css`
     --space-md: var(--baseline);
     --space-lg: calc(var(--baseline) * 2);
     --space-xl: calc(var(--baseline) * 3);
+    --space-xxl: calc(var(--baseline) * 4);
 
     --color-primary: #2188ff;
     --color-text: #24292e;

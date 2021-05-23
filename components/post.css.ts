@@ -86,8 +86,8 @@ export const postStyles = css.global`
     padding: 70px 180px 0;
     min-height: 230px;
     font-weight: 300;
-    font-size: 1.8rem;
-    line-height: 1.6em;
+    font-size: var(--text-md);
+    line-height: var(--text-lg);
     background: var(--color-bg);
     margin-bottom: 60px;
     &:before {
@@ -116,7 +116,7 @@ export const postStyles = css.global`
       right: -5px;
       transform: rotate(5deg);
     }
-    :global(blockquote) {
+    blockquote {
       margin-top: 1.5em;
       padding: 0 1em;
       border-left: 3px solid var(--color-primary);
@@ -145,50 +145,45 @@ export const postStyles = css.global`
     h6 {
       min-width: 100%;
       color: var(--color-text);
-      font-family: "Libre Baskerville", serif;
+      font-family: var(--font-sans-serif);
     }
-    :global(h1) {
-      margin-top: 1.95em;
-      margin-bottom: -0.28em;
-      font-size: 4.6rem;
+    h1 {
+      margin-top: var(--space-lg);
+      margin-bottom: var(--space-xs);
+      font-size: var(--text-xxl);
       font-weight: 400;
       + p {
         margin-top: 2.6rem;
       }
     }
     h2 {
-      margin-top: 1.6em;
-      margin-bottom: -0.21em;
-      font-size: 3.6rem;
+      margin-top: var(--space-lg);
+      font-size: var(--text-xl);
       font-weight: 400;
       + p {
         margin-top: 2.6rem;
       }
     }
     h3 {
-      margin-top: 1.2em;
-      margin-bottom: -0.11em;
-      font-size: 2.8rem;
+      margin-top: var(--space-md);
+      font-size: var(--text-lg);
       font-weight: 400;
     }
     h4 {
-      margin-top: 1em;
-      margin-bottom: -0.1em;
-      font-size: 2.2rem;
+      margin-top: var(--space-sm);
+      font-size: var(--text-md);
       font-weight: 400;
     }
     h5 {
-      margin-top: 0.8em;
-      margin-bottom: -0.05em;
+      margin-top: var(--space-sm);
       border: 0;
-      font-size: 1.8rem;
+      font-size: var(--text-sm);
       line-height: 1.35em;
       font-weight: 400;
     }
     h6 {
-      margin-top: 0.8em;
-      margin-bottom: -0.02em;
-      font-size: 1.6rem;
+      margin-top: var(--space-xs);
+      font-size: var(--text-xs);
       font-weight: 400;
     }
     ol {
@@ -196,8 +191,7 @@ export const postStyles = css.global`
     }
     p {
       min-width: 100%;
-      margin-top: 0.86em;
-      margin-bottom: -0.46em;
+      margin-bottom: var(--space-md);
     }
     pre {
       overflow-x: auto;
@@ -279,11 +273,10 @@ export const postStyles = css.global`
       }
     }
     figcaption {
-      font-size: 1.2rem;
+      font-size: var(--text-xs);
       text-align: center;
-      margin-top: -28px;
-      margin-bottom: 20px;
-      font-style: italic;
+      margin-top: calc(var(--space-md) * -1);
+      margin-bottom: var(--space-lg);
     }
     video {
       display: block;
@@ -297,7 +290,7 @@ export const postStyles = css.global`
     }
     iframe {
       margin: 0 auto;
-      margin-top: 2.5rem;
+      margin-top: var(--space-sm);
     }
     code {
       padding: 0 5px 2px;
@@ -310,19 +303,21 @@ export const postStyles = css.global`
     .fluid-width-video-wrapper {
       margin: 1.5em 0 3em;
     }
-    hr {
-      padding-top: 3.2em;
-      margin: 16px 0px;
+    hr:after {
+      display: block;
+      text-align: center;
+      content: "...";
+      font-size: 4rem;
+      height: 4rem;
+      line-height: 2rem;
+      clear: both;
       border: none;
-      &:after {
-        content: "...";
-        font-size: 16px;
-        zoom: 3;
-        margin-top: -20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+      border-radius: 100%;
+    }
+    hr {
+      border: none;
+      margin: 2rem;
+      background: transparent;
     }
     table {
       display: inline-block;
@@ -387,10 +382,7 @@ export const postStyles = css.global`
     }
     ol {
       padding-left: 2em;
-      ol {
-        margin-bottom: 0;
-        margin-top: 0;
-      }
+      ol,
       ul {
         margin-bottom: 0;
         margin-top: 0;
@@ -398,10 +390,7 @@ export const postStyles = css.global`
     }
     ul {
       padding-left: 2em;
-      ol {
-        margin-bottom: 0;
-        margin-top: 0;
-      }
+      ol,
       ul {
         margin-bottom: 0;
         margin-top: 0;
@@ -409,20 +398,10 @@ export const postStyles = css.global`
     }
     li {
       word-wrap: break-all;
+      line-height: calc(var(--text-scale-ratio) * 1.6);
       > p {
         margin-top: 8px;
       }
-    }
-
-    .footnotes-sep {
-      margin-bottom: 30px;
-    }
-    .footnote-backref {
-      color: var(--color-primary) !important;
-      font-size: 1.2rem;
-      font-weight: 700;
-      text-decoration: none !important;
-      box-shadow: none !important;
     }
     @media (max-width: 1170px) {
       padding: 5vw 7vw 0;
@@ -512,8 +491,6 @@ export const postStyles = css.global`
       word-break: normal;
       word-wrap: normal;
       line-height: 1.5;
-      -moz-tab-size: 4;
-      -o-tab-size: 4;
       tab-size: 4;
       font-size: 1.2rem;
       hyphens: none;
@@ -521,10 +498,10 @@ export const postStyles = css.global`
 
     /* Code blocks */
     pre[class*="language-"] {
-      padding: 1em;
-      margin: 4em 0;
+      padding: var(--space-sm);
+      margin: var(--space-lg) 0;
       overflow: auto;
-      border-radius: 0.3em;
+      border-radius: var(--radius);
       @media (width: 700px) {
         margin: 2em 0;
       }
