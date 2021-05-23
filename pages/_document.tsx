@@ -7,7 +7,10 @@ export default class MyDocument extends Document {
         <Head>
           <meta charSet="utf-8" />
           {/* PWA primary color */}
-
+          <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
+            async
+          />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Fira+Code:400|Rubik:wght@300|Libre+Baskerville:400,400i,700,700i&display=swap"
@@ -17,10 +20,6 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-        <script
-          src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
-          async
-        />
       </Html>
     );
   }
