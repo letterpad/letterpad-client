@@ -78,7 +78,7 @@ export const styles = css`
     }
     @media (min-width: 767px) {
       &:nth-child(6n + 1) {
-        grid-column: 1 / span 2;
+        grid-column: 1 / span 3;
         flex-direction: row;
         p {
           font-size: var(--text-md);

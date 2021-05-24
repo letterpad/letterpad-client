@@ -10,7 +10,7 @@ export const styles = css.scope`
     position: relative;
     flex-wrap: wrap;
     @media (min-width: 767px) {
-      grid-template-columns: repeat(2, 1fr); 
+      grid-template-columns: repeat(3, 1fr); 
     }
   }
 `;
