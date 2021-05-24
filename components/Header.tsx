@@ -49,7 +49,7 @@ export const Header: React.FC<{
             showBanner={headerWithBanner}
           />
         </div>
-        <div className="inner">
+        <div className="outer">
           <Nav
             settings={settings}
             logoInline={displayInlineLogo}
@@ -59,9 +59,6 @@ export const Header: React.FC<{
       </header>
       <style jsx>{`
         .site-header {
-          @media (min-width: "767px") {
-            margin-bottom: -40px;
-          }
           background: var(--color-pre-bg);
         }
         .brand-wrapper {

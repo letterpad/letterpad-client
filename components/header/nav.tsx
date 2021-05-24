@@ -19,7 +19,7 @@ const Nav = ({ settings, logoInline, showBanner }: IProps) => {
   if (showBanner) navClass.push("has-banner");
 
   return (
-    <>
+    <div className="inner">
       <nav className={navClass.join(" ")}>
         <div className="site-nav-left">
           <Link href="/">
@@ -91,9 +91,15 @@ const Nav = ({ settings, logoInline, showBanner }: IProps) => {
       <style jsx>{`
         .has-banner {
           margin-top: -100px;
+          @media (max-width: "767px") {
+            margin-top: calc(var(--space-xxl) * -1);
+          }
+        }
+        .site-nav {
+          margin-left: var(--space-sm);
         }
       `}</style>
-    </>
+    </div>
   );
 };
 

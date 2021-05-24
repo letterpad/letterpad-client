@@ -9,6 +9,6 @@ export const styles = css.scope`
     position: relative;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    margin:0px -20px;
+    margin-top: var(--space-md);
   }
 `;

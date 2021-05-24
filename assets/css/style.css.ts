@@ -82,6 +82,9 @@ export const globalStyles = css.global`
     position: relative;
     padding: 0 var(--space-lg);
     z-index: 1;
+    @media (max-width: 767px) {
+      padding: 0 var(--space-md);
+    }
   }
 
   article,
@@ -97,9 +100,5 @@ export const globalStyles = css.global`
     z-index: 100;
     flex-grow: 1;
     padding-bottom: var(--space-xxl);
-
-    @media (max-width: "700px") {
-      padding-top: var(--space-md);
-    }
   }
 `;

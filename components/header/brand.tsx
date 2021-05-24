@@ -41,7 +41,7 @@ const Brand = ({ src, title, description, showBanner }: IProps) => {
           border-radius: var(--radius);
           color: var(--color-pre-fg);
           @media (max-width: 900px) {
-            padding: var(--space-xs) var(--space-sm);
+            padding: var(--space-sm);
           }
 
           .site-title,

@@ -9,8 +9,7 @@ export const styles = css.scope`
     }
     position: relative;
     -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin: 0 -20px;
+    flex-wrap: wrap
   }
   .tag-banner {
     height: 250px;

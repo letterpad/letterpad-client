@@ -17,8 +17,10 @@ export const postWrapperStyles = css`
     }
     .post-full-header {
       margin: 0 auto;
-
       margin-top: 60px;
+      @media (max-width: 767px) {
+        margin-top: 20px;
+      }
       padding: 20px 3vw 3vw;
       max-width: 1040px;
       text-align: center;
@@ -31,7 +33,7 @@ export const postWrapperStyles = css`
         text-transform: uppercase;
         margin-bottom: 20px;
         color: var(--color-text-dull);
-        @media (max-width: 500px) {
+        @media (max-width: 767px) {
           font-size: 1.2rem;
           line-height: 1.3em;
         }
@@ -41,9 +43,9 @@ export const postWrapperStyles = css`
         font-weight: 500;
         line-height: 7rem;
         color: var(--color-text);
-        @media (max-width: 500px) {
-          font-size: 2.9rem;
-          line-height: 4rem;
+        @media (max-width: 767px) {
+          font-size: var(--text-xl);
+          line-height: var(--text-xl);
         }
       }
     }
@@ -80,6 +82,12 @@ export const postWrapperStyles = css`
 `;
 
 export const postStyles = css.global`
+  .post-full img {
+    @media (max-width: 767px) {
+      margin: 0 calc(var(--space-md) * -1);
+      width: 100vw;
+    }
+  }
   .post-full-content {
     position: relative;
     margin: 0 auto;

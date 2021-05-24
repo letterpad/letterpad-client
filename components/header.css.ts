@@ -40,10 +40,10 @@ export const navigationStyles = () => {
         &::-webkit-scrollbar-thumb {
           background-color: transparent;
         }
-        @media (max-width: 1040px) {
+        /* @media (max-width: 1040px) {
           margin-right: 0;
           padding-left: var(--space-lg);
-        }
+        } */
 
         :global(.site-nav-logo) {
           -ms-flex-negative: 0;
