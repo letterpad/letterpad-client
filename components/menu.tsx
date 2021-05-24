@@ -12,10 +12,11 @@ export const menuFragment = gql`
           label
         }
       }
+      __typename
     }
   }
 `;
 
 export function Menu({ menu }: { menu: MenuFragment }) {
-  return <ul></ul>;
+  return null;
 }

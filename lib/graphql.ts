@@ -30,17 +30,12 @@ export type Author = {
   permissions: Array<Permissions>;
   avatar: Scalars['String'];
   verified?: Maybe<Scalars['Boolean']>;
+  accessToken?: Maybe<Scalars['String']>;
 };
 
 export type LoginData = {
   email: Scalars['String'];
   password: Scalars['String'];
-};
-
-export type LoginResponse = {
-  __typename?: 'LoginResponse';
-  status: Scalars['Boolean'];
-  data?: Maybe<Author>;
 };
 
 export type InputSocial = {
@@ -65,6 +60,7 @@ export type InputCreateAuthor = {
   email: Scalars['String'];
   site_title: Scalars['String'];
   name: Scalars['String'];
+  username: Scalars['String'];
   password: Scalars['String'];
   token: Scalars['String'];
 };
@@ -86,9 +82,16 @@ export type CreateAuthorError = LetterpadError & {
   message: Scalars['String'];
 };
 
+export type LoginError = LetterpadError & {
+  __typename?: 'LoginError';
+  message: Scalars['String'];
+};
+
 export type MeResponse = Author | AuthorNotFoundError;
 
 export type CreateAuthorResponse = Author | CreateAuthorError;
+
+export type LoginResponse = Author | LoginError;
 
 export type ForgotPasswordResponse = {
   __typename?: 'ForgotPasswordResponse';
@@ -616,7 +619,7 @@ export type LayoutFragment = (
   { __typename?: 'Query' }
   & { settings: (
     { __typename?: 'Setting' }
-    & Pick<Setting, 'site_footer' | 'subscribe_embed' | 'social_github' | 'social_facebook' | 'social_twitter'>
+    & Pick<Setting, 'site_footer' | 'subscribe_embed' | 'social_github' | 'social_facebook' | 'social_twitter' | 'css'>
     & HeaderSettingsFragment
   ) | { __typename?: 'SettingError' } }
 );
@@ -624,12 +627,12 @@ export type LayoutFragment = (
 export type MenuFragment = (
   { __typename?: 'Query' }
   & { settings: (
-    { __typename?: 'Setting' }
+    { __typename: 'Setting' }
     & { menu: Array<(
       { __typename?: 'Navigation' }
       & Pick<Navigation, 'type' | 'slug' | 'original_name' | 'label'>
     )> }
-  ) | { __typename?: 'SettingError' } }
+  ) | { __typename: 'SettingError' } }
 );
 
 export type PostDetailsFragment = (
@@ -640,7 +643,7 @@ export type PostDetailsFragment = (
     & Pick<Tags, 'name' | 'slug'>
   )>, author: (
     { __typename?: 'Author' }
-    & Pick<Author, 'name'>
+    & Pick<Author, 'name' | 'avatar'>
   ), cover_image: (
     { __typename?: 'Image' }
     & Pick<Image, 'src'>
@@ -731,6 +734,20 @@ export type PostPathQueryQuery = (
       & Pick<Post, 'slug'>
     )> }
   ) | { __typename?: 'PostError' } }
+);
+
+export type PreviewQueryQueryVariables = Exact<{
+  previewHash?: Maybe<Scalars['String']>;
+}>;
+
+
+export type PreviewQueryQuery = (
+  { __typename?: 'Query' }
+  & { post: (
+    { __typename: 'Post' }
+    & PostDetailsFragment
+  ) | { __typename: 'PostError' } }
+  & LayoutFragment
 );
 
 export type PostsQueryQueryVariables = Exact<{

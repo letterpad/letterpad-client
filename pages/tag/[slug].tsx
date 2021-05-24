@@ -1,9 +1,10 @@
 import ArticleItem from "components/ArticleItem";
 import gql from "graphql-tag";
 import { PostsQueryQuery, PostsQueryQueryVariables } from "lib/graphql";
-import { Container } from "../../components/tag.css";
+import { styles } from "../../components/posts.css";
 import { fetchProps } from "lib/client";
 import SiteLayout, { layoutFragment } from "components/layout";
+import { useRouter } from "next/router";
 
 export const postsQuery = gql`
   query PostsQuery($tagSlug: String) {
@@ -37,6 +38,7 @@ export default function Tag({ data }: { data: PostsQueryQuery }) {
   ) {
     return null;
   }
+  const router = useRouter();
   return (
     <SiteLayout
       layout={data}
@@ -48,24 +50,39 @@ export default function Tag({ data }: { data: PostsQueryQuery }) {
         url: "",
         author: "",
       }}
+      displayBanner={false}
     >
-      <Container className="inner">
+      <div className="tag-banner">#{router.query.slug}</div>
+      <div className="inner">
         <div className="post-feed">
           {data.posts.rows.map((item, i) => (
             <ArticleItem post={item} key={i} />
           ))}
         </div>
-      </Container>
+      </div>
+      <style jsx>{styles}</style>
+      <style jsx>{`
+        .tag-banner {
+          height: 250px;
+          background: var(--color-bg-2);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 -60px var(--space-md);
+          font-size: var(--text-md);
+        }
+        :global(.site-nav) {
+          margin: 0;
+        }
+      `}</style>
     </SiteLayout>
   );
 }
 
 export async function getServerSideProps(context) {
-  const response = await fetchProps<PostsQueryQuery, PostsQueryQueryVariables>(
+  return fetchProps<PostsQueryQuery, PostsQueryQueryVariables>(
     postsQuery,
     { tagSlug: context.params.slug },
     context.req.headers.host
   );
-
-  return response;
 }

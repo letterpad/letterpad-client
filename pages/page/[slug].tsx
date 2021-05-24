@@ -1,14 +1,8 @@
 import SiteLayout, { layoutFragment } from "components/layout";
 import { postDetailsFragment, Post } from "components/post";
 import gql from "graphql-tag";
-import { executeQuery, fetchProps, PageProps } from "lib/client";
-import {
-  PagePathQueryQuery,
-  PagePathQueryQueryVariables,
-  PageQueryQuery,
-  PageQueryQueryVariables,
-  PostTypes,
-} from "lib/graphql";
+import { fetchProps, PageProps } from "lib/client";
+import { PageQueryQuery, PageQueryQueryVariables } from "lib/graphql";
 
 export const pageQuery = gql`
   query PageQuery($slug: String) {
@@ -37,14 +31,13 @@ const pathsQuery = gql`
 export default function PostPage({
   data,
   errors,
-  isHome,
 }: PageProps<PageQueryQuery> & { isHome: boolean }) {
   if (errors) return <div>{errors}</div>;
 
   if (data.post.__typename === "PostError") return null;
   return (
     <SiteLayout
-      displayBanner={!isHome}
+      displayBanner={false}
       layout={data}
       metaProps={{
         title: data.post.title,

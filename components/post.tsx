@@ -3,7 +3,7 @@ import { PostDetailsFragment } from "lib/graphql";
 import { getImageAttrs, setResponsiveImages } from "lib/imageUtils";
 import Head from "next/head";
 import Link from "next/link";
-import { FloatingHeader, StyledPost } from "./post.css";
+import { postStyles, postWrapperStyles } from "./post.css";
 
 export const postDetailsFragment = gql`
   fragment postDetails on Post {
@@ -31,30 +31,15 @@ export const postDetailsFragment = gql`
 
 export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
   const content = setResponsiveImages(postDetails.html);
-  const { className, ...imgAttrs } = getImageAttrs(postDetails.cover_image.src);
+  const imgAttrs = getImageAttrs(postDetails.cover_image.src);
+
   return (
     <>
       <Head>
         <title>{postDetails.title}</title>
       </Head>
-      <FloatingHeader className="floating-header">
-        <div>
-          <div className="floating-header-logo">
-            {/* <a href="https://eueung.github.io/">
-              {settings.site_logo.src ? (
-                <img src={settings.site_logo.src} alt={postDetails.title} />
-              ) : (
-                settings.site_title
-              )}
-            </a> */}
-          </div>
-          <span className="floating-header-divider">—</span>
-          <div className="floating-header-title">{postDetails.title}</div>
-        </div>
-        {/* <Progress height="3px" barColor="#555" /> */}
-      </FloatingHeader>
 
-      <StyledPost className="inner">
+      <div className="inner">
         <div className="post-full post">
           <header className="post-full-header">
             <section className="post-full-meta">
@@ -76,16 +61,15 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
               ))}
             </div>
           </header>
-          <img className={"post-full-image " + className} {...imgAttrs} />
-          {/* <figure
-            className="post-full-image"
-            style={{
-              backgroundImage: `url(${postDetails.cover_image.src})`,
-            }}
-          ></figure> */}
+          {imgAttrs.src && (
+            <img
+              className={"post-full-image " + "className"}
+              {...imgAttrs}
+              alt={postDetails.title}
+            />
+          )}
 
           <section className="post-full-content">
-            {/* <Article post={postDetails} settings={settings} helpers={helpers} /> */}
             <article className="post-content">
               <div dangerouslySetInnerHTML={{ __html: content }} />
             </article>
@@ -100,7 +84,11 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
             disqusShortname={disqusShortname}
           /> */}
         </div>
-      </StyledPost>
+      </div>
+      <style jsx global>
+        {postStyles}
+      </style>
+      <style jsx>{postWrapperStyles}</style>
     </>
   );
 }

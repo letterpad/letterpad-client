@@ -16,7 +16,6 @@ export async function executeQuery<
   identifier: string
 ): Promise<PageProps<Data>> {
   const queryText = print(query);
-
   const resp = await fetch(process.env.API_URL, {
     method: "POST",
     headers: {
@@ -26,12 +25,10 @@ export async function executeQuery<
     },
     body: JSON.stringify({ query: queryText, variables }),
   });
-
   if (resp.status != 200) {
     const txt = await resp.text();
     return Promise.reject(new Error(txt));
   }
-
   return resp.json();
 }
 
@@ -49,7 +46,6 @@ export async function fetchProps<
     variables,
     host
   );
-
   return {
     props: {
       data: data ?? null,

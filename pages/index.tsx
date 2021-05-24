@@ -25,35 +25,13 @@ const query = gql`
   ${layoutFragment}
 `;
 
-// const postsQuery = gql`
-//   query PostsQuery($tagSlug: String) {
-//     posts(filters: { tagSlug: $tagSlug }) {
-//       ... on PostsNode {
-//         count
-//         rows {
-//           id
-//           title
-//           slug
-//           cover_image {
-//             src
-//           }
-//           author {
-//             avatar
-//           }
-//           reading_time
-//           excerpt
-//         }
-//       }
-//     }
-//   }
-// `;
 export default function Home({
   data,
   errors,
 }: PageProps<PostsQueryQuery & PageQueryQuery>) {
   if (errors) return <div>Error occurred</div>;
-  if (!data) return null;
-  if (data.settings.__typename === "SettingError") return null;
+  if (!data?.settings) return null;
+  if (data?.settings?.__typename === "SettingError") return null;
 
   const { menu } = data.settings;
 
@@ -77,6 +55,7 @@ export default function Home({
         url: "",
         author: "",
       }}
+      displayBanner={isHomePageACollectionOfPosts}
     >
       <div>
         <Menu menu={data as any} />
@@ -92,7 +71,9 @@ export async function getServerSideProps(context) {
     {},
     context.req.headers.host
   );
-
+  if (!data.props.data.settings.__typename) {
+    return { props: { data: {} } };
+  }
   if (data.props.data.settings.__typename === "SettingError") return null;
 
   const { menu } = data.props.data.settings;
@@ -105,22 +86,18 @@ export async function getServerSideProps(context) {
   const isHomePageASinglePage = firstItemOfMenu.type === NavigationType.Page;
 
   if (isHomePageACollectionOfPosts) {
-    const posts = await fetchProps<PostsQueryQuery, PostsQueryQueryVariables>(
+    return fetchProps<PostsQueryQuery, PostsQueryQueryVariables>(
       postsQuery,
       { tagSlug: firstItemOfMenu.slug },
       context.req.headers.host
     );
-
-    return posts;
   }
 
   if (isHomePageASinglePage) {
-    const page = await fetchProps<PageQueryQuery, PageQueryQueryVariables>(
+    return fetchProps<PageQueryQuery, PageQueryQueryVariables>(
       pageQuery,
       { slug: firstItemOfMenu.slug },
       context.req.headers.host
     );
-
-    return page;
   }
 }

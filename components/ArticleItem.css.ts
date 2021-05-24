@@ -1,110 +1,115 @@
-import styled from "styled-components";
+import { css } from "styled-jsx/css";
 
-export const Article = styled.article`
-  display: flex;
-  flex: 1 1 300px;
-  flex-direction: column;
-  overflow: hidden;
-  margin: 0 20px 40px;
-  min-height: 300px;
-  background: var(--color-post-bg);
-  background-size: cover;
-  border-radius: 5px;
-  box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06),
-    1px 3px 8px rgba(39, 44, 49, 0.03);
-  transition: all 0.5s ease;
-  @media (max-width: 650px) {
-    margin: 0 20px 5vw;
-  }
-  .post-card-image-link {
-    position: relative;
-    display: block;
-    overflow: hidden;
-    border-radius: 5px 5px 0 0;
-    .post-card-image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-  }
-  .post-card-content {
-    flex-grow: 1;
+export const styles = css`
+  .post {
     display: flex;
+    flex: 1 1 300px;
     flex-direction: column;
-    justify-content: space-between;
-    .post-card-content-top {
-      padding: 25px 25px 25px;
-      .post-card-category {
-        text-transform: uppercase;
-        font-size: 1.2rem;
-        .category {
-          margin-right: 10px;
-          color: #8c8a8a;
-        }
-      }
-      .post-card-content-link {
-        position: relative;
-        display: block;
+    overflow: hidden;
+    min-height: 300px;
+    background: var(--color-post-bg);
+    background-size: cover;
+    border-radius: 5px;
+    box-shadow: 8px 14px 38px rgba(39, 44, 49, 0.06),
+      1px 3px 8px rgba(39, 44, 49, 0.03);
+    transition: all 0.5s ease;
 
-        color: var(--color-text);
+    .post-card-image-link {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      border-radius: var(--radius) var(--radius) 0 0;
 
-        .post-card-title {
-          margin-top: 0;
-        }
-      }
-    }
-    .post-card-meta {
-      padding: 0 25px 25px;
-      display: flex;
-      justify-content: space-between;
-      > div {
-        display: flex;
-        justify-content: center;
-        svg {
-          width: 20px;
-          color: var(--color-border);
-        }
-      }
-      .author-profile-image {
-        margin-right: 5px;
-        width: 25px;
-        height: 25px;
-        border-radius: 100%;
+      .post-card-image {
+        width: 100%;
+        height: 200px;
         object-fit: cover;
       }
     }
-  }
 
-  @media (min-width: 795px) {
-    &:nth-child(6n + 1):not(.no-image) {
-      flex: 1 1 100%;
-      -ms-flex-direction: row;
-      flex-direction: row;
-      p {
-        font-size: 1.8rem;
-        line-height: 1.55em;
-      }
-      .post-card-title {
-        font-size: 2.6rem;
-      }
-      .post-card-image-link {
-        position: relative;
-        flex: 1 1 auto;
-        border-radius: 5px 0 0 5px;
+    &.without-cover-image {
+      min-height: 150px;
+    }
+    .post-card-content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .post-card-content-top {
+        padding: var(--space-md);
 
-        .post-card-image {
-          position: absolute;
-          width: 100%;
-          height: 100%;
+        .post-card-content-link {
+          position: relative;
+          display: block;
+          color: var(--color-text);
+
+          .post-card-title {
+            margin-top: 0;
+          }
         }
       }
+      .post-card-meta {
+        padding: var(--space-md);
+        padding-top: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        > div {
+          display: flex;
+          justify-content: center;
+          :global(svg) {
+            width: 20px;
+            fill: var(--color-border);
+            margin-right: 4px;
+          }
+        }
+        .author-profile-image {
+          width: var(--space-md);
+          height: var(--space-md);
+          border-radius: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+    &.without-cover-image {
       .post-card-content {
-        flex: 0 1 357px;
-        .post-card-content-top {
-          padding: 30px 40px 0;
+        flex: 1 !important;
+      }
+    }
+    @media (min-width: 767px) {
+      &:nth-child(6n + 1) {
+        grid-column: 1 / span 3;
+        flex-direction: row;
+        p {
+          font-size: var(--text-md);
+          line-height: var(--text-lg);
         }
-        .post-card-meta {
-          padding: 0 40px 30px;
+
+        .post-card-image-link {
+          position: relative;
+          flex: 1 1 auto;
+          border-radius: var(--radius) 0 0 var(--radius);
+
+          .post-card-image {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        .post-card-content {
+          flex: 0 1 360px;
+          .post-card-content-top {
+            padding: var(--space-md);
+
+            .post-card-title {
+              font-size: var(--text-xl);
+            }
+          }
+          .post-card-meta {
+            padding: var(--space-md);
+            padding-top: 0px;
+          }
         }
       }
     }

@@ -1,16 +1,16 @@
-import styled from "styled-components";
+import css from "styled-jsx/css";
 
-export const Container = styled.div`
+export const styles = css.scope`
   .post-feed {
-    display: flex;
+    display: grid;
+    grid-gap: var(--space-md);
     @media (min-width: 900px) {
-      margin-top: -70px;
       padding-top: 0;
     }
     position: relative;
-    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    margin: 0 -20px;
-    padding: 40px 0 0;
+    @media (min-width: 767px) {
+      grid-template-columns: repeat(3, 1fr); 
+    }
   }
 `;

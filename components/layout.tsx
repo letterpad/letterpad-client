@@ -1,13 +1,13 @@
 import gql from "graphql-tag";
 
 import { LayoutFragment } from "lib/graphql";
-import { Container, Footer, Main } from "./Layout.css";
+import { footerStyles } from "./Layout.css";
 import { Header, headerFragment } from "./Header";
 import Head from "next/head";
-import { NormalizeStyle } from "assets/css/style.css";
-import { PrismStyle } from "assets/css/prism.css";
-import { TypographyStyle } from "assets/css/typography.css";
-import { ThemeStyle } from "assets/css/theme.css";
+import { globalStyles } from "assets/css/style.css";
+import { themeVars } from "assets/css/theme.css";
+import Nav from "./header/nav";
+import userBannerConfig from "./hooks/userBannerConfig";
 
 export const layoutFragment = gql`
   fragment layout on Query {
@@ -18,6 +18,7 @@ export const layoutFragment = gql`
         social_github
         social_facebook
         social_twitter
+        css
       }
 
       ...headerSettings
@@ -52,14 +53,18 @@ export default function SiteLayout({
 }) {
   const { settings } = layout;
   if (settings.__typename === "SettingError") return null;
+  const { hasBanner, logoInline } = userBannerConfig(displayBanner);
+  const description = metaProps.description || settings.site_description;
+
   return (
-    <Container className="theme-casper dark">
+    <div className="theme-casper layout">
       <Head>
         <title>{metaProps.title}</title>
+        <meta name="description" content={description} />
         <meta name="author" content={metaProps.author} />
         <meta property="og:type" content={metaProps.type} />
         <meta property="og:title" content={metaProps.title} />
-        <meta property="og:description" content={metaProps.description} />
+        <meta property="og:description" content={description} />
         <meta property="og:image" content={metaProps.image} />
         <meta property="og:url" content={metaProps.url} />
         <meta property="og:site_name" content={settings.site_title} />
@@ -73,16 +78,20 @@ export default function SiteLayout({
         <meta name="twitter:image" content={metaProps.image} />
         <meta name="twitter:site" content={"@" + metaProps.twitterHandle} />
         <meta name="twitter:creator" content={"@" + metaProps.twitterHandle} />
+        <style>{settings.css}</style>
       </Head>
-      <PrismStyle />
-      <TypographyStyle />
-      <NormalizeStyle />
-      <ThemeStyle />
-      <Header settings={settings} displayBanner={displayBanner}></Header>
-
-      <Main className="outer">{children}</Main>
-
-      <Footer className="site-footer outer">
+      <Header settings={settings} displayBanner={hasBanner}></Header>
+      <div className="outer">
+        <main>
+          <Nav
+            settings={settings}
+            logoInline={logoInline}
+            showBanner={hasBanner}
+          />
+          {children}
+        </main>
+      </div>
+      <footer className="site-footer">
         <div className="site-footer-content inner">
           <section className="copyright">
             <SetDangerousHTML html={settings.site_footer} />
@@ -111,8 +120,18 @@ export default function SiteLayout({
             )}
           </nav>
         </div>
-      </Footer>
-    </Container>
+      </footer>
+
+      <style jsx global>
+        {themeVars}
+      </style>
+      <style jsx global>
+        {footerStyles}
+      </style>
+      <style jsx global>
+        {globalStyles}
+      </style>
+    </div>
   );
 }
 

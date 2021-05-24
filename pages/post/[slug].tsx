@@ -1,12 +1,8 @@
 import SiteLayout, { layoutFragment } from "components/layout";
 import { postDetailsFragment, Post } from "components/post";
 import gql from "graphql-tag";
-import { executeQuery, fetchProps, PageProps } from "lib/client";
-import {
-  PostPathQueryQuery,
-  PostQueryQuery,
-  PostQueryQueryVariables,
-} from "lib/graphql";
+import { fetchProps, PageProps } from "lib/client";
+import { PostQueryQuery, PostQueryQueryVariables } from "lib/graphql";
 
 const query = gql`
   query PostQuery($slug: String) {
@@ -48,6 +44,7 @@ export default function PostPage({ data, errors }: PageProps<PostQueryQuery>) {
         publishedAt: data.post.publishedAt,
         updatedAt: data.post.updatedAt,
       }}
+      displayBanner={false}
     >
       <div>
         <Post postDetails={data.post}></Post>
