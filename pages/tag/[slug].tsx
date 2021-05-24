@@ -1,7 +1,7 @@
 import ArticleItem from "components/ArticleItem";
 import gql from "graphql-tag";
 import { PostsQueryQuery, PostsQueryQueryVariables } from "lib/graphql";
-import { styles } from "../../components/tag.css";
+import { styles } from "../../components/posts.css";
 import { fetchProps } from "lib/client";
 import SiteLayout, { layoutFragment } from "components/layout";
 import { useRouter } from "next/router";
@@ -61,16 +61,28 @@ export default function Tag({ data }: { data: PostsQueryQuery }) {
         </div>
       </div>
       <style jsx>{styles}</style>
+      <style jsx>{`
+        .tag-banner {
+          height: 250px;
+          background: var(--color-bg-2);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 -60px var(--space-md);
+          font-size: var(--text-md);
+        }
+        :global(.site-nav) {
+          margin: 0;
+        }
+      `}</style>
     </SiteLayout>
   );
 }
 
 export async function getServerSideProps(context) {
-  const response = await fetchProps<PostsQueryQuery, PostsQueryQueryVariables>(
+  return fetchProps<PostsQueryQuery, PostsQueryQueryVariables>(
     postsQuery,
     { tagSlug: context.params.slug },
     context.req.headers.host
   );
-
-  return response;
 }

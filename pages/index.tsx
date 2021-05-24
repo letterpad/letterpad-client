@@ -55,6 +55,7 @@ export default function Home({
         url: "",
         author: "",
       }}
+      displayBanner={isHomePageACollectionOfPosts}
     >
       <div>
         <Menu menu={data as any} />

@@ -6,7 +6,6 @@ export const styles = css`
     flex: 1 1 300px;
     flex-direction: column;
     overflow: hidden;
-    margin-bottom: var(--space-md);
     min-height: 300px;
     background: var(--color-post-bg);
     background-size: cover;
@@ -78,10 +77,8 @@ export const styles = css`
       }
     }
     @media (min-width: 767px) {
-      margin-left: var(--space-sm);
-      margin-right: var(--space-sm);
       &:nth-child(6n + 1) {
-        flex: 1 1 100%;
+        grid-column: 1 / span 2;
         flex-direction: row;
         p {
           font-size: var(--text-md);

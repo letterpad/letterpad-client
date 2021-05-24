@@ -1,9 +1,8 @@
-import { useRouter } from "next/router";
 import React from "react";
 import { HeaderSettingsFragment } from "lib/graphql";
 import gql from "graphql-tag";
 import Brand from "./header/brand";
-import Nav from "./header/nav";
+import userBannerConfig from "./hooks/userBannerConfig";
 
 export const headerFragment = gql`
   fragment headerSettings on Setting {
@@ -31,12 +30,7 @@ export const Header: React.FC<{
   displayBanner?: boolean;
 }> = ({ settings, displayBanner = true }) => {
   const { banner, site_title, site_description } = settings;
-  const router = useRouter();
-  let headerWithBanner = !router.route.match("/post|page|preview/") ?? true;
-  if (!displayBanner) {
-    headerWithBanner = false;
-  }
-  const displayInlineLogo = !headerWithBanner;
+  const { hasBanner } = userBannerConfig(displayBanner);
 
   return (
     <>
@@ -46,14 +40,7 @@ export const Header: React.FC<{
             src={banner.src}
             title={site_title}
             description={site_description}
-            showBanner={headerWithBanner}
-          />
-        </div>
-        <div className="outer">
-          <Nav
-            settings={settings}
-            logoInline={displayInlineLogo}
-            showBanner={headerWithBanner}
+            showBanner={hasBanner}
           />
         </div>
       </header>
@@ -67,9 +54,9 @@ export const Header: React.FC<{
         }
         .site-header,
         .brand-wrapper {
-          height: ${headerWithBanner ? "500px" : "auto"};
+          height: ${hasBanner ? "500px" : "auto"};
           @media (max-width: 900px) {
-            height: ${headerWithBanner ? "300px" : "auto"};
+            height: ${hasBanner ? "300px" : "auto"};
           }
         }
       `}</style>

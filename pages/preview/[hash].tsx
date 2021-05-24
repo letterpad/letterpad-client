@@ -26,7 +26,7 @@ export default function PostPage({
   if (data.post.__typename === "PostError") return null;
   return (
     <SiteLayout
-      displayBanner={!isHome}
+      displayBanner={false}
       layout={data}
       metaProps={{
         title: data.post.title,

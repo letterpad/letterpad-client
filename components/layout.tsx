@@ -6,6 +6,8 @@ import { Header, headerFragment } from "./Header";
 import Head from "next/head";
 import { globalStyles } from "assets/css/style.css";
 import { themeVars } from "assets/css/theme.css";
+import Nav from "./header/nav";
+import userBannerConfig from "./hooks/userBannerConfig";
 
 export const layoutFragment = gql`
   fragment layout on Query {
@@ -51,8 +53,9 @@ export default function SiteLayout({
 }) {
   const { settings } = layout;
   if (settings.__typename === "SettingError") return null;
-
+  const { hasBanner, logoInline } = userBannerConfig(displayBanner);
   const description = metaProps.description || settings.site_description;
+
   return (
     <div className="theme-casper layout">
       <Head>
@@ -77,9 +80,16 @@ export default function SiteLayout({
         <meta name="twitter:creator" content={"@" + metaProps.twitterHandle} />
         <style>{settings.css}</style>
       </Head>
-      <Header settings={settings} displayBanner={displayBanner}></Header>
+      <Header settings={settings} displayBanner={hasBanner}></Header>
       <div className="outer">
-        <main>{children}</main>
+        <main>
+          <Nav
+            settings={settings}
+            logoInline={logoInline}
+            showBanner={hasBanner}
+          />
+          {children}
+        </main>
       </div>
       <footer className="site-footer">
         <div className="site-footer-content inner">

@@ -44,6 +44,7 @@ export default function PostPage({ data, errors }: PageProps<PostQueryQuery>) {
         publishedAt: data.post.publishedAt,
         updatedAt: data.post.updatedAt,
       }}
+      displayBanner={false}
     >
       <div>
         <Post postDetails={data.post}></Post>

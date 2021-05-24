@@ -2,15 +2,10 @@ import css from "styled-jsx/css";
 
 export const footerStyles = css.global`
   .site-footer {
-    position: fixed;
-    padding-top: 20px;
     color: var(--color-text-dull);
-    background: #000;
-    padding: 20px !important;
-    bottom: 0px;
-    width: 100vw;
-    z-index: 9;
-
+    background: var(--color-pre-bg);
+    padding: 20px 0 !important;
+    margin-top: var(--space-md);
     .site-footer-content {
       display: flex;
       flex-wrap: wrap;

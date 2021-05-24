@@ -90,13 +90,18 @@ const Nav = ({ settings, logoInline, showBanner }: IProps) => {
       <style jsx>{navcss}</style>
       <style jsx>{`
         .has-banner {
-          margin-top: -100px;
-          @media (max-width: "767px") {
-            margin-top: calc(var(--space-xxl) * -1);
+          margin-top: calc(var(--space-xl) * -1);
+
+          &.site-nav {
+            margin-bottom: var(--space-md);
+            @media (min-width: 900px) {
+              margin-top: calc(var(--space-xxl) * -1);
+            }
+            @media (max-width: 767px) {
+              margin-top: calc(var(--space-xl) * -1);
+              margin-bottom: var(--space-lg);
+            }
           }
-        }
-        .site-nav {
-          margin-left: var(--space-sm);
         }
       `}</style>
     </div>
