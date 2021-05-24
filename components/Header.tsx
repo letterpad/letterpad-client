@@ -59,7 +59,9 @@ export const Header: React.FC<{
       </header>
       <style jsx>{`
         .site-header {
-          margin-bottom: -40px;
+          @media (min-width: "767px") {
+            margin-bottom: -40px;
+          }
           background: var(--color-pre-bg);
         }
         .brand-wrapper {
