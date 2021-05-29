@@ -3,6 +3,7 @@ import { postDetailsFragment, Post } from "components/post";
 import gql from "graphql-tag";
 import { fetchProps, PageProps } from "lib/client";
 import { PostQueryQuery, PostQueryQueryVariables } from "lib/graphql";
+import Error from "next/error";
 
 const query = gql`
   query PostQuery($slug: String) {
@@ -30,7 +31,9 @@ const pathsQuery = gql`
 
 export default function PostPage({ data, errors }: PageProps<PostQueryQuery>) {
   if (errors) return <div>{errors}</div>;
-  if (data.post.__typename === "PostError") return null;
+  if (data.post.__typename === "PostError") {
+    return <Error statusCode={404} />;
+  }
   return (
     <SiteLayout
       layout={data}
