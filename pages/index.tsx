@@ -53,7 +53,6 @@ export default function Home({
         image: data.settings.banner.src,
         type: "website",
         url: "",
-        author: "",
       }}
       displayBanner={isHomePageACollectionOfPosts}
     >

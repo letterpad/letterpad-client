@@ -78,7 +78,6 @@ export default function Tag({ data }: { data: CollectionQueryQuery }) {
         image: data.settings.banner.src,
         type: "website",
         url: "",
-        author: "",
       }}
       displayBanner={false}
     >

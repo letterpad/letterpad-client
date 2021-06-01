@@ -633,8 +633,15 @@ export type LayoutFragment = (
   & { settings: (
     { __typename?: 'Setting' }
     & Pick<Setting, 'site_footer' | 'subscribe_embed' | 'social_github' | 'social_facebook' | 'social_twitter' | 'css'>
+    & { site_favicon: (
+      { __typename?: 'Image' }
+      & Pick<Image, 'src'>
+    ) }
     & HeaderSettingsFragment
-  ) | { __typename?: 'SettingError' } }
+  ) | { __typename?: 'SettingError' }, me?: Maybe<(
+    { __typename?: 'Author' }
+    & Pick<Author, 'name'>
+  ) | { __typename?: 'AuthorNotFoundError' }> }
 );
 
 export type MenuFragment = (

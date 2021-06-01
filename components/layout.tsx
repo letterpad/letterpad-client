@@ -14,6 +14,9 @@ export const layoutFragment = gql`
     settings {
       ... on Setting {
         site_footer
+        site_favicon {
+          src
+        }
         subscribe_embed
         social_github
         social_facebook
@@ -23,6 +26,11 @@ export const layoutFragment = gql`
 
       ...headerSettings
     }
+    me {
+      ... on Author {
+        name
+      }
+    }
   }
 
   ${headerFragment}
@@ -30,7 +38,6 @@ export const layoutFragment = gql`
 
 interface MetaProps {
   type: string;
-  author: string;
   title: string;
   description: string;
   image: string;
@@ -51,8 +58,10 @@ export default function SiteLayout({
   metaProps: MetaProps;
   displayBanner?: boolean;
 }) {
-  const { settings } = layout;
+  const { settings, me } = layout;
   if (settings.__typename === "SettingError") return null;
+  if (me.__typename === "AuthorNotFoundError") return null;
+
   const { hasBanner, logoInline } = userBannerConfig(displayBanner);
   const description = metaProps.description || settings.site_description;
 
@@ -61,7 +70,7 @@ export default function SiteLayout({
       <Head>
         <title>{metaProps.title}</title>
         <meta name="description" content={description} />
-        <meta name="author" content={metaProps.author} />
+        <meta name="author" content={me.name} />
         <meta property="og:type" content={metaProps.type} />
         <meta property="og:title" content={metaProps.title} />
         <meta property="og:description" content={description} />
@@ -78,6 +87,11 @@ export default function SiteLayout({
         <meta name="twitter:image" content={metaProps.image} />
         <meta name="twitter:site" content={"@" + metaProps.twitterHandle} />
         <meta name="twitter:creator" content={"@" + metaProps.twitterHandle} />
+        <link
+          rel="icon"
+          type="img/jpeg"
+          href={settings.site_favicon.src}
+        ></link>
         <style>{settings.css}</style>
       </Head>
       <Header settings={settings} displayBanner={hasBanner}></Header>
