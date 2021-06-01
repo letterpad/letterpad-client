@@ -42,6 +42,7 @@ interface MetaProps {
   description: string;
   image: string;
   url: string;
+  author?: string;
   twitterHandle?: string;
   publishedAt?: string;
   updatedAt?: string;
@@ -70,7 +71,7 @@ export default function SiteLayout({
       <Head>
         <title>{metaProps.title}</title>
         <meta name="description" content={description} />
-        <meta name="author" content={me.name} />
+        <meta name="author" content={metaProps.author || me.name} />
         <meta property="og:type" content={metaProps.type} />
         <meta property="og:title" content={metaProps.title} />
         <meta property="og:description" content={description} />
