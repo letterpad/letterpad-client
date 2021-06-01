@@ -1,15 +1,15 @@
 import SiteLayout, { layoutFragment } from "components/layout";
 import { Menu, menuFragment } from "components/menu";
-import { allPostsFragment, Posts } from "components/posts";
-import { postsQuery } from "pages/tag/[slug]";
+import { Posts } from "components/posts";
+import { collectionQuery } from "pages/tag/[slug]";
 import { pageQuery } from "pages/page/[slug]";
 import gql from "graphql-tag";
 import { fetchProps, PageProps } from "lib/client";
 import {
   HomeQueryQuery,
   NavigationType,
-  PostsQueryQuery,
-  PostsQueryQueryVariables,
+  CollectionQueryQuery,
+  CollectionQueryQueryVariables,
   PageQueryQuery,
   PageQueryQueryVariables,
 } from "lib/graphql";
@@ -28,7 +28,7 @@ const query = gql`
 export default function Home({
   data,
   errors,
-}: PageProps<PostsQueryQuery & PageQueryQuery>) {
+}: PageProps<CollectionQueryQuery & PageQueryQuery>) {
   if (errors) return <div>Error occurred</div>;
   if (!data?.settings) return null;
   if (data?.settings?.__typename === "SettingError") return null;
@@ -59,7 +59,9 @@ export default function Home({
     >
       <div>
         <Menu menu={data as any} />
-        {isHomePageACollectionOfPosts && <Posts allPosts={data} />}
+        {isHomePageACollectionOfPosts && (
+          <Posts allPosts={data} isHome={true} />
+        )}
       </div>
     </SiteLayout>
   );
@@ -86,8 +88,8 @@ export async function getServerSideProps(context) {
   const isHomePageASinglePage = firstItemOfMenu.type === NavigationType.Page;
 
   if (isHomePageACollectionOfPosts) {
-    return fetchProps<PostsQueryQuery, PostsQueryQueryVariables>(
-      postsQuery,
+    return fetchProps<CollectionQueryQuery, CollectionQueryQueryVariables>(
+      collectionQuery,
       { tagSlug: firstItemOfMenu.slug },
       context.req.headers.host
     );

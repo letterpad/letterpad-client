@@ -26,7 +26,13 @@ export const allPostsFragment = gql`
   }
 `;
 
-export function Posts({ allPosts }: { allPosts: AllPostsFragment }) {
+export function Posts({
+  allPosts,
+  isHome,
+}: {
+  allPosts: AllPostsFragment;
+  isHome: boolean;
+}) {
   if (allPosts.posts.__typename === "PostError") {
     return null;
   }
@@ -34,7 +40,7 @@ export function Posts({ allPosts }: { allPosts: AllPostsFragment }) {
     <div className="inner">
       <div className="post-feed">
         {allPosts.posts.rows.map((item, i) => (
-          <ArticleItem post={item} key={i} />
+          <ArticleItem post={item} key={i} isHome={isHome} />
         ))}
       </div>
       <style jsx>{styles}</style>

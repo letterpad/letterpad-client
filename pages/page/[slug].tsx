@@ -17,18 +17,6 @@ export const pageQuery = gql`
   ${layoutFragment}
 `;
 
-const pathsQuery = gql`
-  query PagePathQuery($type: PostTypes) {
-    posts(filters: { type: $type }) {
-      ... on PostsNode {
-        rows {
-          slug
-        }
-      }
-    }
-  }
-`;
-
 export default function PostPage({
   data,
   errors,
@@ -69,36 +57,3 @@ export function getServerSideProps(context) {
     context.req.headers.host
   );
 }
-
-// export async function getStaticPaths() {
-//   const result = await executeQuery<
-//     PagePathQueryQuery,
-//     PagePathQueryQueryVariables
-//   >(pathsQuery, {
-//     type: PostTypes.Page,
-//   });
-
-//   if (result.errors) {
-//     throw new Error(result.errors[0].message);
-//   }
-
-//   if (result.data.posts.__typename === "PostError") {
-//     return null;
-//   }
-//   return {
-//     paths: result.data.posts.rows.map((row) => ({
-//       params: {
-//         slug: normalizeSlug(row.slug),
-//       },
-//     })),
-//     fallback: false,
-//   };
-// }
-
-// function normalizeSlug(slug: string) {
-//   const s = decodeURIComponent(slug);
-//   if (s.startsWith("/page/")) {
-//     return s.slice("/page/".length);
-//   }
-//   return s;
-// }

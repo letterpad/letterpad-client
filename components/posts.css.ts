@@ -9,8 +9,12 @@ export const styles = css.scope`
     }
     position: relative;
     flex-wrap: wrap;
-    @media (min-width: 767px) {
-      grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(3, 1fr); 
+    @media (max-width: 991px) {
+      grid-template-columns: repeat(2, 1fr); 
+    }
+    @media (max-width: 767px) {
+      grid-template-columns: repeat(1, 1fr); 
     }
   }
 `;

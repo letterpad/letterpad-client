@@ -107,7 +107,8 @@ export type Query = {
   posts: PostsResponse;
   stats?: Maybe<StatsResponse>;
   settings: SettingResponse;
-  tags?: Maybe<TagsResponse>;
+  tags: TagsResponse;
+  tag: TagResponse;
 };
 
 
@@ -128,6 +129,11 @@ export type QueryPostsArgs = {
 
 export type QueryTagsArgs = {
   filters?: Maybe<TagsFilters>;
+};
+
+
+export type QueryTagArgs = {
+  slug: Scalars['String'];
 };
 
 export type Mutation = {
@@ -519,7 +525,7 @@ export type Tags = {
   name: Scalars['String'];
   desc?: Maybe<Scalars['String']>;
   slug: Scalars['String'];
-  posts: PostsResponse;
+  posts?: Maybe<PostsResponse>;
 };
 
 export type TagsFilters = {
@@ -542,6 +548,11 @@ export type DeleteTagsResult = {
   ok: Scalars['Boolean'];
 };
 
+export type TagResultError = LetterpadError & {
+  __typename?: 'TagResultError';
+  message: Scalars['String'];
+};
+
 export type UpdateTagsResponse = EditTaxResponse | TagsError;
 
 export type DeleteTagsResponse = DeleteTagsResult | TagsError;
@@ -559,6 +570,8 @@ export type TagsNode = {
 };
 
 export type TagsResponse = TagsNode | TagsError;
+
+export type TagResponse = TagResultError | Tags;
 
 
 export type Error = {
@@ -692,22 +705,6 @@ export type PageQueryQuery = (
   & LayoutFragment
 );
 
-export type PagePathQueryQueryVariables = Exact<{
-  type?: Maybe<PostTypes>;
-}>;
-
-
-export type PagePathQueryQuery = (
-  { __typename?: 'Query' }
-  & { posts: (
-    { __typename?: 'PostsNode' }
-    & { rows: Array<(
-      { __typename?: 'Post' }
-      & Pick<Post, 'slug'>
-    )> }
-  ) | { __typename?: 'PostError' } }
-);
-
 export type PostQueryQueryVariables = Exact<{
   slug?: Maybe<Scalars['String']>;
 }>;
@@ -720,20 +717,6 @@ export type PostQueryQuery = (
     & PostDetailsFragment
   ) | { __typename: 'PostError' } }
   & LayoutFragment
-);
-
-export type PostPathQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type PostPathQueryQuery = (
-  { __typename?: 'Query' }
-  & { posts: (
-    { __typename?: 'PostsNode' }
-    & { rows: Array<(
-      { __typename?: 'Post' }
-      & Pick<Post, 'slug'>
-    )> }
-  ) | { __typename?: 'PostError' } }
 );
 
 export type PreviewQueryQueryVariables = Exact<{
@@ -750,27 +733,50 @@ export type PreviewQueryQuery = (
   & LayoutFragment
 );
 
-export type PostsQueryQueryVariables = Exact<{
-  tagSlug?: Maybe<Scalars['String']>;
+export type TagFragment_TagResultError_Fragment = (
+  { __typename?: 'TagResultError' }
+  & Pick<TagResultError, 'message'>
+);
+
+export type TagFragment_Tags_Fragment = (
+  { __typename?: 'Tags' }
+  & Pick<Tags, 'name' | 'desc' | 'slug'>
+);
+
+export type TagFragmentFragment = TagFragment_TagResultError_Fragment | TagFragment_Tags_Fragment;
+
+export type PostsFragmentFragment = (
+  { __typename?: 'PostsNode' }
+  & Pick<PostsNode, 'count'>
+  & { rows: Array<(
+    { __typename?: 'Post' }
+    & Pick<Post, 'id' | 'title' | 'slug' | 'reading_time' | 'excerpt'>
+    & { cover_image: (
+      { __typename?: 'Image' }
+      & Pick<Image, 'src'>
+    ), author: (
+      { __typename?: 'Author' }
+      & Pick<Author, 'avatar'>
+    ) }
+  )> }
+);
+
+export type CollectionQueryQueryVariables = Exact<{
+  tagSlug: Scalars['String'];
 }>;
 
 
-export type PostsQueryQuery = (
+export type CollectionQueryQuery = (
   { __typename?: 'Query' }
   & { posts: (
     { __typename?: 'PostsNode' }
-    & Pick<PostsNode, 'count'>
-    & { rows: Array<(
-      { __typename?: 'Post' }
-      & Pick<Post, 'id' | 'title' | 'slug' | 'reading_time' | 'excerpt'>
-      & { cover_image: (
-        { __typename?: 'Image' }
-        & Pick<Image, 'src'>
-      ), author: (
-        { __typename?: 'Author' }
-        & Pick<Author, 'avatar'>
-      ) }
-    )> }
-  ) | { __typename?: 'PostError' } }
+    & PostsFragmentFragment
+  ) | { __typename?: 'PostError' }, tag: (
+    { __typename?: 'TagResultError' }
+    & TagFragment_TagResultError_Fragment
+  ) | (
+    { __typename?: 'Tags' }
+    & TagFragment_Tags_Fragment
+  ) }
   & LayoutFragment
 );

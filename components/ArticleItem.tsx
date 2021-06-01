@@ -5,18 +5,28 @@ import { getImageAttrs } from "lib/imageUtils";
 
 interface IArticleItem {
   post: any;
+  isHome?: boolean;
 }
 
 const ArticleItem = (props: IArticleItem) => {
-  const { post } = props;
+  const { post, isHome } = props;
   const { className, ...imgAttrs } = getImageAttrs(post.cover_image.src);
   const hasCoverImage = !!post.cover_image.src;
 
-  const rootClass = hasCoverImage ? "with-cover-image" : "without-cover-image";
+  const rootClass = ["post-card", "post"];
+  if (hasCoverImage) {
+    rootClass.push("with-cover-image");
+  } else {
+    rootClass.push("without-cover-image");
+  }
+
+  if (isHome) {
+    rootClass.push("home");
+  }
 
   return (
     <>
-      <div className={"post-card post " + rootClass}>
+      <div className={rootClass.join(" ")}>
         {imgAttrs.src && (
           <Link href={post.slug}>
             <a className="post-card-image-link">
