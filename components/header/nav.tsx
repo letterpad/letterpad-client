@@ -12,14 +12,14 @@ const Nav = ({ settings, logoInline, showBanner }: IProps) => {
   const { site_title, site_logo, menu } = settings;
 
   const navcss = navigationStyles();
-  const navClass = ["site-nav"];
+  const navClass = ["site-nav", "container-fixed"];
   if (logoInline) navClass.push("logo-inline");
   else navClass.push("logo-hide");
 
   if (showBanner) navClass.push("has-banner");
 
   return (
-    <div className="inner">
+    <div className="container-wrapper">
       <nav className={navClass.join(" ")}>
         <div className="site-nav-left">
           <Link href="/">
@@ -89,19 +89,18 @@ const Nav = ({ settings, logoInline, showBanner }: IProps) => {
       </nav>
       <style jsx>{navcss}</style>
       <style jsx>{`
-        .has-banner {
-          margin-top: calc(var(--space-xl) * -1);
-
-          &.site-nav {
-            margin-bottom: var(--space-md);
-            @media (min-width: 900px) {
-              margin-top: calc(var(--space-xxl) * -1);
-            }
-            @media (max-width: 767px) {
-              margin-top: calc(var(--space-xl) * -1);
-              margin-bottom: var(--space-lg);
-            }
+        @media (min-width: 1100px) {
+          .container-wrapper {
+            display: flex;
+            justify-content: center;
           }
+        }
+        :global(.page-home .site-nav) {
+          position: absolute;
+        }
+
+        .site-nav {
+          padding: var(--space-sm) 0;
         }
       `}</style>
     </div>

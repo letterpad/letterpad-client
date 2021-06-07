@@ -73,12 +73,12 @@ export const globalStyles = css.global`
     margin-left: 0;
     margin-right: 0;
   }
-  .inner {
+  .container-fixed {
     margin: 0 auto;
     max-width: 1040px;
     width: 100%;
   }
-  .outer {
+  .container-wrapper {
     position: relative;
     padding: 0 var(--space-lg);
     z-index: 1;

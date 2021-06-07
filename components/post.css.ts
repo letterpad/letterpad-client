@@ -17,7 +17,7 @@ export const postWrapperStyles = css`
     }
     .post-full-header {
       margin: 0 auto;
-      margin-top: 60px;
+      margin-top: 20px;
       @media (max-width: 767px) {
         margin-top: 20px;
       }

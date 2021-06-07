@@ -76,12 +76,10 @@ export function makeCloudinaryImage(src: string, width: number) {
 
 export function makeCloudinaryUrl(src, width) {
   const replace = /image\/upload\/(.*)\/blog-images/;
-  const url = src.replace(
+  return src.replace(
     replace,
     `image/upload/q_auto,f_auto,w_${width}/v1/blog-images`
   );
-
-  return url;
 }
 
 export function makeUnsplashImage(src: string, width: number, extras = "") {

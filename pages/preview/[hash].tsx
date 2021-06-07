@@ -38,6 +38,7 @@ export default function PostPage({
         publishedAt: data.post.publishedAt,
         updatedAt: data.post.updatedAt,
       }}
+      pageName="page-preview"
     >
       <div>
         <Post postDetails={data.post}></Post>

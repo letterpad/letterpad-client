@@ -11,6 +11,7 @@ const Brand = ({ src, title, description, showBanner }: IProps) => {
   if (!showBanner) return null;
 
   const imgAttrs = getImageAttrs(src);
+  imgAttrs.className += " banner";
   return (
     <>
       <img className="banner" {...imgAttrs} alt={title} height="100%" />
@@ -21,7 +22,6 @@ const Brand = ({ src, title, description, showBanner }: IProps) => {
           width: 100vw;
         }
       `}</style>
-
       <div className="site-brand-text">
         <div className="wrapper">
           {title && <h1 className="site-title">{title}</h1>}

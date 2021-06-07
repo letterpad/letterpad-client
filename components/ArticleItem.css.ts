@@ -77,7 +77,7 @@ export const styles = css`
       }
     }
     @media (min-width: 767px) {
-      &.home:nth-child(6n + 1) {
+      &.home:nth-child(7n + 1) {
         grid-column: 1 / span 3;
         flex-direction: row;
         p {

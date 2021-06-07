@@ -39,7 +39,7 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
         <title>{postDetails.title}</title>
       </Head>
 
-      <div className="inner">
+      <div className="container-fixed">
         <div className="post-full post">
           <header className="post-full-header">
             <section className="post-full-meta">

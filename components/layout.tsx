@@ -8,6 +8,7 @@ import { globalStyles } from "assets/css/style.css";
 import { themeVars } from "assets/css/theme.css";
 import Nav from "./header/nav";
 import userBannerConfig from "./hooks/userBannerConfig";
+import { PageName } from "lib/types";
 
 export const layoutFragment = gql`
   fragment layout on Query {
@@ -53,11 +54,13 @@ export default function SiteLayout({
   layout,
   metaProps,
   displayBanner,
+  pageName,
 }: {
   children: any;
   layout: LayoutFragment;
   metaProps: MetaProps;
   displayBanner?: boolean;
+  pageName?: PageName;
 }) {
   const { settings, me } = layout;
   if (settings.__typename === "SettingError") return null;
@@ -67,7 +70,7 @@ export default function SiteLayout({
   const description = metaProps.description || settings.site_description;
 
   return (
-    <div className="theme-casper layout">
+    <div className={"theme-casper layout " + pageName}>
       <Head>
         <title>{metaProps.title}</title>
         <meta name="description" content={description} />
@@ -95,19 +98,13 @@ export default function SiteLayout({
         ></link>
         <style>{settings.css}</style>
       </Head>
+      <Nav settings={settings} logoInline={logoInline} showBanner={hasBanner} />
       <Header settings={settings} displayBanner={hasBanner}></Header>
-      <div className="outer">
-        <main>
-          <Nav
-            settings={settings}
-            logoInline={logoInline}
-            showBanner={hasBanner}
-          />
-          {children}
-        </main>
-      </div>
+
+      <main className="container-wrapper">{children}</main>
+
       <footer className="site-footer">
-        <div className="site-footer-content inner">
+        <div className="site-footer-content container-fixed">
           <section className="copyright">
             <SetDangerousHTML html={settings.site_footer} />
           </section>

@@ -46,6 +46,7 @@ export async function fetchProps<
     variables,
     host
   );
+
   return {
     props: {
       data: data ?? null,

@@ -80,12 +80,13 @@ export default function Tag({ data }: { data: CollectionQueryQuery }) {
         url: "",
       }}
       displayBanner={false}
+      pageName="page-tag"
     >
-      <div className="tag-banner inner">
+      <div className="tag-banner container-fixed">
         <span className="tag-name">{router.query.slug}</span>
         <p>{data.tag.desc}</p>
       </div>
-      <div className="inner">
+      <div className="container-fixed">
         <div className="post-feed">
           {data.posts.rows.map((item, i) => (
             <ArticleItem post={item} key={i} />

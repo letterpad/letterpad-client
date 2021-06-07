@@ -37,7 +37,7 @@ export function Posts({
     return null;
   }
   return (
-    <div className="inner">
+    <div className="container-fixed">
       <div className="post-feed">
         {allPosts.posts.rows.map((item, i) => (
           <ArticleItem post={item} key={i} isHome={isHome} />

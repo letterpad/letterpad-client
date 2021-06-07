@@ -47,6 +47,7 @@ export const Header: React.FC<{
       <style jsx>{`
         .site-header {
           background: var(--color-pre-bg);
+          margin-bottom: var(--space-md);
         }
         .brand-wrapper {
           position: relative;

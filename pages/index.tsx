@@ -54,14 +54,15 @@ export default function Home({
         type: "website",
         url: "",
       }}
+      pageName="page-home"
       displayBanner={isHomePageACollectionOfPosts}
     >
-      <div>
+      <>
         <Menu menu={data as any} />
         {isHomePageACollectionOfPosts && (
           <Posts allPosts={data} isHome={true} />
         )}
-      </div>
+      </>
     </SiteLayout>
   );
 }
@@ -72,6 +73,7 @@ export async function getServerSideProps(context) {
     {},
     context.req.headers.host
   );
+
   if (!data.props.data.settings.__typename) {
     return { props: { data: {} } };
   }
