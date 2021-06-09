@@ -101,6 +101,10 @@ const Nav = ({ settings, logoInline, showBanner }: IProps) => {
 
         .site-nav {
           padding: var(--space-sm) 0;
+          align-items: center;
+          .social-link {
+            width: 15px;
+          }
         }
       `}</style>
     </div>

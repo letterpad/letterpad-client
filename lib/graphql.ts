@@ -469,7 +469,6 @@ export type Setting = {
   menu: Array<Navigation>;
   css: Scalars['String'];
   google_analytics: Scalars['String'];
-  locale: Scalars['String'];
   theme: Scalars['String'];
   disqus_id?: Maybe<Scalars['String']>;
   banner: Image;
@@ -504,7 +503,6 @@ export type OptionInputType = {
   menu?: Maybe<Array<InputNavigation>>;
   css?: Maybe<Scalars['String']>;
   google_analytics?: Maybe<Scalars['String']>;
-  locale?: Maybe<Scalars['String']>;
   theme?: Maybe<Scalars['String']>;
   disqus_id?: Maybe<Scalars['String']>;
   banner?: Maybe<InputImage>;

@@ -54,6 +54,7 @@ export const themeVars = css`
     --medium: 980px;
     --small: 740px;
     --xsmall: 480px;
+    --xxsmall: 320px;
     --height: 4rem;
     --margin: 2rem;
     --radius: 0.5rem;
