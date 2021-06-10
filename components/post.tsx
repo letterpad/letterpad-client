@@ -42,11 +42,14 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
       .forEach((img: HTMLImageElement) => {
         img.onclick = function () {
           modalImg.src = img.src;
+
+          //@ts-ignore
           if ("tjmOpen" in window) tjmOpen();
         };
       });
     document.addEventListener("keyup", function (e) {
       if (e.key === "Escape") {
+        //@ts-ignore
         tjmClose();
       }
     });
@@ -116,6 +119,7 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
             title="Close"
             onClick={() => {
               if (typeof window !== "undefined" && "tjmClose" in window) {
+                //@ts-ignore
                 window.tjmClose();
               }
             }}
