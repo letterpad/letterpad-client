@@ -26,6 +26,7 @@ export async function executeQuery<
     body: JSON.stringify({ query: queryText, variables }),
   });
   if (resp.status != 200) {
+    console.log("URL Failed - " + process.env.API_URL);
     const txt = await resp.text();
     return Promise.reject(new Error(txt));
   }
@@ -46,6 +47,10 @@ export async function fetchProps<
     variables,
     host
   );
+
+  console.log(JSON.stringify(data));
+
+  console.log("JSON.stringify(errors) :>> ", JSON.stringify(errors));
 
   return {
     props: {
