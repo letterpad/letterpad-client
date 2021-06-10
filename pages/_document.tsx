@@ -15,6 +15,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Fira+Code:400|Rubik:wght@300|Libre+Baskerville:400,400i,700,700i&display=swap"
           />
+          <script src="/js/tiny-modal.min.js" async />
         </Head>
         <body>
           <Main />

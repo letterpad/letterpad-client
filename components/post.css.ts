@@ -81,6 +81,36 @@ export const postWrapperStyles = css`
   }
 `;
 
+export const galleryStyles = css.global`
+  @media (min-width: 991px) {
+    .modal-image {
+      height: 80vh;
+      width: 100%;
+      object-fit: cover;
+    }
+    :global(.gallery) {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 10px;
+      align-items: center;
+
+      figure {
+        margin: 0;
+      }
+      img {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+        margin: 0;
+        cursor: pointer;
+      }
+      figcaption {
+        display: none;
+      }
+    }
+  }
+`;
+
 export const postStyles = css.global`
   .post-full img {
     @media (max-width: 767px) {

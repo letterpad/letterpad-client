@@ -3,7 +3,9 @@ import { PostDetailsFragment } from "lib/graphql";
 import { getImageAttrs, setResponsiveImages } from "lib/imageUtils";
 import Head from "next/head";
 import Link from "next/link";
-import { postStyles, postWrapperStyles } from "./post.css";
+import { useEffect } from "react";
+import { galleryStyles, postStyles, postWrapperStyles } from "./post.css";
+import "tiny-js-modal/dist/tiny-js-modal.min.css";
 
 export const postDetailsFragment = gql`
   fragment postDetails on Post {
@@ -32,6 +34,23 @@ export const postDetailsFragment = gql`
 export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
   const content = setResponsiveImages(postDetails.html);
   const imgAttrs = getImageAttrs(postDetails.cover_image.src);
+
+  useEffect(() => {
+    const modalImg: HTMLImageElement = document.querySelector("#tjm img");
+    document
+      .querySelectorAll(".gallery img")
+      .forEach((img: HTMLImageElement) => {
+        img.onclick = function () {
+          modalImg.src = img.src;
+          if ("tjmOpen" in window) tjmOpen();
+        };
+      });
+    document.addEventListener("keyup", function (e) {
+      if (e.key === "Escape") {
+        tjmClose();
+      }
+    });
+  }, []);
 
   return (
     <>
@@ -89,6 +108,27 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
         {postStyles}
       </style>
       <style jsx>{postWrapperStyles}</style>
+      <style jsx>{galleryStyles}</style>
+
+      <div id="tjm" className="tjm">
+        <div className="tjm-c" style={{ maxWidth: 600 }}>
+          <span
+            title="Close"
+            onClick={() => {
+              if (typeof window !== "undefined" && "tjmClose" in window) {
+                window.tjmClose();
+              }
+            }}
+            className="tjm-cb"
+            role="button"
+            tabIndex={0}
+          >
+            Close
+          </span>
+          <br />
+          <img className="modal-image" alt="gallery image" />
+        </div>
+      </div>
     </>
   );
 }

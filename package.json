@@ -15,7 +15,8 @@
     "next": "^10.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "styled-jsx-plugin-sass": "^1.0.0"
+    "styled-jsx-plugin-sass": "^1.0.0",
+    "tiny-js-modal": "^1.0.1"
   },
   "devDependencies": {
     "@graphql-codegen/cli": "^1.17.10",
