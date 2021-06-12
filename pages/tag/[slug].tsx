@@ -1,4 +1,4 @@
-import ArticleItem from "components/ArticleItem";
+import ArticleItem from "../../components/ArticleItem";
 import gql from "graphql-tag";
 import {
   CollectionQueryQuery,
