@@ -9,7 +9,7 @@ export const footerStyles = css.global`
     .site-footer-content {
       display: flex;
       font-size: 1.3rem;
-      @media (max-width: 650px) {
+      @media (max-width: 991px) {
         flex-direction: column;
       }
       a {
@@ -23,6 +23,9 @@ export const footerStyles = css.global`
         span {
           font-size: 0.8em;
           color: var(--color-text-dull);
+        }
+        @media (max-width: 991px) {
+          text-align: center;
         }
       }
       .subscribe {
@@ -48,9 +51,13 @@ export const footerStyles = css.global`
         display: flex;
         flex: 1;
         justify-content: flex-end;
-        a {
+        a:not(:first-child) {
           position: relative;
           margin-left: 20px;
+        }
+        @media (max-width: 991px) {
+          justify-content: center;
+          margin-top: 20px;
         }
       }
     }

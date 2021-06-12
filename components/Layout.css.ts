@@ -21,4 +21,10 @@ export const layoutStyles = css.global`
       padding: 0 var(--space-md);
     }
   }
+  @media (max-width: 767px) {
+    .page-home main.container-wrapper,
+    .page-tag main.container-wrapper {
+      padding: 0px;
+    }
+  }
 `;
