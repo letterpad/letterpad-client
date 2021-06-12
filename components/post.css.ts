@@ -29,7 +29,6 @@ export const postWrapperStyles = css`
         justify-content: center;
         align-items: center;
         font-size: 1.4rem;
-        font-weight: 600;
         text-transform: uppercase;
         margin-bottom: 20px;
         color: var(--color-text-dull);

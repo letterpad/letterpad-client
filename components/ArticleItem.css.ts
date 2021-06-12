@@ -58,7 +58,7 @@ export const styles = css`
           display: flex;
           justify-content: center;
           :global(svg) {
-            width: 20px;
+            width: 18px;
             fill: var(--color-border);
             margin-right: 4px;
           }

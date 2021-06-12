@@ -54,14 +54,13 @@ const Brand = ({ src, title, description, showBanner }: IProps) => {
             }
           }
           .site-description {
-            margin-top: var(--space-sm);
-            font-size: var(--text-md);
+            margin-top: var(--space-xs);
+            font-size: var(--text-sm);
             color: var(--color-text-dull);
             max-width: 400px;
             font-family: system-ui;
-            line-height: 27px;
+            line-height: var(--text-md);
             font-weight: 500;
-            font-style: italic;
             @media (max-width: 900px) {
               font-size: var(--text-sm);
               line-height: var(--text-md);

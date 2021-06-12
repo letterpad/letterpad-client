@@ -11,6 +11,8 @@ export const headerFragment = gql`
     social_facebook
     social_twitter
     social_github
+    social_instagram
+    site_tagline
     banner {
       src
     }
@@ -29,7 +31,7 @@ export const Header: React.FC<{
   settings: HeaderSettingsFragment;
   displayBanner?: boolean;
 }> = ({ settings, displayBanner = true }) => {
-  const { banner, site_title, site_description } = settings;
+  const { banner, site_title, site_tagline } = settings;
   const { hasBanner } = userBannerConfig(displayBanner);
 
   return (
@@ -39,7 +41,7 @@ export const Header: React.FC<{
           <Brand
             src={banner.src}
             title={site_title}
-            description={site_description}
+            description={site_tagline}
             showBanner={hasBanner}
           />
         </div>

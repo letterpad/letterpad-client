@@ -1,5 +1,5 @@
-import SiteLayout, { layoutFragment } from "components/layout";
-import { postDetailsFragment, Post } from "components/post";
+import SiteLayout, { layoutFragment } from "../../components/Layout";
+import { postDetailsFragment, Post } from "../../components/Post";
 import gql from "graphql-tag";
 import { fetchProps, PageProps } from "lib/client";
 import { PageQueryQuery, PageQueryQueryVariables } from "lib/graphql";

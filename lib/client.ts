@@ -48,9 +48,9 @@ export async function fetchProps<
     host
   );
 
-  console.log(JSON.stringify(data));
-
-  console.log("JSON.stringify(errors) :>> ", JSON.stringify(errors));
+  if (errors) {
+    console.log("JSON.stringify(errors) :>> ", JSON.stringify(errors));
+  }
 
   return {
     props: {

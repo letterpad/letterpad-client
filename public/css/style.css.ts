@@ -14,9 +14,6 @@ export const globalStyles = css.global`
     box-sizing: border-box;
     font-family: sans-serif;
   }
-  .layout {
-    min-height: 100vh;
-  }
 
   body {
     font-family: var(--font-sans-serif);
@@ -73,19 +70,6 @@ export const globalStyles = css.global`
     margin-left: 0;
     margin-right: 0;
   }
-  .container-fixed {
-    margin: 0 auto;
-    max-width: 1040px;
-    width: 100%;
-  }
-  .container-wrapper {
-    position: relative;
-    padding: 0 var(--space-lg);
-    z-index: 1;
-    @media (max-width: 767px) {
-      padding: 0 var(--space-md);
-    }
-  }
 
   article,
   aside,
@@ -94,10 +78,5 @@ export const globalStyles = css.global`
   nav,
   section {
     display: block;
-  }
-
-  main {
-    z-index: 100;
-    flex-grow: 1;
   }
 `;

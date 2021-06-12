@@ -613,7 +613,7 @@ export type LetterpadError = {
 
 export type HeaderSettingsFragment = (
   { __typename?: 'Setting' }
-  & Pick<Setting, 'site_title' | 'site_description' | 'social_facebook' | 'social_twitter' | 'social_github'>
+  & Pick<Setting, 'site_title' | 'site_description' | 'social_facebook' | 'social_twitter' | 'social_github' | 'social_instagram' | 'site_tagline'>
   & { banner: (
     { __typename?: 'Image' }
     & Pick<Image, 'src'>
@@ -630,7 +630,7 @@ export type LayoutFragment = (
   { __typename?: 'Query' }
   & { settings: (
     { __typename?: 'Setting' }
-    & Pick<Setting, 'site_footer' | 'subscribe_embed' | 'social_github' | 'social_facebook' | 'social_twitter' | 'css'>
+    & Pick<Setting, 'site_footer' | 'subscribe_embed' | 'social_github' | 'social_facebook' | 'social_twitter' | 'social_instagram' | 'css'>
     & { site_favicon: (
       { __typename?: 'Image' }
       & Pick<Image, 'src'>
@@ -640,17 +640,6 @@ export type LayoutFragment = (
     { __typename?: 'Author' }
     & Pick<Author, 'name'>
   ) | { __typename?: 'AuthorNotFoundError' }> }
-);
-
-export type MenuFragment = (
-  { __typename?: 'Query' }
-  & { settings: (
-    { __typename: 'Setting' }
-    & { menu: Array<(
-      { __typename?: 'Navigation' }
-      & Pick<Navigation, 'type' | 'slug' | 'original_name' | 'label'>
-    )> }
-  ) | { __typename: 'SettingError' } }
 );
 
 export type PostDetailsFragment = (
@@ -685,6 +674,17 @@ export type AllPostsFragment = (
       ) }
     )> }
   ) | { __typename?: 'PostError' } }
+);
+
+export type MenuFragment = (
+  { __typename?: 'Query' }
+  & { settings: (
+    { __typename: 'Setting' }
+    & { menu: Array<(
+      { __typename?: 'Navigation' }
+      & Pick<Navigation, 'type' | 'slug' | 'original_name' | 'label'>
+    )> }
+  ) | { __typename: 'SettingError' } }
 );
 
 export type HomeQueryQueryVariables = Exact<{ [key: string]: never; }>;

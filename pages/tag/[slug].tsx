@@ -6,7 +6,7 @@ import {
 } from "lib/graphql";
 import { styles } from "../../components/posts.css";
 import { fetchProps } from "lib/client";
-import SiteLayout, { layoutFragment } from "components/layout";
+import SiteLayout, { layoutFragment } from "../../components/Layout";
 import { useRouter } from "next/router";
 
 export const tagFragment = gql`

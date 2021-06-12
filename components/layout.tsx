@@ -1,7 +1,6 @@
 import gql from "graphql-tag";
 
 import { LayoutFragment } from "lib/graphql";
-import { footerStyles } from "./Layout.css";
 import { Header, headerFragment } from "./Header";
 import Head from "next/head";
 import { globalStyles } from "public/css/style.css";
@@ -9,6 +8,8 @@ import { themeVars } from "public/css/theme.css";
 import Nav from "./header/nav";
 import userBannerConfig from "./hooks/userBannerConfig";
 import { PageName } from "lib/types";
+import Footer from "./Footer";
+import { layoutStyles } from "./layout.css";
 
 export const layoutFragment = gql`
   fragment layout on Query {
@@ -22,6 +23,7 @@ export const layoutFragment = gql`
         social_github
         social_facebook
         social_twitter
+        social_instagram
         css
       }
 
@@ -103,68 +105,17 @@ export default function SiteLayout({
 
       <main className="container-wrapper">{children}</main>
 
-      <footer className="site-footer">
-        <div className="site-footer-content container-fixed">
-          <section className="copyright">
-            <SetDangerousHTML html={settings.site_footer} />
-          </section>
-
-          <SetDangerousHTML
-            html={settings.subscribe_embed}
-            className="subscribe"
-          />
-
-          <nav className="site-footer-nav">
-            {settings.social_facebook && (
-              <a href={settings.social_facebook} target="_blank" rel="noopener">
-                Facebook
-              </a>
-            )}
-            {settings.social_twitter && (
-              <a href={settings.social_twitter} target="_blank" rel="noopener">
-                Twitter
-              </a>
-            )}
-            {settings.social_github && (
-              <a href={settings.social_github} target="_blank" rel="noopener">
-                Github
-              </a>
-            )}
-          </nav>
-        </div>
-      </footer>
+      <Footer settings={settings} />
 
       <style jsx global>
         {themeVars}
       </style>
       <style jsx global>
-        {footerStyles}
-      </style>
-      <style jsx global>
         {globalStyles}
       </style>
+      <style jsx global>
+        {layoutStyles}
+      </style>
     </div>
-  );
-}
-
-function SetDangerousHTML({
-  html,
-  id = "",
-  className = "",
-}: {
-  html: string;
-  id?: string;
-  className?: string;
-}) {
-  if (!html) return null;
-
-  return (
-    <div
-      id={id}
-      className={className}
-      dangerouslySetInnerHTML={{
-        __html: html,
-      }}
-    />
   );
 }

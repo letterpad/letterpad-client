@@ -1,8 +1,8 @@
-import SiteLayout, { layoutFragment } from "components/layout";
+import SiteLayout, { layoutFragment } from "../components/Layout";
 import { Menu, menuFragment } from "components/menu";
-import { Posts } from "components/posts";
-import { collectionQuery } from "pages/tag/[slug]";
-import { pageQuery } from "pages/page/[slug]";
+import { Posts } from "../components/Posts";
+import { collectionQuery } from "./tag/[slug]";
+import PostPage, { pageQuery } from "./page/[slug]";
 import gql from "graphql-tag";
 import { fetchProps, PageProps } from "lib/client";
 import {
@@ -13,7 +13,6 @@ import {
   PageQueryQuery,
   PageQueryQueryVariables,
 } from "lib/graphql";
-import PostPage from "./page/[slug]";
 
 const query = gql`
   query HomeQuery {
