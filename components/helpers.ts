@@ -1,7 +1,7 @@
 export const getImageAttrs = (
   src: string,
   sizes?: number[],
-  srcSizes?: string
+  srcSizes?: string,
 ) => {
   if (!src) return {};
   if (!sizes) sizes = [480, 720, 960, 1200, 1440, 1600, 2000];
@@ -21,7 +21,7 @@ export const getImageAttrs = (
       src: makeCloudinaryUrl(src, sizes[sizes.length - 1]),
       sizes: srcSizes,
       "data-srcset": srcSet,
-      srcset: [base64Url],
+      srcSet: [base64Url],
       width: "100%",
       loading: "lazy",
       class: "lazyload",
@@ -49,7 +49,7 @@ export const getImageAttrs = (
 export const setResponsiveImages = (
   html: string,
   sizes?: number[],
-  srcSizes?: string
+  srcSizes?: string,
 ) => {
   if (!sizes) sizes = [480, 720, 960, 1200, 1440, 1600, 2000];
   // if (!srcSizes) srcSizes = `(max-width: 720px) 100vw, 720px`;
@@ -78,7 +78,7 @@ export function makeCloudinaryUrl(src, width) {
   const replace = /image\/upload\/(.*)\/blog-images/;
   return src.replace(
     replace,
-    `image/upload/q_auto,f_auto,w_${width}/v1/blog-images`
+    `image/upload/q_auto,f_auto,w_${width}/v1/blog-images`,
   );
 }
 

@@ -2,7 +2,7 @@ interface IImageAttrs {
   src: string;
   sizes?: string;
   "data-srcset"?: string;
-  srcset?: string[];
+  srcSet?: string;
   width: string;
   loading: "lazy";
   className?: string;
@@ -15,12 +15,10 @@ export function makeCloudinaryImage(src: string, width: number) {
 
 export function makeCloudinaryUrl(src, width) {
   const replace = /image\/upload\/(.*)\/blog-images/;
-  const url = src.replace(
+  return src.replace(
     replace,
-    `image/upload/q_auto,f_auto,w_${width}/v1/blog-images`
+    `image/upload/q_auto,f_auto,w_${width}/v1/blog-images`,
   );
-
-  return url;
 }
 
 export function makeUnsplashImage(src: string, width: number, extras = "") {
@@ -44,7 +42,7 @@ export async function makeBase64Url(requestURL: string) {
 export const getImageAttrs = (
   src: string,
   sizes?: number[],
-  srcSizes?: string
+  srcSizes?: string,
 ): IImageAttrsResult => {
   if (!src)
     return {
@@ -72,7 +70,7 @@ export const getImageAttrs = (
       src: makeCloudinaryUrl(src, sizes[sizes.length - 1]),
       sizes: srcSizes,
       "data-srcset": srcSet,
-      srcset: [base64Url],
+      srcSet: base64Url,
       width: "100%",
       loading: "lazy",
       className: "lazyload",
@@ -86,7 +84,7 @@ export const getImageAttrs = (
       src: makeUnsplashUrl(src, sizes[sizes.length - 1]),
       sizes: srcSizes,
       "data-srcset": srcSet,
-      srcset: [base64Url],
+      srcSet: base64Url,
       loading: "lazy",
       className: "lazyload",
       width: "100%",
@@ -99,16 +97,11 @@ export const getImageAttrs = (
   };
 };
 
-export const setResponsiveImages = (
-  html: string,
-  sizes?: number[],
-  srcSizes?: string
-) => {
+export const setResponsiveImages = (html: string, sizes?: number[]) => {
   if (!sizes) sizes = [480, 720, 960, 1200, 1440, 1600, 2000];
-  if (!srcSizes) srcSizes = `(max-width: 720px) 100vw, 720px`;
 
   const re = /<img\s+[^>]*src="([^"]*)"[^>]*>/g;
-  const htmlWithResponsiveImages = html.replace(re, (str, src) => {
+  return html.replace(re, (str, src) => {
     const attrs = getImageAttrs(src, sizes);
     if (Object.keys(attrs).length > 0) {
       let attrString = "";
@@ -119,6 +112,4 @@ export const setResponsiveImages = (
     }
     return str;
   });
-
-  return htmlWithResponsiveImages;
 };
