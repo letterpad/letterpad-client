@@ -68,7 +68,7 @@ export type InputCreateAuthor = {
 export type AuthorResponse = {
   __typename?: 'AuthorResponse';
   ok: Scalars['Boolean'];
-  errors?: Maybe<Array<Error>>;
+  errors?: Maybe<Array<Maybe<Error>>>;
   data?: Maybe<Author>;
 };
 
@@ -273,10 +273,8 @@ export type Post = {
   title: Scalars['String'];
   /** Html content of the post */
   html: Scalars['String'];
-  /** Markdown content of the post */
-  md: Scalars['String'];
   /** Draft for republishing content */
-  md_draft: Scalars['String'];
+  html_draft: Scalars['String'];
   /** Author information of the post */
   author: Author;
   /** A breif summary of the post */
@@ -386,7 +384,6 @@ export type TagsInputType = {
 export type InputCreatePost = {
   title?: Maybe<Scalars['String']>;
   html?: Maybe<Scalars['String']>;
-  md?: Maybe<Scalars['String']>;
   /** authorId: Int */
   excerpt?: Maybe<Scalars['String']>;
   cover_image?: Maybe<InputImage>;
@@ -401,8 +398,7 @@ export type InputUpdatePost = {
   id: Scalars['Int'];
   title?: Maybe<Scalars['String']>;
   html?: Maybe<Scalars['String']>;
-  md?: Maybe<Scalars['String']>;
-  md_draft?: Maybe<Scalars['String']>;
+  html_draft?: Maybe<Scalars['String']>;
   featured?: Maybe<Scalars['Boolean']>;
   excerpt?: Maybe<Scalars['String']>;
   cover_image?: Maybe<InputImage>;
@@ -587,7 +583,7 @@ export type Response = {
 
 export type Image = {
   __typename?: 'Image';
-  src: Scalars['String'];
+  src?: Maybe<Scalars['String']>;
   width?: Maybe<Scalars['Int']>;
   height?: Maybe<Scalars['Int']>;
 };
