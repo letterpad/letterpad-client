@@ -15,33 +15,55 @@ export const postWrapperStyles = css`
         text-transform: lowercase;
       }
     }
+
     .post-full-header {
       margin: 0 auto;
       margin-top: 20px;
       @media (max-width: 767px) {
         margin-top: 20px;
       }
-      padding: 20px 3vw 3vw;
+      padding: 20px 0vw 3vw;
       max-width: 1040px;
-      text-align: center;
       .post-full-meta {
         display: flex;
-        justify-content: center;
         align-items: center;
         font-size: 1.4rem;
-        text-transform: uppercase;
         margin-bottom: 20px;
         color: var(--color-text-dull);
         @media (max-width: 767px) {
           font-size: 1.2rem;
           line-height: 1.3em;
         }
+        .post-full-meta-date {
+        }
+        .post-card-meta-author {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          .author-profile-image {
+            width: var(--space-md);
+            height: var(--space-md);
+            border-radius: 100%;
+            object-fit: cover;
+          }
+          .post-card-author {
+            color: var(--color-text);
+          }
+        }
       }
+
+      :global(svg) {
+        width: 18px;
+        fill: var(--color-border);
+        margin-right: 4px;
+      }
+
       .post-full-title {
         margin: 0;
-        font-weight: 500;
+        font-weight: 700;
         line-height: 7rem;
         color: var(--color-text);
+        font-size: 4rem;
         @media (max-width: 767px) {
           font-size: var(--text-xl);
           line-height: var(--text-xl);
@@ -52,7 +74,10 @@ export const postWrapperStyles = css`
     .post-full-image {
       height: 700px;
       border-radius: 5px;
-      width: 100%;
+
+      width: calc(100% + 20vw);
+      margin-left: -10vw;
+
       max-width: 100vw;
       object-fit: cover;
       @media (max-width: 1170px) {
@@ -111,48 +136,23 @@ export const galleryStyles = css.global`
 `;
 
 export const postStyles = css.global`
-  .post-full img {
+  .post-full img:not(.author-profile-image) {
     @media (max-width: 767px) {
       margin: 0 calc(var(--space-md) * -1);
-      width: 100vw;
+      min-width: 100vw;
     }
   }
   .post-full-content {
     position: relative;
     margin: 0 auto;
-    padding: 70px 180px 0;
+    padding: 70px 0px 0;
     min-height: 230px;
     font-weight: 300;
     font-size: var(--text-md);
     line-height: var(--text-lg);
-    background: var(--color-bg);
+    background: transparent;
     margin-bottom: 60px;
-    &:before {
-      left: -5px;
-      transform: rotate(-5deg);
-      content: "";
-      position: absolute;
-      top: 15px;
-      z-index: -1;
-      display: block;
-      width: 20px;
-      height: 200px;
-      background: rgba(39, 44, 49, 0.15);
-      filter: blur(5px);
-    }
-    &:after {
-      content: "";
-      position: absolute;
-      top: 15px;
-      z-index: -1;
-      display: block;
-      width: 20px;
-      height: 200px;
-      background: rgba(39, 44, 49, 0.15);
-      filter: blur(5px);
-      right: -5px;
-      transform: rotate(5deg);
-    }
+
     blockquote {
       margin-top: 1.5em;
       padding: 0 1em;
@@ -255,6 +255,21 @@ export const postStyles = css.global`
       margin: 4rem 0;
       font-family: "Fira Code", monospace;
     }
+    .lp-iframe-wrapper {
+      width: 100%;
+      height: 0;
+      padding-bottom: 56%;
+      position: relative;
+      margin-bottom: 2rem;
+    }
+    .lp-iframe-wrapper .iframe {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      border: none;
+    }
     ul,
     ol {
       margin-top: 2.5rem;
@@ -269,7 +284,7 @@ export const postStyles = css.global`
       }
     }
     figure {
-      margin: auto -15px;
+      margin: auto 0px;
       margin-top: 1.9rem;
       margin-bottom: 1.9rem;
     }
@@ -291,6 +306,7 @@ export const postStyles = css.global`
       display: inline-block;
       line-height: 1.6em;
     }
+
     img {
       display: block;
       margin: 1.5em auto;

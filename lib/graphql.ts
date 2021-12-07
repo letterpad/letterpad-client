@@ -1,5 +1,7 @@
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -8,14 +10,6 @@ export type Scalars = {
   Int: number;
   Float: number;
   Date: any;
-};
-
-export type Social = {
-  __typename?: 'Social';
-  twitter?: Maybe<Scalars['String']>;
-  facebook?: Maybe<Scalars['String']>;
-  github?: Maybe<Scalars['String']>;
-  instagram?: Maybe<Scalars['String']>;
 };
 
 export type Author = {
@@ -33,16 +27,57 @@ export type Author = {
   accessToken?: Maybe<Scalars['String']>;
 };
 
-export type LoginData = {
-  email: Scalars['String'];
-  password: Scalars['String'];
+export type AuthorNotFoundError = LetterpadError & {
+  __typename?: 'AuthorNotFoundError';
+  message: Scalars['String'];
 };
 
-export type InputSocial = {
-  twitter?: Maybe<Scalars['String']>;
-  facebook?: Maybe<Scalars['String']>;
-  github?: Maybe<Scalars['String']>;
-  instagram?: Maybe<Scalars['String']>;
+export type AuthorResponse = {
+  __typename?: 'AuthorResponse';
+  ok: Scalars['Boolean'];
+  errors?: Maybe<Array<Maybe<Error>>>;
+  data?: Maybe<Author>;
+};
+
+export type CreateAuthorError = LetterpadError & {
+  __typename?: 'CreateAuthorError';
+  message: Scalars['String'];
+};
+
+export type CreateAuthorResponse = Author | CreateAuthorError;
+
+export type CreatePostResponse = Post | PostError;
+
+
+export type DeleteTagsResponse = DeleteTagsResult | TagsError;
+
+export type DeleteTagsResult = {
+  __typename?: 'DeleteTagsResult';
+  ok: Scalars['Boolean'];
+};
+
+export type EditTaxResponse = {
+  __typename?: 'EditTaxResponse';
+  ok: Scalars['Boolean'];
+};
+
+export type Error = {
+  __typename?: 'Error';
+  path: Scalars['String'];
+  message?: Maybe<Scalars['String']>;
+};
+
+export type ForgotPasswordResponse = {
+  __typename?: 'ForgotPasswordResponse';
+  ok: Scalars['Boolean'];
+  message?: Maybe<Scalars['String']>;
+};
+
+export type Image = {
+  __typename?: 'Image';
+  src?: Maybe<Scalars['String']>;
+  width?: Maybe<Scalars['Int']>;
+  height?: Maybe<Scalars['Int']>;
 };
 
 export type InputAuthor = {
@@ -65,21 +100,76 @@ export type InputCreateAuthor = {
   token: Scalars['String'];
 };
 
-export type AuthorResponse = {
-  __typename?: 'AuthorResponse';
-  ok: Scalars['Boolean'];
-  errors?: Maybe<Array<Maybe<Error>>>;
-  data?: Maybe<Author>;
+export type InputCreatePost = {
+  title?: Maybe<Scalars['String']>;
+  html?: Maybe<Scalars['String']>;
+  /** authorId: Int */
+  excerpt?: Maybe<Scalars['String']>;
+  cover_image?: Maybe<InputImage>;
+  type?: Maybe<PostTypes>;
+  featured?: Maybe<Scalars['Boolean']>;
+  status?: Maybe<PostStatusOptions>;
+  slug?: Maybe<Scalars['String']>;
+  tags?: Maybe<Array<Maybe<TagsInputType>>>;
 };
 
-export type AuthorNotFoundError = LetterpadError & {
-  __typename?: 'AuthorNotFoundError';
+export type InputImage = {
+  src: Scalars['String'];
+  width?: Maybe<Scalars['Int']>;
+  height?: Maybe<Scalars['Int']>;
+};
+
+export type InputNavigation = {
+  type?: Maybe<NavigationType>;
+  slug?: Maybe<Scalars['String']>;
+  original_name?: Maybe<Scalars['String']>;
+  label?: Maybe<Scalars['String']>;
+};
+
+export type InputSocial = {
+  twitter?: Maybe<Scalars['String']>;
+  facebook?: Maybe<Scalars['String']>;
+  github?: Maybe<Scalars['String']>;
+  instagram?: Maybe<Scalars['String']>;
+};
+
+export type InputTags = {
+  id: Scalars['Int'];
+  name?: Maybe<Scalars['String']>;
+  desc?: Maybe<Scalars['String']>;
+  slug?: Maybe<Scalars['String']>;
+};
+
+export type InputUpdateMedia = {
+  id: Scalars['Int'];
+  name?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+};
+
+export type InputUpdatePost = {
+  id: Scalars['Int'];
+  title?: Maybe<Scalars['String']>;
+  html?: Maybe<Scalars['String']>;
+  html_draft?: Maybe<Scalars['String']>;
+  featured?: Maybe<Scalars['Boolean']>;
+  excerpt?: Maybe<Scalars['String']>;
+  cover_image?: Maybe<InputImage>;
+  publishedAt?: Maybe<Scalars['Date']>;
+  scheduledAt?: Maybe<Scalars['Date']>;
+  updatedAt?: Maybe<Scalars['Date']>;
+  type?: Maybe<PostTypes>;
+  status?: Maybe<PostStatusOptions>;
+  slug?: Maybe<Scalars['String']>;
+  tags?: Maybe<Array<TagsInputType>>;
+};
+
+export type LetterpadError = {
   message: Scalars['String'];
 };
 
-export type CreateAuthorError = LetterpadError & {
-  __typename?: 'CreateAuthorError';
-  message: Scalars['String'];
+export type LoginData = {
+  email: Scalars['String'];
+  password: Scalars['String'];
 };
 
 export type LoginError = LetterpadError & {
@@ -87,53 +177,53 @@ export type LoginError = LetterpadError & {
   message: Scalars['String'];
 };
 
-export type MeResponse = Author | AuthorNotFoundError;
-
-export type CreateAuthorResponse = Author | CreateAuthorError;
-
 export type LoginResponse = Author | LoginError;
 
-export type ForgotPasswordResponse = {
-  __typename?: 'ForgotPasswordResponse';
+export type MeResponse = Author | AuthorNotFoundError;
+
+export type Media = {
+  __typename?: 'Media';
+  id: Scalars['Int'];
+  authorId?: Maybe<Scalars['Int']>;
+  url: Scalars['String'];
+  createdAt: Scalars['Date'];
+  name: Scalars['String'];
+  width: Scalars['Int'];
+  height: Scalars['Int'];
+  description: Scalars['String'];
+};
+
+export type MediaDeleteResponse = MediaDeleteResult | MediaError;
+
+export type MediaDeleteResult = {
+  __typename?: 'MediaDeleteResult';
   ok: Scalars['Boolean'];
-  message?: Maybe<Scalars['String']>;
 };
 
-export type Query = {
-  __typename?: 'Query';
-  me?: Maybe<MeResponse>;
-  media: MediaNode;
-  post: PostResponse;
-  posts: PostsResponse;
-  stats?: Maybe<StatsResponse>;
-  settings: SettingResponse;
-  tags: TagsResponse;
-  tag: TagResponse;
+export type MediaError = LetterpadError & {
+  __typename?: 'MediaError';
+  message: Scalars['String'];
 };
 
-
-export type QueryMediaArgs = {
-  filters?: Maybe<MediaFilters>;
+export type MediaFilters = {
+  id?: Maybe<Scalars['Int']>;
+  cursor?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  page?: Maybe<Scalars['Int']>;
+  authorId?: Maybe<Scalars['Int']>;
 };
 
-
-export type QueryPostArgs = {
-  filters?: Maybe<PostFilters>;
+export type MediaNode = {
+  __typename?: 'MediaNode';
+  count: Scalars['Int'];
+  rows: Array<Media>;
 };
 
+export type MediaUpdateResponse = MediaUpdateResult | MediaError;
 
-export type QueryPostsArgs = {
-  filters?: Maybe<PostsFilters>;
-};
-
-
-export type QueryTagsArgs = {
-  filters?: Maybe<TagsFilters>;
-};
-
-
-export type QueryTagArgs = {
-  slug: Scalars['String'];
+export type MediaUpdateResult = {
+  __typename?: 'MediaUpdateResult';
+  ok: Scalars['Boolean'];
 };
 
 export type Mutation = {
@@ -214,56 +304,53 @@ export type MutationDeleteTagsArgs = {
   id: Scalars['Int'];
 };
 
-export type Media = {
-  __typename?: 'Media';
-  id: Scalars['Int'];
-  authorId?: Maybe<Scalars['Int']>;
-  url: Scalars['String'];
-  createdAt: Scalars['Date'];
-  name: Scalars['String'];
-  width: Scalars['Int'];
-  height: Scalars['Int'];
-  description: Scalars['String'];
+export type Navigation = {
+  __typename?: 'Navigation';
+  type: NavigationType;
+  slug: Scalars['String'];
+  original_name: Scalars['String'];
+  label: Scalars['String'];
 };
 
-export type MediaNode = {
-  __typename?: 'MediaNode';
-  count: Scalars['Int'];
-  rows: Array<Media>;
+export enum NavigationType {
+  Tag = 'tag',
+  Page = 'page',
+  Custom = 'custom'
+}
+
+export type OptionInputType = {
+  site_title?: Maybe<Scalars['String']>;
+  site_tagline?: Maybe<Scalars['String']>;
+  site_email?: Maybe<Scalars['String']>;
+  site_url?: Maybe<Scalars['String']>;
+  site_footer?: Maybe<Scalars['String']>;
+  site_description?: Maybe<Scalars['String']>;
+  subscribe_embed?: Maybe<Scalars['String']>;
+  social_twitter?: Maybe<Scalars['String']>;
+  social_facebook?: Maybe<Scalars['String']>;
+  social_instagram?: Maybe<Scalars['String']>;
+  social_github?: Maybe<Scalars['String']>;
+  displayAuthorInfo?: Maybe<Scalars['Boolean']>;
+  cloudinary_key?: Maybe<Scalars['String']>;
+  cloudinary_name?: Maybe<Scalars['String']>;
+  cloudinary_secret?: Maybe<Scalars['String']>;
+  menu?: Maybe<Array<InputNavigation>>;
+  css?: Maybe<Scalars['String']>;
+  google_analytics?: Maybe<Scalars['String']>;
+  theme?: Maybe<Scalars['String']>;
+  disqus_id?: Maybe<Scalars['String']>;
+  banner?: Maybe<InputImage>;
+  site_logo?: Maybe<InputImage>;
+  site_favicon?: Maybe<InputImage>;
 };
 
-export type MediaDeleteResult = {
-  __typename?: 'MediaDeleteResult';
-  ok: Scalars['Boolean'];
-};
-
-export type MediaUpdateResult = {
-  __typename?: 'MediaUpdateResult';
-  ok: Scalars['Boolean'];
-};
-
-export type MediaFilters = {
-  id?: Maybe<Scalars['Int']>;
-  cursor?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  page?: Maybe<Scalars['Int']>;
-  authorId?: Maybe<Scalars['Int']>;
-};
-
-export type MediaError = LetterpadError & {
-  __typename?: 'MediaError';
-  message: Scalars['String'];
-};
-
-export type InputUpdateMedia = {
-  id: Scalars['Int'];
-  name?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-};
-
-export type MediaDeleteResponse = MediaDeleteResult | MediaError;
-
-export type MediaUpdateResponse = MediaUpdateResult | MediaError;
+export enum Permissions {
+  ManageOwnPosts = 'MANAGE_OWN_POSTS',
+  ReadOnlyPosts = 'READ_ONLY_POSTS',
+  ManageAllPosts = 'MANAGE_ALL_POSTS',
+  ManageUsers = 'MANAGE_USERS',
+  ManageSettings = 'MANAGE_SETTINGS'
+}
 
 export type Post = {
   __typename?: 'Post';
@@ -303,11 +390,16 @@ export type Post = {
   tags: Array<Tags>;
 };
 
-export enum PostStatusOptions {
-  Published = 'published',
-  Draft = 'draft',
-  Trashed = 'trashed'
-}
+export type PostCountsByStatus = {
+  __typename?: 'PostCountsByStatus';
+  published: Scalars['Int'];
+  drafts: Scalars['Int'];
+};
+
+export type PostError = LetterpadError & {
+  __typename?: 'PostError';
+  message: Scalars['String'];
+};
 
 export type PostFilters = {
   id?: Maybe<Scalars['Int']>;
@@ -318,14 +410,17 @@ export type PostFilters = {
   type?: Maybe<PostTypes>;
 };
 
+export type PostResponse = Post | PostError;
+
+export enum PostStatusOptions {
+  Published = 'published',
+  Draft = 'draft',
+  Trashed = 'trashed'
+}
+
 export enum PostTypes {
   Post = 'post',
   Page = 'page'
-}
-
-export enum SortBy {
-  Asc = 'ASC',
-  Desc = 'DESC'
 }
 
 export type PostsFilters = {
@@ -354,96 +449,58 @@ export type PostsNode = {
   rows: Array<Post>;
 };
 
-export type PostCountsByStatus = {
-  __typename?: 'PostCountsByStatus';
-  published: Scalars['Int'];
-  drafts: Scalars['Int'];
-};
-
-export type Stats = {
-  __typename?: 'Stats';
-  posts: PostCountsByStatus;
-  pages: PostCountsByStatus;
-  tags: Scalars['Int'];
-  media: Scalars['Int'];
-};
-
-export type InputImage = {
-  src: Scalars['String'];
-  width?: Maybe<Scalars['Int']>;
-  height?: Maybe<Scalars['Int']>;
-};
-
-export type TagsInputType = {
-  id: Scalars['Int'];
-  name: Scalars['String'];
-  slug: Scalars['String'];
-  desc: Scalars['String'];
-};
-
-export type InputCreatePost = {
-  title?: Maybe<Scalars['String']>;
-  html?: Maybe<Scalars['String']>;
-  /** authorId: Int */
-  excerpt?: Maybe<Scalars['String']>;
-  cover_image?: Maybe<InputImage>;
-  type?: Maybe<PostTypes>;
-  featured?: Maybe<Scalars['Boolean']>;
-  status?: Maybe<PostStatusOptions>;
-  slug?: Maybe<Scalars['String']>;
-  tags?: Maybe<Array<Maybe<TagsInputType>>>;
-};
-
-export type InputUpdatePost = {
-  id: Scalars['Int'];
-  title?: Maybe<Scalars['String']>;
-  html?: Maybe<Scalars['String']>;
-  html_draft?: Maybe<Scalars['String']>;
-  featured?: Maybe<Scalars['Boolean']>;
-  excerpt?: Maybe<Scalars['String']>;
-  cover_image?: Maybe<InputImage>;
-  publishedAt?: Maybe<Scalars['Date']>;
-  scheduledAt?: Maybe<Scalars['Date']>;
-  updatedAt?: Maybe<Scalars['Date']>;
-  type?: Maybe<PostTypes>;
-  status?: Maybe<PostStatusOptions>;
-  slug?: Maybe<Scalars['String']>;
-  tags?: Maybe<Array<TagsInputType>>;
-};
-
-export type PostError = LetterpadError & {
-  __typename?: 'PostError';
-  message: Scalars['String'];
-};
-
-export type StatsError = LetterpadError & {
-  __typename?: 'StatsError';
-  message: Scalars['String'];
-};
-
-export type PostResponse = Post | PostError;
-
 export type PostsResponse = PostsNode | PostError;
 
-export type CreatePostResponse = Post | PostError;
-
-export type UpdatePostResponse = Post | PostError;
-
-export type StatsResponse = Stats | StatsError;
-
-export enum NavigationType {
-  Tag = 'tag',
-  Page = 'page',
-  Custom = 'custom'
-}
-
-export type Navigation = {
-  __typename?: 'Navigation';
-  type: NavigationType;
-  slug: Scalars['String'];
-  original_name: Scalars['String'];
-  label: Scalars['String'];
+export type Query = {
+  __typename?: 'Query';
+  me?: Maybe<MeResponse>;
+  media: MediaNode;
+  post: PostResponse;
+  posts: PostsResponse;
+  stats?: Maybe<StatsResponse>;
+  settings: SettingResponse;
+  tags: TagsResponse;
+  tag: TagResponse;
 };
+
+
+export type QueryMediaArgs = {
+  filters?: Maybe<MediaFilters>;
+};
+
+
+export type QueryPostArgs = {
+  filters?: Maybe<PostFilters>;
+};
+
+
+export type QueryPostsArgs = {
+  filters?: Maybe<PostsFilters>;
+};
+
+
+export type QueryTagsArgs = {
+  filters?: Maybe<TagsFilters>;
+};
+
+
+export type QueryTagArgs = {
+  slug: Scalars['String'];
+};
+
+export type Response = {
+  __typename?: 'Response';
+  ok: Scalars['Boolean'];
+  post?: Maybe<Post>;
+  errors?: Maybe<Array<Error>>;
+};
+
+export enum Role {
+  Admin = 'ADMIN',
+  Reviewer = 'REVIEWER',
+  Reader = 'READER',
+  Author = 'AUTHOR'
+}
 
 export type Setting = {
   __typename?: 'Setting';
@@ -473,45 +530,47 @@ export type Setting = {
   client_token: Scalars['String'];
 };
 
-export type InputNavigation = {
-  type?: Maybe<NavigationType>;
-  slug?: Maybe<Scalars['String']>;
-  original_name?: Maybe<Scalars['String']>;
-  label?: Maybe<Scalars['String']>;
-};
-
-export type OptionInputType = {
-  site_title?: Maybe<Scalars['String']>;
-  site_tagline?: Maybe<Scalars['String']>;
-  site_email?: Maybe<Scalars['String']>;
-  site_url?: Maybe<Scalars['String']>;
-  site_footer?: Maybe<Scalars['String']>;
-  site_description?: Maybe<Scalars['String']>;
-  subscribe_embed?: Maybe<Scalars['String']>;
-  social_twitter?: Maybe<Scalars['String']>;
-  social_facebook?: Maybe<Scalars['String']>;
-  social_instagram?: Maybe<Scalars['String']>;
-  social_github?: Maybe<Scalars['String']>;
-  displayAuthorInfo?: Maybe<Scalars['Boolean']>;
-  cloudinary_key?: Maybe<Scalars['String']>;
-  cloudinary_name?: Maybe<Scalars['String']>;
-  cloudinary_secret?: Maybe<Scalars['String']>;
-  menu?: Maybe<Array<InputNavigation>>;
-  css?: Maybe<Scalars['String']>;
-  google_analytics?: Maybe<Scalars['String']>;
-  theme?: Maybe<Scalars['String']>;
-  disqus_id?: Maybe<Scalars['String']>;
-  banner?: Maybe<InputImage>;
-  site_logo?: Maybe<InputImage>;
-  site_favicon?: Maybe<InputImage>;
-};
-
 export type SettingError = LetterpadError & {
   __typename?: 'SettingError';
   message: Scalars['String'];
 };
 
 export type SettingResponse = Setting | SettingError;
+
+export type Social = {
+  __typename?: 'Social';
+  twitter?: Maybe<Scalars['String']>;
+  facebook?: Maybe<Scalars['String']>;
+  github?: Maybe<Scalars['String']>;
+  instagram?: Maybe<Scalars['String']>;
+};
+
+export enum SortBy {
+  Asc = 'ASC',
+  Desc = 'DESC'
+}
+
+export type Stats = {
+  __typename?: 'Stats';
+  posts: PostCountsByStatus;
+  pages: PostCountsByStatus;
+  tags: Scalars['Int'];
+  media: Scalars['Int'];
+};
+
+export type StatsError = LetterpadError & {
+  __typename?: 'StatsError';
+  message: Scalars['String'];
+};
+
+export type StatsResponse = Stats | StatsError;
+
+export type TagResponse = TagResultError | Tags;
+
+export type TagResultError = LetterpadError & {
+  __typename?: 'TagResultError';
+  message: Scalars['String'];
+};
 
 export type Tags = {
   __typename?: 'Tags';
@@ -522,40 +581,21 @@ export type Tags = {
   posts?: Maybe<PostsResponse>;
 };
 
-export type TagsFilters = {
-  active?: Maybe<Scalars['Boolean']>;
-  name?: Maybe<Scalars['String']>;
-};
-
-export type EditTaxResponse = {
-  __typename?: 'EditTaxResponse';
-  ok: Scalars['Boolean'];
-};
-
 export type TagsError = LetterpadError & {
   __typename?: 'TagsError';
   message: Scalars['String'];
 };
 
-export type DeleteTagsResult = {
-  __typename?: 'DeleteTagsResult';
-  ok: Scalars['Boolean'];
-};
-
-export type TagResultError = LetterpadError & {
-  __typename?: 'TagResultError';
-  message: Scalars['String'];
-};
-
-export type UpdateTagsResponse = EditTaxResponse | TagsError;
-
-export type DeleteTagsResponse = DeleteTagsResult | TagsError;
-
-export type InputTags = {
-  id: Scalars['Int'];
+export type TagsFilters = {
+  active?: Maybe<Scalars['Boolean']>;
   name?: Maybe<Scalars['String']>;
-  desc?: Maybe<Scalars['String']>;
-  slug?: Maybe<Scalars['String']>;
+};
+
+export type TagsInputType = {
+  id: Scalars['Int'];
+  name: Scalars['String'];
+  slug: Scalars['String'];
+  desc: Scalars['String'];
 };
 
 export type TagsNode = {
@@ -565,47 +605,9 @@ export type TagsNode = {
 
 export type TagsResponse = TagsNode | TagsError;
 
-export type TagResponse = TagResultError | Tags;
+export type UpdatePostResponse = Post | PostError;
 
-
-export type Error = {
-  __typename?: 'Error';
-  path: Scalars['String'];
-  message?: Maybe<Scalars['String']>;
-};
-
-export type Response = {
-  __typename?: 'Response';
-  ok: Scalars['Boolean'];
-  post?: Maybe<Post>;
-  errors?: Maybe<Array<Error>>;
-};
-
-export type Image = {
-  __typename?: 'Image';
-  src?: Maybe<Scalars['String']>;
-  width?: Maybe<Scalars['Int']>;
-  height?: Maybe<Scalars['Int']>;
-};
-
-export enum Role {
-  Admin = 'ADMIN',
-  Reviewer = 'REVIEWER',
-  Reader = 'READER',
-  Author = 'AUTHOR'
-}
-
-export enum Permissions {
-  ManageOwnPosts = 'MANAGE_OWN_POSTS',
-  ReadOnlyPosts = 'READ_ONLY_POSTS',
-  ManageAllPosts = 'MANAGE_ALL_POSTS',
-  ManageUsers = 'MANAGE_USERS',
-  ManageSettings = 'MANAGE_SETTINGS'
-}
-
-export type LetterpadError = {
-  message: Scalars['String'];
-};
+export type UpdateTagsResponse = EditTaxResponse | TagsError;
 
 export type HeaderSettingsFragment = (
   { __typename?: 'Setting' }
@@ -660,13 +662,13 @@ export type AllPostsFragment = (
     & Pick<PostsNode, 'count'>
     & { rows: Array<(
       { __typename?: 'Post' }
-      & Pick<Post, 'id' | 'title' | 'slug' | 'reading_time' | 'excerpt'>
+      & Pick<Post, 'id' | 'title' | 'slug' | 'publishedAt' | 'reading_time' | 'excerpt'>
       & { cover_image: (
         { __typename?: 'Image' }
         & Pick<Image, 'src'>
       ), author: (
         { __typename?: 'Author' }
-        & Pick<Author, 'avatar'>
+        & Pick<Author, 'avatar' | 'name'>
       ) }
     )> }
   ) | { __typename?: 'PostError' } }
@@ -751,13 +753,13 @@ export type PostsFragmentFragment = (
   & Pick<PostsNode, 'count'>
   & { rows: Array<(
     { __typename?: 'Post' }
-    & Pick<Post, 'id' | 'title' | 'slug' | 'reading_time' | 'excerpt'>
+    & Pick<Post, 'id' | 'title' | 'slug' | 'publishedAt' | 'reading_time' | 'excerpt'>
     & { cover_image: (
       { __typename?: 'Image' }
       & Pick<Image, 'src'>
     ), author: (
       { __typename?: 'Author' }
-      & Pick<Author, 'avatar'>
+      & Pick<Author, 'avatar' | 'name'>
     ) }
   )> }
 );

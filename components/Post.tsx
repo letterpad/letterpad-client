@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import { galleryStyles, postStyles, postWrapperStyles } from "./post.css";
 import "tiny-js-modal/dist/tiny-js-modal.min.css";
+import { dateFormat } from "lib/utils";
 
 export const postDetailsFragment = gql`
   fragment postDetails on Post {
@@ -60,21 +61,35 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
       <Head>
         <title>{postDetails.title}</title>
       </Head>
-
-      <div className="container-fixed">
+      <div className="container-fixed-narrow">
         <div className="post-full post">
           <header className="post-full-header">
+            <h1 className="post-full-title">{postDetails.title}</h1>
+
             <section className="post-full-meta">
+              <div className="post-card-meta-author">
+                {postDetails.author.avatar && (
+                  <img
+                    className="author-profile-image"
+                    src={postDetails.author.avatar}
+                    alt="Author"
+                  />
+                )}
+                <span className="post-card-author">
+                  {postDetails.author.name}
+                </span>
+              </div>
+              <span className="separator">·</span>
               <time
                 className="post-full-meta-date"
                 dateTime={postDetails.publishedAt}
               >
-                {postDetails.publishedAt}
+                {dateFormat(postDetails.publishedAt)}
               </time>
-              <span className="separator">|</span>
+
+              <span className="separator">·</span>
               <span>{postDetails.reading_time}</span>
             </section>
-            <h1 className="post-full-title">{postDetails.title}</h1>
             <div className="tags-wrapper">
               {postDetails.tags.map((tag) => (
                 <span className="tag">
@@ -85,8 +100,8 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
           </header>
           {imgAttrs.src && (
             <img
-              className={"post-full-image " + "className"}
               {...imgAttrs}
+              className={imgAttrs.className + " post-full-image "}
               alt={postDetails.title}
             />
           )}

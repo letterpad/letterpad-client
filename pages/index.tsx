@@ -43,6 +43,7 @@ export default function Home({
 
   if (isHomePageASinglePage)
     return <PostPage data={data} errors={errors} isHome={true} />;
+
   return (
     <SiteLayout
       layout={data}

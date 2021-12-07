@@ -4,9 +4,11 @@ export const styles = css`
   .post-feed {
     display: grid;
     grid-gap: var(--space-md);
-    @media (min-width: 900px) {
+    padding: var(--space-md);
+    background: var(--color-bg);
+    /* @media (min-width: 900px) {
       padding-top: 0;
-    }
+    } */
     position: relative;
     flex-wrap: wrap;
     grid-template-columns: repeat(3, 1fr);

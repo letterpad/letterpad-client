@@ -107,11 +107,12 @@ const Nav = ({ settings, logoInline, showBanner }: IProps) => {
           }
         }
         :global(.page-home .site-nav) {
-          position: absolute;
+          /* position: absolute; */
         }
 
         .site-nav {
           padding: var(--space-sm) 0;
+          background: var(--color-bg-2);
           align-items: center;
           .social-link {
             width: 15px;

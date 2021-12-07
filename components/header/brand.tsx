@@ -14,12 +14,14 @@ const Brand = ({ src, title, description, showBanner }: IProps) => {
   imgAttrs.className += " banner";
   return (
     <>
-      <img className="banner" {...imgAttrs} alt={title} height="100%" />
+      {imgAttrs.src && (
+        <img className="banner" {...imgAttrs} alt={title} height="100%" />
+      )}
       <style jsx>{`
         :global(.banner) {
           height: 100%;
           object-fit: cover;
-          width: 100vw;
+          width: 100%;
         }
       `}</style>
       <div className="site-brand-text">
@@ -35,8 +37,6 @@ const Brand = ({ src, title, description, showBanner }: IProps) => {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-
-          background: #0000003b;
           padding: var(--space-sm) var(--space-lg);
           border-radius: var(--radius);
           color: var(--color-pre-fg);
