@@ -2,5 +2,5 @@ node_modules
 *.log
 .next
 out
-
+lib/graphql.ts
 .vercel
