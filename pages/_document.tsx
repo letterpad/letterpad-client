@@ -15,6 +15,10 @@ export default class MyDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Fira+Code:400|Rubik:wght@300|Libre+Baskerville:400,400i,700,700i&display=swap"
           />
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-19390409-3"
+          ></script>
           <script src="/js/tiny-modal.min.js" async />
         </Head>
         <body>

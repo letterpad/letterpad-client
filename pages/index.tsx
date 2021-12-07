@@ -13,6 +13,7 @@ import {
   PageQueryQuery,
   PageQueryQueryVariables,
 } from "lib/graphql";
+import { useEffect } from "react";
 
 const query = gql`
   query HomeQuery {
@@ -28,6 +29,21 @@ export default function Home({
   data,
   errors,
 }: PageProps<CollectionQueryQuery & PageQueryQuery>) {
+  useEffect(() => {
+    if (data?.settings?.__typename === "Setting") {
+      //@ts-ignore
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        //@ts-ignore
+        dataLayer.push(arguments);
+      }
+      //@ts-ignore
+      gtag("js", new Date());
+      //@ts-ignore
+      gtag("config", "UA-19390409-3");
+    }
+  }, [data?.settings]);
+
   if (errors) return <div>Error occurred</div>;
   if (!data?.settings) return null;
   if (data?.settings?.__typename === "SettingError") return null;
