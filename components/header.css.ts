@@ -29,6 +29,7 @@ export const navigationStyles = () => {
         margin-right: 10px;
         letter-spacing: 0.4px;
         white-space: nowrap;
+        margin-left: var(--margin);
         &::-webkit-scrollbar {
           width: 1px;
         }
@@ -74,7 +75,7 @@ export const navigationStyles = () => {
             :global(a) {
               padding: var(--space-sm);
               padding-left: 0;
-              color: var(--color-text);
+              color: var(--color-nav-link);
               opacity: 0.8;
               font-weight: 600;
             }

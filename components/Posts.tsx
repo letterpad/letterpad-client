@@ -17,7 +17,9 @@ export const allPostsFragment = gql`
           }
           author {
             avatar
+            name
           }
+          publishedAt
           reading_time
           excerpt
         }

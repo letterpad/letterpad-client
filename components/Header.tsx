@@ -48,8 +48,10 @@ export const Header: React.FC<{
       </header>
       <style jsx>{`
         .site-header {
-          background: var(--color-pre-bg);
-          margin-bottom: var(--space-md);
+          background: var(--color-text);
+          margin: auto;
+          margin-bottom: var(--space-lg);
+          width: 100%;
         }
         .brand-wrapper {
           position: relative;
@@ -58,6 +60,7 @@ export const Header: React.FC<{
         .site-header,
         .brand-wrapper {
           height: ${hasBanner ? "500px" : "auto"};
+
           @media (max-width: 900px) {
             height: ${hasBanner ? "300px" : "auto"};
           }

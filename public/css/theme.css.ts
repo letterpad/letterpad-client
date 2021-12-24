@@ -4,7 +4,7 @@ export const themeVars = css`
   :global(:root) {
     /* set base values */
     --text-base-size: 1em;
-    --text-scale-ratio: 1.2;
+    --text-scale-ratio: 1.18;
     --baseline: 24px;
 
     /* type scale */
@@ -36,6 +36,7 @@ export const themeVars = css`
     --color-primary: #2188ff;
     --color-text: #24292e;
     --color-text-dull: #768390;
+    --color-nav-link: var(---color-primary);
     --color-border: #e0e0e0;
     --color-bg: #fefefe;
     --color-bg-2: #f0f0f0;
@@ -59,21 +60,25 @@ export const themeVars = css`
     --margin: 2rem;
     --radius: 0.5rem;
 
+    --layout-width-lg: 900px;
+    --layout-width-md: 700px;
+
     @media (max-width: 767px) {
       --baseline: 16px;
     }
   }
   @media (prefers-color-scheme: dark) {
     :global(:root) {
-      --color-primary: #539bf5;
+      --color-post-bg: #fff;
+      --color-nav-link: #000;
+      --color-bg-2: #eff0f3;
+      /* --color-primary: #539bf5;
       --color-text: #adbac7;
       --color-text-dull: #aeaeae;
       --color-border: #444c56;
       --color-bg: #1e2228;
-      --color-bg-2: rgba(205, 217, 229, 0.15);
-      --color-post-bg: rgba(9, 11, 13, 0.8);
       --color-pre-bg: #2d333b;
-      --color-pre-fg: #cdd9e5;
+      --color-pre-fg: #cdd9e5; */
     }
   }
 `;

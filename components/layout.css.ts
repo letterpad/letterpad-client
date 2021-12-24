@@ -3,6 +3,7 @@ import css from "styled-jsx/css";
 export const layoutStyles = css.global`
   .layout {
     min-height: 100vh;
+    background: var(--color-bg-2);
   }
   main {
     z-index: 100;
@@ -10,7 +11,12 @@ export const layoutStyles = css.global`
   }
   .container-fixed {
     margin: 0 auto;
-    max-width: 1040px;
+    max-width: var(--layout-width-lg);
+    width: 100%;
+  }
+  .container-fixed-narrow {
+    margin: 0 auto;
+    max-width: var(--layout-width-md);
     width: 100%;
   }
   .container-wrapper {

@@ -36,7 +36,7 @@ export const styles = css`
       flex-direction: column;
       justify-content: space-between;
       .post-card-content-top {
-        padding: var(--space-md);
+        padding: var(--space-sm);
 
         .post-card-content-link {
           position: relative;
@@ -49,12 +49,22 @@ export const styles = css`
         }
       }
       .post-card-meta {
-        padding: var(--space-md);
+        padding: var(--space-sm);
         padding-top: 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        > div {
+        .post-card-meta-author {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+        :global(svg) {
+          width: 18px;
+          fill: var(--color-border);
+          margin-right: 4px;
+        }
+        /* > div {
           display: flex;
           justify-content: center;
           :global(svg) {
@@ -62,7 +72,7 @@ export const styles = css`
             fill: var(--color-border);
             margin-right: 4px;
           }
-        }
+        } */
         .author-profile-image {
           width: var(--space-md);
           height: var(--space-md);
@@ -107,7 +117,7 @@ export const styles = css`
             }
           }
           .post-card-meta {
-            padding: var(--space-md);
+            padding: var(--space-sm);
             padding-top: 0px;
           }
         }

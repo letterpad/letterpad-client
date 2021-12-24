@@ -35,7 +35,9 @@ export const postsFragment = gql`
         }
         author {
           avatar
+          name
         }
+        publishedAt
         reading_time
         excerpt
       }
