@@ -49,6 +49,8 @@ const Brand = ({ src, title, description, showBanner }: IProps) => {
             padding: 0px;
             margin: 0px;
             font-size: var(--text-xxxl);
+            color: var(--color-text);
+            font-family: sans-serif;
             @media (max-width: 900px) {
               font-size: var(--text-xxl);
             }

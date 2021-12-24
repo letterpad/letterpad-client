@@ -24,7 +24,6 @@ const ArticleItem = (props: IArticleItem) => {
   if (isHome) {
     rootClass.push("home");
   }
-  console.log(post);
   return (
     <>
       <div className={rootClass.join(" ")}>
