@@ -84,32 +84,16 @@ export default function Tag({ data }: { data: CollectionQueryQuery }) {
       displayBanner={false}
       pageName="page-tag"
     >
-      <div className="tag-banner shadow-md">
-        <span className="tag-name">{router.query.slug}</span>
-        <p>{data.tag.desc}</p>
-      </div>
       <div className="container mx-auto  md:max-w-3xl mt-12 px-4 mb-40 ">
+        <h2 className="text-3xl font-light">
+          Posts from <span className="font-bold">{router.query.slug}</span>
+        </h2>
+        {/* <p className="text-sm text-slate-400 ml-2 mt-2">{data.tag.desc}</p> */}
+        <hr className="divide-solid mt-4" />
         {data.posts.rows.map((item, i) => (
           <ArticleItem post={item} key={i} />
         ))}
       </div>
-
-      <style jsx>{`
-        .tag-banner {
-          height: 250px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: var(--space-md);
-          font-size: var(--text-md);
-          flex-direction: column;
-
-          .tag-name {
-            font-size: 3rem;
-            text-transform: capitalize;
-          }
-        }
-      `}</style>
     </SiteLayout>
   );
 }
