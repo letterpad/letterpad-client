@@ -4,9 +4,9 @@ import { getImageAttrs, setResponsiveImages } from "lib/imageUtils";
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect } from "react";
-import { galleryStyles, postStyles, postWrapperStyles } from "./post.css";
 import "tiny-js-modal/dist/tiny-js-modal.min.css";
 import { dateFormat } from "lib/utils";
+import Comments from "./comments";
 
 export const postDetailsFragment = gql`
   fragment postDetails on Post {
@@ -32,7 +32,13 @@ export const postDetailsFragment = gql`
   }
 `;
 
-export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
+export function Post({
+  postDetails,
+  disqusId,
+}: {
+  postDetails: PostDetailsFragment;
+  disqusId: string;
+}) {
   const content = setResponsiveImages(postDetails.html);
   const imgAttrs = getImageAttrs(postDetails.cover_image.src);
 
@@ -61,58 +67,65 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
       <Head>
         <title>{postDetails.title}</title>
       </Head>
-      <div className="container-fixed-narrow">
-        <div className="post-full post">
-          <header className="post-full-header">
-            <h1 className="post-full-title">{postDetails.title}</h1>
+      <div className="container mx-auto  md:max-w-3xl mt-12 px-4">
+        <header className="mb-12">
+          <h1 className="md:text-5xl text-3xl font-bold">
+            {postDetails.title}
+          </h1>
 
-            <section className="post-full-meta">
-              <div className="post-card-meta-author">
-                {postDetails.author.avatar && (
-                  <img
-                    className="author-profile-image"
-                    src={postDetails.author.avatar}
-                    alt="Author"
-                  />
-                )}
-                <span className="post-card-author">
+          <section className="mt-8">
+            <div className="flex items-center">
+              {postDetails.author.avatar && (
+                <img
+                  className="w-12 h-12 rounded-full mr-2"
+                  src={postDetails.author.avatar}
+                  alt={`Avatar of ${postDetails.author.name}`}
+                />
+              )}
+              <div>
+                <p className="text-gray-900 leading-none text-md">
                   {postDetails.author.name}
-                </span>
+                </p>
+                <div className="mt-2 text-xs">
+                  <time
+                    className="post-full-meta-date"
+                    dateTime={postDetails.publishedAt}
+                  >
+                    {dateFormat(postDetails.publishedAt)}
+                  </time>
+                  <span className="separator">·</span>
+                  <span>{postDetails.reading_time}</span>
+                </div>
               </div>
-              <span className="separator">·</span>
-              <time
-                className="post-full-meta-date"
-                dateTime={postDetails.publishedAt}
-              >
-                {dateFormat(postDetails.publishedAt)}
-              </time>
-
-              <span className="separator">·</span>
-              <span>{postDetails.reading_time}</span>
-            </section>
-            <div className="tags-wrapper">
-              {postDetails.tags.map((tag) => (
-                <span className="tag">
-                  <Link href={tag.slug}>{"#" + tag.name}</Link>
-                </span>
-              ))}
             </div>
-          </header>
-          {imgAttrs.src && (
-            <img
-              {...imgAttrs}
-              className={imgAttrs.className + " post-full-image "}
-              alt={postDetails.title}
-            />
-          )}
-
-          <section className="post-full-content">
-            <article className="post-content">
-              <div dangerouslySetInnerHTML={{ __html: content }} />
-            </article>
           </section>
+          <div className="tags-wrapper mt-4">
+            {postDetails.tags.map((tag) => (
+              <span className="tag">
+                <Link href={tag.slug}>
+                  <span className="inline-block rounded-full text-gray-600 bg-gray-100 px-2 py-1 text-xs font-bold mr-3">
+                    {tag.name}
+                  </span>
+                </Link>
+              </span>
+            ))}
+          </div>
+        </header>
+        {imgAttrs.src && (
+          <img
+            {...imgAttrs}
+            className={imgAttrs.className + " post-full-image "}
+            alt={postDetails.title}
+          />
+        )}
 
-          {/* <footer className="post-full-footer">
+        <section className="post-full-content">
+          <article className="post-content  lg:prose-lg prose dark:prose-light">
+            <div dangerouslySetInnerHTML={{ __html: content }} />
+          </article>
+        </section>
+
+        {/* <footer className="post-full-footer">
             {displayAuthor && <Author post={post} />}
           </footer>
 
@@ -120,13 +133,12 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
             disqusConfig={disqusConfig}
             disqusShortname={disqusShortname}
           /> */}
-        </div>
+        <Comments
+          id={postDetails.id}
+          url={postDetails.slug}
+          disqusId={disqusId}
+        />
       </div>
-      <style jsx global>
-        {postStyles}
-      </style>
-      <style jsx>{postWrapperStyles}</style>
-      <style jsx>{galleryStyles}</style>
 
       <div id="tjm" className="tjm">
         <div className="tjm-c" style={{ maxWidth: 600 }}>

@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import { fetchProps, PageProps } from "lib/client";
 import { PostQueryQuery, PostQueryQueryVariables } from "lib/graphql";
 import Error from "next/error";
+import { useEffect } from "react";
 
 const query = gql`
   query PostQuery($slug: String) {
@@ -22,6 +23,11 @@ export default function PostPage({ data, errors }: PageProps<PostQueryQuery>) {
   if (data.post.__typename === "PostError") {
     return <Error statusCode={404} />;
   }
+  const discusId =
+    data.settings.__typename === "Setting"
+      ? data.settings["disqusId"] ?? "letterpad-1"
+      : null;
+
   return (
     <SiteLayout
       layout={data}
@@ -38,8 +44,8 @@ export default function PostPage({ data, errors }: PageProps<PostQueryQuery>) {
       displayBanner={false}
       pageName="page-post"
     >
-      <div>
-        <Post postDetails={data.post}></Post>
+      <div className="container mx-auto  md:max-w-3xl mt-12 px-4">
+        <Post postDetails={data.post} disqusId={discusId}></Post>
       </div>
     </SiteLayout>
   );
