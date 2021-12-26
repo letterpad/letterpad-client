@@ -84,16 +84,14 @@ export default function Tag({ data }: { data: CollectionQueryQuery }) {
       displayBanner={false}
       pageName="page-tag"
     >
-      <div className="tag-banner container-fixed">
+      <div className="tag-banner shadow-md">
         <span className="tag-name">{router.query.slug}</span>
         <p>{data.tag.desc}</p>
       </div>
-      <div className="container-fixed">
-        <div className="post-feed">
-          {data.posts.rows.map((item, i) => (
-            <ArticleItem post={item} key={i} />
-          ))}
-        </div>
+      <div className="container mx-auto  md:max-w-3xl mt-12 px-4 mb-40 ">
+        {data.posts.rows.map((item, i) => (
+          <ArticleItem post={item} key={i} />
+        ))}
       </div>
 
       <style jsx>{`
@@ -110,9 +108,6 @@ export default function Tag({ data }: { data: CollectionQueryQuery }) {
             font-size: 3rem;
             text-transform: capitalize;
           }
-        }
-        :global(.site-nav) {
-          margin: 0;
         }
       `}</style>
     </SiteLayout>

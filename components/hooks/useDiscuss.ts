@@ -3,6 +3,7 @@ import { useEffect } from "react";
 const useDiscuss = (id: number, url: string, disqusId: string) => {
   useEffect(() => {
     if (!id || !url) return;
+    const ele = document.querySelector("#disqus_thread");
     var disqus_config = function () {
       this.page.url = url;
       this.page.identifier = id;
@@ -27,10 +28,10 @@ const useDiscuss = (id: number, url: string, disqusId: string) => {
       },
       { threshold: [0] }
     );
-    disqus_observer.observe(document.querySelector("#disqus_thread"));
+    disqus_observer.observe(ele);
 
     return () => {
-      disqus_observer.unobserve(document.querySelector("#disqus_thread"));
+      disqus_observer.unobserve(ele);
     };
   }, [id, url]);
 };

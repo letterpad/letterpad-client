@@ -103,7 +103,7 @@ export function Post({
             {postDetails.tags.map((tag) => (
               <span className="tag">
                 <Link href={tag.slug}>
-                  <span className="inline-block rounded-full text-gray-600 bg-gray-100 px-2 py-1 text-xs font-bold mr-3">
+                  <span className="cursor-pointer inline-block rounded-full text-gray-600 bg-gray-100 px-2 py-1 text-xs font-bold mr-3">
                     {tag.name}
                   </span>
                 </Link>
