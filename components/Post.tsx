@@ -37,7 +37,7 @@ export function Post({
   graphcommentId,
 }: {
   postDetails: PostDetailsFragment;
-  graphcommentId: string;
+  graphcommentId?: string;
 }) {
   const content = setResponsiveImages(postDetails.html);
   const imgAttrs = getImageAttrs(postDetails.cover_image.src);
