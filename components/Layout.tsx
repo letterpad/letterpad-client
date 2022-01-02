@@ -23,7 +23,6 @@ export const layoutFragment = gql`
         social_facebook
         social_twitter
         social_instagram
-        graphcomment_id
         css
       }
 

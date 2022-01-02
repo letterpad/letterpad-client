@@ -23,10 +23,6 @@ export default function PostPage({ data, errors }: PageProps<PostQueryQuery>) {
   if (data.post.__typename === "PostError") {
     return <Error statusCode={404} />;
   }
-  const graphcomment_id =
-    data.settings.__typename === "Setting"
-      ? data.settings.graphcomment_id
-      : null;
 
   return (
     <SiteLayout
@@ -45,7 +41,7 @@ export default function PostPage({ data, errors }: PageProps<PostQueryQuery>) {
       pageName="page-post"
     >
       <div className="container mx-auto  md:max-w-3xl mt-12 px-4">
-        <Post postDetails={data.post} graphcomment_id={graphcomment_id}></Post>
+        <Post postDetails={data.post}></Post>
       </div>
     </SiteLayout>
   );

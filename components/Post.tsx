@@ -32,13 +32,7 @@ export const postDetailsFragment = gql`
   }
 `;
 
-export function Post({
-  postDetails,
-  graphcomment_id,
-}: {
-  postDetails: PostDetailsFragment;
-  graphcomment_id?: string;
-}) {
+export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
   const content = setResponsiveImages(postDetails.html);
   const imgAttrs = getImageAttrs(postDetails.cover_image.src);
 
@@ -133,11 +127,7 @@ export function Post({
             disqusConfig={disqusConfig}
             disqusShortname={disqusShortname}
           /> */}
-        <Comments
-          id={postDetails.id}
-          url={postDetails.slug}
-          graphcomment_id={graphcomment_id}
-        />
+        <Comments id={postDetails.id} url={postDetails.slug} />
       </div>
 
       <div id="tjm" className="tjm">

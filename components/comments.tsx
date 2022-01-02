@@ -1,8 +1,8 @@
 import useComments from "./hooks/useComments";
 
-const Comments = ({ id, url, graphcomment_id }) => {
+const Comments = ({ id, url }) => {
   const divId = "graphcomment";
-  useComments(id, url, graphcomment_id, divId);
+  useComments(id, url, divId);
 
   return (
     <div className="py-8">

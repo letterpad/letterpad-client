@@ -1,11 +1,7 @@
 import { useEffect } from "react";
+const graphcommentId = process.env.GRAPHCOMMENT_ID;
 
-const useComments = (
-  id: number,
-  url: string,
-  graphcommentId: string,
-  divId: string
-) => {
+const useComments = (id: number, url: string, divId: string) => {
   useEffect(() => {
     if (!id || !url || !graphcommentId) return;
     const ele = document.querySelector(`#${divId}`);
