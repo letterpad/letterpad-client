@@ -32,7 +32,11 @@ const Nav = ({ settings, logoInline, showBanner }: IProps) => {
                   <span className="text-primary font-bold">{site_title}</span>
                 )}
                 {site_logo.src && (
-                  <img src={site_logo.src} alt={site_title} height={30} />
+                  <img
+                    src={site_logo.src}
+                    alt={site_title}
+                    style={{ height: 30 }}
+                  />
                 )}
               </h1>
             </a>
