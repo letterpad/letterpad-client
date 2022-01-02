@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const useDiscuss = (
+const useComments = (
   id: number,
   url: string,
   graphcommentId: string,
@@ -9,12 +9,14 @@ const useDiscuss = (
   useEffect(() => {
     if (!id || !url || !graphcommentId) return;
     const ele = document.querySelector(`#${divId}`);
+    // const script = document.querySelector("#graphcomment");
+    // if (script) return;
     var __semio__params = {
       graphcommentId: graphcommentId, // make sure the id is yours
 
       behaviour: {
         // HIGHLY RECOMMENDED
-        uid: id, // uniq identifer for the comments thread on your page (ex: your page id)
+        uid: url, // uniq identifer for the comments thread on your page (ex: your page id)
       },
 
       // configure your variables here
@@ -36,6 +38,7 @@ const useDiscuss = (
             gc.type = "text/javascript";
             gc.async = true;
             gc.onload = __semio__onload;
+            gc.id = "graphcomment";
             gc.defer = true;
             gc.src =
               "https://integration.graphcomment.com/gc_graphlogin.js?" +
@@ -60,4 +63,4 @@ const useDiscuss = (
   }, [id, url]);
 };
 
-export default useDiscuss;
+export default useComments;

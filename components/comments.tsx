@@ -1,8 +1,8 @@
-import useDiscuss from "./hooks/useDiscuss";
+import useComments from "./hooks/useComments";
 
 const Comments = ({ id, url, graphcommentId }) => {
   const divId = "graphcomment";
-  useDiscuss(id, url, graphcommentId, divId);
+  useComments(id, url, graphcommentId, divId);
 
   return (
     <div className="py-8">
