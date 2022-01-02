@@ -34,10 +34,10 @@ export const postDetailsFragment = gql`
 
 export function Post({
   postDetails,
-  graphcommentId,
+  graphcomment_id,
 }: {
   postDetails: PostDetailsFragment;
-  graphcommentId?: string;
+  graphcomment_id?: string;
 }) {
   const content = setResponsiveImages(postDetails.html);
   const imgAttrs = getImageAttrs(postDetails.cover_image.src);
@@ -136,7 +136,7 @@ export function Post({
         <Comments
           id={postDetails.id}
           url={postDetails.slug}
-          graphcommentId={graphcommentId}
+          graphcomment_id={graphcomment_id}
         />
       </div>
 
