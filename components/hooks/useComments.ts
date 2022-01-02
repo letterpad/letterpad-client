@@ -10,7 +10,8 @@ const useComments = (
     if (!id || !url || !graphcommentId) return;
     const ele = document.querySelector(`#${divId}`);
 
-    var __semio__params = {
+    //@ts-ignore
+    window.__semio__params = {
       graphcommentId: graphcommentId, // make sure the id is yours
 
       behaviour: {
