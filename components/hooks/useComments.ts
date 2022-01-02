@@ -9,8 +9,7 @@ const useComments = (
   useEffect(() => {
     if (!id || !url || !graphcommentId) return;
     const ele = document.querySelector(`#${divId}`);
-    // const script = document.querySelector("#graphcomment");
-    // if (script) return;
+
     var __semio__params = {
       graphcommentId: graphcommentId, // make sure the id is yours
 
@@ -34,11 +33,13 @@ const useComments = (
           }
 
           (function () {
+            const script = document.querySelector("#graphcomment-script");
+            if (script) return;
             var gc = document.createElement("script");
             gc.type = "text/javascript";
             gc.async = true;
             gc.onload = __semio__onload;
-            gc.id = "graphcomment";
+            gc.id = "graphcomment-script";
             gc.defer = true;
             gc.src =
               "https://integration.graphcomment.com/gc_graphlogin.js?" +
