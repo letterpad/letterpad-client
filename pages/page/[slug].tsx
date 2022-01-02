@@ -42,7 +42,7 @@ export default function PostPage({
       }}
       pageName="page-page"
     >
-      <div>
+      <div className="container mx-auto  md:max-w-3xl mt-12 px-4">
         <Post postDetails={data.post}></Post>
       </div>
     </SiteLayout>
