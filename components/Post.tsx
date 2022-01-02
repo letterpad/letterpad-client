@@ -61,7 +61,7 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
       <Head>
         <title>{postDetails.title}</title>
       </Head>
-      <div>
+      <div className="container mx-auto  md:max-w-3xl mt-12 px-4">
         <header className="mb-12">
           <h1 className="md:text-5xl text-3xl font-bold">
             {postDetails.title}

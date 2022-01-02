@@ -40,9 +40,7 @@ export default function PostPage({
       }}
       pageName="page-preview"
     >
-      <div>
-        <Post postDetails={data.post}></Post>
-      </div>
+      <Post postDetails={data.post}></Post>
     </SiteLayout>
   );
 }

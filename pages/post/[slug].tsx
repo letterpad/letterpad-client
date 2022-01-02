@@ -40,9 +40,7 @@ export default function PostPage({ data, errors }: PageProps<PostQueryQuery>) {
       displayBanner={false}
       pageName="page-post"
     >
-      <div className="container mx-auto  md:max-w-3xl mt-12 px-4">
-        <Post postDetails={data.post}></Post>
-      </div>
+      <Post postDetails={data.post}></Post>
     </SiteLayout>
   );
 }
