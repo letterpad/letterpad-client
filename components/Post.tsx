@@ -67,7 +67,7 @@ export function Post({
       <Head>
         <title>{postDetails.title}</title>
       </Head>
-      <div className="container mx-auto  md:max-w-3xl mt-12 px-4">
+      <div>
         <header className="mb-12">
           <h1 className="md:text-5xl text-3xl font-bold">
             {postDetails.title}
