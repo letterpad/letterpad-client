@@ -20,7 +20,7 @@ const Nav = ({ settings, logoInline, showBanner }: IProps) => {
   return (
     <div className="container-wrapper shadow-md">
       <nav className="wrapper py-6">
-        <div className="px-10 flex justify-between items-center">
+        <div className="px-5  flex justify-between items-center">
           <div className="logo">
             <a
               href="/"

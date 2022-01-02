@@ -10,7 +10,7 @@ const Footer = ({ settings }: { settings: LayoutFragment["settings"] }) => {
   if (settings.__typename === "SettingError") return null;
   return (
     <>
-      <footer className="site-footer px-10 flex justify-between items-center py-8 shadow-inner">
+      <footer className="site-footer px-5 flex justify-between items-center py-8 shadow-inner">
         <section className="copyright">
           <SetDangerousHTML html={settings.site_footer} />
         </section>
