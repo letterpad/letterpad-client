@@ -23,9 +23,9 @@ export default function PostPage({ data, errors }: PageProps<PostQueryQuery>) {
   if (data.post.__typename === "PostError") {
     return <Error statusCode={404} />;
   }
-  const discusId =
+  const graphcommentId =
     data.settings.__typename === "Setting"
-      ? data.settings["disqusId"] ?? "letterpad-1"
+      ? data.settings.graphcommentId
       : null;
 
   return (
@@ -45,7 +45,7 @@ export default function PostPage({ data, errors }: PageProps<PostQueryQuery>) {
       pageName="page-post"
     >
       <div className="container mx-auto  md:max-w-3xl mt-12 px-4">
-        <Post postDetails={data.post} disqusId={discusId}></Post>
+        <Post postDetails={data.post} graphcommentId={graphcommentId}></Post>
       </div>
     </SiteLayout>
   );

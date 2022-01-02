@@ -13,6 +13,7 @@ export const layoutFragment = gql`
   fragment layout on Query {
     settings {
       ... on Setting {
+        __typename
         site_footer
         site_favicon {
           src
@@ -22,6 +23,7 @@ export const layoutFragment = gql`
         social_facebook
         social_twitter
         social_instagram
+        graphcommentId
         css
       }
 

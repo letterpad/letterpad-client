@@ -29,7 +29,7 @@ const Subscribe = () => {
   };
 
   return (
-    <div className="py-10 h-screen bg-gray-100 px-2">
+    <div id="subscribe" className="py-10 h-screen bg-gray-100 px-2">
       <div className="max-w-md mx-auto rounded-lg overflow-hidden md:max-w-xl">
         <div className="md:flex">
           <div className="w-full p-3">

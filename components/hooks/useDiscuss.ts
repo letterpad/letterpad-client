@@ -1,37 +1,61 @@
 import { useEffect } from "react";
 
-const useDiscuss = (id: number, url: string, disqusId: string) => {
+const useDiscuss = (
+  id: number,
+  url: string,
+  graphcommentId: string,
+  divId: string
+) => {
   useEffect(() => {
-    if (!id || !url) return;
-    const ele = document.querySelector("#disqus_thread");
-    var disqus_config = function () {
-      this.page.url = url;
-      this.page.identifier = id;
-    };
+    if (!id || !url || !graphcommentId) return;
+    const ele = document.querySelector(`#${divId}`);
+    var __semio__params = {
+      graphcommentId: graphcommentId, // make sure the id is yours
 
-    var disqus_observer = new IntersectionObserver(
+      behaviour: {
+        // HIGHLY RECOMMENDED
+        uid: id, // uniq identifer for the comments thread on your page (ex: your page id)
+      },
+
+      // configure your variables here
+    };
+    var graphqlComment_observer = new IntersectionObserver(
       function (entries) {
         // comments section reached
         // start loading Disqus now
         if (entries[0].isIntersecting) {
+          /* - - - DON'T EDIT BELOW THIS LINE - - - */
+
+          function __semio__onload() {
+            //@ts-ignore
+            __semio__gc_graphlogin(__semio__params);
+          }
+
           (function () {
-            var d = document,
-              s = d.createElement("script");
-            s.src = `https://${disqusId}.disqus.com/embed.js`;
-            s.setAttribute("data-timestamp", +new Date());
-            (d.head || d.body).appendChild(s);
+            var gc = document.createElement("script");
+            gc.type = "text/javascript";
+            gc.async = true;
+            gc.onload = __semio__onload;
+            gc.defer = true;
+            gc.src =
+              "https://integration.graphcomment.com/gc_graphlogin.js?" +
+              Date.now();
+            (
+              document.getElementsByTagName("head")[0] ||
+              document.getElementsByTagName("body")[0]
+            ).appendChild(gc);
           })();
 
           // once executed, stop observing
-          disqus_observer.disconnect();
+          graphqlComment_observer.disconnect();
         }
       },
       { threshold: [0] }
     );
-    disqus_observer.observe(ele);
+    graphqlComment_observer.observe(ele);
 
     return () => {
-      disqus_observer.unobserve(ele);
+      graphqlComment_observer.unobserve(ele);
     };
   }, [id, url]);
 };
