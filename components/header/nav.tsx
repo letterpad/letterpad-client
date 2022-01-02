@@ -28,7 +28,12 @@ const Nav = ({ settings, logoInline, showBanner }: IProps) => {
               className="text-sky-500 hover:text-sky-600"
             >
               <h1 className="text-2xl font-semibold text-gray-700">
-                <span className="text-primary font-bold">Letterpad</span>.
+                {!site_logo.src && (
+                  <span className="text-primary font-bold">{site_title}</span>
+                )}
+                {site_logo.src && (
+                  <img src={site_logo.src} alt={site_title} height={30} />
+                )}
               </h1>
             </a>
           </div>
