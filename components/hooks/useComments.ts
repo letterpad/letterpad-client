@@ -35,7 +35,9 @@ const useComments = (
 
           (function () {
             const script = document.querySelector("#graphcomment-script");
-            if (script) return;
+            if (script) {
+              return __semio__onload();
+            }
             var gc = document.createElement("script");
             gc.type = "text/javascript";
             gc.async = true;
