@@ -87,7 +87,7 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
                   >
                     {dateFormat(postDetails.publishedAt)}
                   </time>
-                  <span className="separator">·</span>
+                  <span className="separator mx-1">·</span>
                   <span>{postDetails.reading_time}</span>
                 </div>
               </div>

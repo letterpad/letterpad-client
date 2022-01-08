@@ -19,6 +19,11 @@ export default class MyDocument extends Document {
             async
             src="https://www.googletagmanager.com/gtag/js?id=UA-19390409-3"
           ></script>
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-vsc-dark-plus.min.css"
+          />
+
           <script src="/js/tiny-modal.min.js" async />
         </Head>
         <body className="dark:bg-gray-800 dark:text-slate-300">

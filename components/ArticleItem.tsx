@@ -60,7 +60,7 @@ const ArticleItem = (props: IArticleItem) => {
               <div>
                 <p className="text-gray-600 text-sm">
                   {dateFormat(post.publishedAt)}
-                  &nbsp;·&nbsp;
+                  <span className="separator mx-1">·</span>
                   <span className="post-card-readtime">
                     {post.reading_time.replace("read", "")}
                   </span>

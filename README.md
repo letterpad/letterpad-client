@@ -1,5 +1,7 @@
 ## Letterpad Client - Theme
 
+Demo: https://demo.letterpad.app
+
 Letterpad client is responsible to display data from the Letterpad API.
 
 It is responsible for displaying the below content.
@@ -26,7 +28,7 @@ Letterpad Dashboard is a multi-author dashboard, meaning one installation of Let
 
 If you are familiar with react and would like to customise the theme, then continue reading this.
 
-1. Register an <a href="https://letterpad.app/admin/register">account</a> with letterpad to get the client id. You will find it in Settings.
+1. Register an <a href="https://letterpad.app/admin/register">account</a> with letterpad to get the client id. You will find it in Settings under Keys after logging in Letterpad.
 
 2. Add the Client Id in `next.config.js`.
 
@@ -39,7 +41,7 @@ yarn dev
 
 4. Open http://localhost:3001
 
-## Features to take care
+## Features
 
 - Site Header Image
 - Site Logo
@@ -52,3 +54,5 @@ yarn dev
 - Page (single page)
 - SEO
 - Server side rendering
+- Comments
+- Subscription
