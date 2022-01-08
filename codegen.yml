@@ -1,4 +1,4 @@
-schema: https://letterpad.app/admin/api/graphql
+schema: http://localhost:3000/admin/api/graphql
 documents:
   - components/**/*.tsx
   - pages/**/*.tsx

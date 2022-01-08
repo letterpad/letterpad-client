@@ -1,20 +1,19 @@
 import gql from "graphql-tag";
 
 import { LayoutFragment } from "lib/graphql";
-import { Header, headerFragment } from "./Header";
+import { Intro, headerFragment } from "./header/Intro";
 import Head from "next/head";
-import { globalStyles } from "public/css/style.css";
-import { themeVars } from "public/css/theme.css";
 import Nav from "./header/nav";
 import userBannerConfig from "./hooks/userBannerConfig";
 import { PageName } from "lib/types";
 import Footer from "./Footer";
-import { layoutStyles } from "./layout.css";
+import Subscribe from "./subscribe";
 
 export const layoutFragment = gql`
   fragment layout on Query {
     settings {
       ... on Setting {
+        __typename
         site_footer
         site_favicon {
           src
@@ -100,22 +99,19 @@ export default function SiteLayout({
         ></link>
         <style>{settings.css}</style>
       </Head>
-      <Nav settings={settings} logoInline={logoInline} showBanner={hasBanner} />
-      <Header settings={settings} displayBanner={hasBanner}></Header>
+      <div className="flex flex-col h-screen justify-between">
+        <Nav
+          settings={settings}
+          logoInline={logoInline}
+          showBanner={hasBanner}
+        />
+        <Intro settings={settings} displayBanner={hasBanner}></Intro>
 
-      <main className="container-wrapper">{children}</main>
+        <main className="container-wrapper">{children}</main>
 
-      <Footer settings={settings} />
-
-      <style jsx global>
-        {themeVars}
-      </style>
-      <style jsx global>
-        {globalStyles}
-      </style>
-      <style jsx global>
-        {layoutStyles}
-      </style>
+        <Subscribe />
+        <Footer settings={settings} />
+      </div>
     </div>
   );
 }

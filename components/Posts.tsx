@@ -1,6 +1,5 @@
 import gql from "graphql-tag";
 import { AllPostsFragment } from "lib/graphql";
-import { styles } from "./posts.css";
 import ArticleItem from "./ArticleItem";
 
 export const allPostsFragment = gql`
@@ -39,13 +38,10 @@ export function Posts({
     return null;
   }
   return (
-    <div className="container-fixed">
-      <div className="post-feed">
-        {allPosts.posts.rows.map((item, i) => (
-          <ArticleItem post={item} key={i} isHome={isHome} />
-        ))}
-      </div>
-      <style jsx>{styles}</style>
+    <div className="container mx-auto  md:max-w-3xl mb-40">
+      {allPosts.posts.rows.map((item, i) => (
+        <ArticleItem post={item} key={i} isHome={isHome} />
+      ))}
     </div>
   );
 }

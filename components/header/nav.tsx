@@ -1,5 +1,5 @@
-import { navigationStyles } from "components/header.css";
 import { HeaderSettingsFragment } from "lib/graphql";
+
 import Link from "next/link";
 
 interface IProps {
@@ -11,7 +11,6 @@ interface IProps {
 const Nav = ({ settings, logoInline, showBanner }: IProps) => {
   const { site_title, site_logo, menu } = settings;
 
-  const navcss = navigationStyles();
   const navClass = ["site-nav", "container-fixed"];
   if (logoInline) navClass.push("logo-inline");
   else navClass.push("logo-hide");
@@ -19,134 +18,107 @@ const Nav = ({ settings, logoInline, showBanner }: IProps) => {
   if (showBanner) navClass.push("has-banner");
 
   return (
-    <div className="container-wrapper">
-      <nav className={navClass.join(" ")}>
-        <div className="site-nav-left">
-          <Link href="/">
-            <a className="site-nav-logo">
-              {site_logo.src && (
-                <img
-                  src={site_logo.src}
-                  alt={site_title}
-                  width="100vw"
-                  height="100%"
-                />
-              )}
-              {!site_logo.src && site_title}
+    <div className="container-wrapper shadow-md">
+      <nav className="wrapper py-6">
+        <div className="px-5  flex justify-between items-center">
+          <div className="logo">
+            <a
+              href="/"
+              aria-current="page"
+              className="text-sky-500 hover:text-sky-600"
+            >
+              <h1 className="text-2xl font-semibold text-gray-700">
+                {!site_logo.src && (
+                  <span className="text-primary font-bold">{site_title}</span>
+                )}
+                {site_logo.src && (
+                  <img
+                    src={site_logo.src}
+                    alt={site_title}
+                    style={{ height: 30 }}
+                  />
+                )}
+              </h1>
             </a>
-          </Link>
-          <ul className="nav" role="menu">
+          </div>
+          <div className="navbar hidden md:block uppercase text-xs font-medium">
             {menu.map((item, i) => {
-              return (
-                <li className="" key={i} role="menuitem">
-                  {item.type === "custom" ? (
-                    <a href={item.slug}>{item.label}</a>
-                  ) : (
-                    <Link href={i === 0 ? "/" : item.slug}>{item.label}</Link>
-                  )}
-                </li>
+              return item.type === "custom" ? (
+                <a
+                  key={item.slug}
+                  href={item.slug}
+                  className="text-sky-500 hover:text-sky-600 last:mr-0 mr-4"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link key={item.slug} href={i === 0 ? "/" : item.slug}>
+                  <a className="text-gray-600 hover:text-gray-900 last:mr-0 mr-4">
+                    {item.label}
+                  </a>
+                </Link>
               );
             })}
-          </ul>
-        </div>
-
-        <div className="site-nav-right">
-          <div className="social-links">
-            {settings.social_facebook && (
-              <a
-                className="social-link social-link-fb"
-                href={settings.social_facebook}
-                target="_blank"
-                rel="noopener"
+          </div>
+          <div className="ml-3 flex md:hidden">
+            <button className="flex-center rounded-md">
+              <svg
+                stroke="currentColor"
+                fill="none"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                className="block h-6 w-6"
               >
-                <FacebookIcon />
-              </a>
-            )}
-
-            {settings.social_twitter && (
-              <a
-                className="social-link social-link-tw"
-                href={settings.social_twitter}
-                target="_blank"
-                rel="noopener"
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+              <svg
+                stroke="currentColor"
+                fill="none"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                className="hidden h-6 w-6"
               >
-                <TwitterIcon />
-              </a>
-            )}
-
-            {settings.social_github && (
-              <a
-                className="social-link"
-                href={settings.social_github}
-                target="_blank"
-                rel="noopener"
-              >
-                <GithubIcon />
-              </a>
-            )}
-
-            {settings.social_instagram && (
-              <a
-                className="social-link"
-                href={settings.social_instagram}
-                target="_blank"
-                rel="noopener"
-              >
-                <InstagramIcon />
-              </a>
-            )}
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
           </div>
         </div>
       </nav>
-      <style jsx>{navcss}</style>
-      <style jsx>{`
-        @media (min-width: 1100px) {
-          .container-wrapper {
-            display: flex;
-            justify-content: center;
-          }
-        }
-        :global(.page-home .site-nav) {
-          /* position: absolute; */
-        }
-
-        .site-nav {
-          padding: var(--space-sm) 0;
-          background: var(--color-bg-2);
-          align-items: center;
-          .social-link {
-            width: 15px;
-          }
-        }
-      `}</style>
+      <div className="hidden md:hidden">
+        <div className="px-2 pt-2 pb-3 sm:px-3 bg-primary">
+          {menu.map((item, i) => {
+            return item.type === "custom" ? (
+              <a
+                key={item.slug}
+                href={item.slug}
+                className="mobile-link focus:outline-none hover:text-gray-500"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link key={item.slug} href={i === 0 ? "/" : item.slug}>
+                <a className="mobile-link focus:outline-none hover:text-gray-500">
+                  {item.label}
+                </a>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };
 
 export default Nav;
-
-const GithubIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path>
-  </svg>
-);
-
-const TwitterIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-    <path d="M30.063 7.313c-.813 1.125-1.75 2.125-2.875 2.938v.75c0 1.563-.188 3.125-.688 4.625a15.088 15.088 0 0 1-2.063 4.438c-.875 1.438-2 2.688-3.25 3.813a15.015 15.015 0 0 1-4.625 2.563c-1.813.688-3.75 1-5.75 1-3.25 0-6.188-.875-8.875-2.625.438.063.875.125 1.375.125 2.688 0 5.063-.875 7.188-2.5-1.25 0-2.375-.375-3.375-1.125s-1.688-1.688-2.063-2.875c.438.063.813.125 1.125.125.5 0 1-.063 1.5-.25-1.313-.25-2.438-.938-3.313-1.938a5.673 5.673 0 0 1-1.313-3.688v-.063c.813.438 1.688.688 2.625.688a5.228 5.228 0 0 1-1.875-2c-.5-.875-.688-1.813-.688-2.75 0-1.063.25-2.063.75-2.938 1.438 1.75 3.188 3.188 5.25 4.25s4.313 1.688 6.688 1.813a5.579 5.579 0 0 1 1.5-5.438c1.125-1.125 2.5-1.688 4.125-1.688s3.063.625 4.188 1.813a11.48 11.48 0 0 0 3.688-1.375c-.438 1.375-1.313 2.438-2.563 3.188 1.125-.125 2.188-.438 3.313-.875z"></path>
-  </svg>
-);
-
-const FacebookIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-    <path d="M19 6h5V0h-5c-3.86 0-7 3.14-7 7v3H8v6h4v16h6V16h5l1-6h-6V7c0-.542.458-1 1-1z"></path>
-  </svg>
-);
-
-const InstagramIcon = () => (
-  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-    <path d="M16 2.881c4.275 0 4.781 0.019 6.462 0.094 1.563 0.069 2.406 0.331 2.969 0.55 0.744 0.288 1.281 0.638 1.837 1.194 0.563 0.563 0.906 1.094 1.2 1.838 0.219 0.563 0.481 1.412 0.55 2.969 0.075 1.688 0.094 2.194 0.094 6.463s-0.019 4.781-0.094 6.463c-0.069 1.563-0.331 2.406-0.55 2.969-0.288 0.744-0.637 1.281-1.194 1.837-0.563 0.563-1.094 0.906-1.837 1.2-0.563 0.219-1.413 0.481-2.969 0.55-1.688 0.075-2.194 0.094-6.463 0.094s-4.781-0.019-6.463-0.094c-1.563-0.069-2.406-0.331-2.969-0.55-0.744-0.288-1.281-0.637-1.838-1.194-0.563-0.563-0.906-1.094-1.2-1.837-0.219-0.563-0.481-1.413-0.55-2.969-0.075-1.688-0.094-2.194-0.094-6.463s0.019-4.781 0.094-6.463c0.069-1.563 0.331-2.406 0.55-2.969 0.288-0.744 0.638-1.281 1.194-1.838 0.563-0.563 1.094-0.906 1.838-1.2 0.563-0.219 1.412-0.481 2.969-0.55 1.681-0.075 2.188-0.094 6.463-0.094zM16 0c-4.344 0-4.887 0.019-6.594 0.094-1.7 0.075-2.869 0.35-3.881 0.744-1.056 0.412-1.95 0.956-2.837 1.85-0.894 0.888-1.438 1.781-1.85 2.831-0.394 1.019-0.669 2.181-0.744 3.881-0.075 1.713-0.094 2.256-0.094 6.6s0.019 4.887 0.094 6.594c0.075 1.7 0.35 2.869 0.744 3.881 0.413 1.056 0.956 1.95 1.85 2.837 0.887 0.887 1.781 1.438 2.831 1.844 1.019 0.394 2.181 0.669 3.881 0.744 1.706 0.075 2.25 0.094 6.594 0.094s4.888-0.019 6.594-0.094c1.7-0.075 2.869-0.35 3.881-0.744 1.050-0.406 1.944-0.956 2.831-1.844s1.438-1.781 1.844-2.831c0.394-1.019 0.669-2.181 0.744-3.881 0.075-1.706 0.094-2.25 0.094-6.594s-0.019-4.887-0.094-6.594c-0.075-1.7-0.35-2.869-0.744-3.881-0.394-1.063-0.938-1.956-1.831-2.844-0.887-0.887-1.781-1.438-2.831-1.844-1.019-0.394-2.181-0.669-3.881-0.744-1.712-0.081-2.256-0.1-6.6-0.1v0z"></path>
-    <path d="M16 7.781c-4.537 0-8.219 3.681-8.219 8.219s3.681 8.219 8.219 8.219 8.219-3.681 8.219-8.219c0-4.537-3.681-8.219-8.219-8.219zM16 21.331c-2.944 0-5.331-2.387-5.331-5.331s2.387-5.331 5.331-5.331c2.944 0 5.331 2.387 5.331 5.331s-2.387 5.331-5.331 5.331z"></path>
-    <path d="M26.462 7.456c0 1.060-0.859 1.919-1.919 1.919s-1.919-0.859-1.919-1.919c0-1.060 0.859-1.919 1.919-1.919s1.919 0.859 1.919 1.919z"></path>
-  </svg>
-);

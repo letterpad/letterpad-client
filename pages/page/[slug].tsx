@@ -42,9 +42,7 @@ export default function PostPage({
       }}
       pageName="page-page"
     >
-      <div>
-        <Post postDetails={data.post}></Post>
-      </div>
+      <Post postDetails={data.post}></Post>
     </SiteLayout>
   );
 }

@@ -4,3 +4,4 @@ node_modules
 out
 lib/graphql.ts
 .vercel
+.env.production.local

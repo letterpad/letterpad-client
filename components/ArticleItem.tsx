@@ -1,5 +1,4 @@
 import React from "react";
-import { styles } from "./ArticleItem.css";
 import Link from "next/link";
 import { getImageAttrs } from "lib/imageUtils";
 import { dateFormat } from "lib/utils";
@@ -24,63 +23,54 @@ const ArticleItem = (props: IArticleItem) => {
   if (isHome) {
     rootClass.push("home");
   }
+
   return (
-    <>
-      <div className={rootClass.join(" ")}>
-        {imgAttrs.src && (
-          <Link href={post.slug}>
-            <a className="post-card-image-link">
-              <img
-                className={"post-card-image " + className}
-                {...imgAttrs}
-                alt={post.title}
-              />
-            </a>
-          </Link>
-        )}
-        <div className="post-card-content">
-          <div className="post-card-content-top">
-            <Link href={post.slug}>
-              <a className="post-card-content-link">
-                <header className="post-card-header">
-                  <h2 className="post-card-title">{post.title}</h2>
-                </header>
-                <section className="post-card-excerpt">
-                  <p>{post.excerpt}</p>
-                </section>
-              </a>
-            </Link>
+    <div className="mt-16">
+      <Link href={post.slug}>
+        <div className="w-full md:max-w-7xl md:flex cursor-pointer">
+          <div className="h-48 md:h-auto md:w-64 flex-none bg-cover rounded-t md:rounded-t-none md:rounded-l text-center overflow-hidden">
+            <img
+              className={"h-48 object-cover " + className}
+              {...imgAttrs}
+              alt={post.title}
+            />
           </div>
-          <footer className="post-card-meta">
-            <div>
-              <div className="post-card-meta-author">
+          <div className=" bg-white rounded-b md:p-4 p-4 md:py-2 flex flex-col justify-between leading-normal">
+            <div className="mb-8">
+              <div className="text-gray-600 font-bold text-xl mb-2">
+                {post.title}
+              </div>
+              <p className="text-gray-700 text-base">{post.excerpt}</p>
+            </div>
+            <div className="flex items-center justify-between flex-row">
+              <div className="flex items-center">
                 {post.author.avatar && (
                   <img
-                    className="author-profile-image"
+                    className="w-8 h-8 rounded-full mr-2"
                     src={post.author.avatar}
-                    alt="Author"
+                    alt={`Avatar of ${post.author.name}`}
                   />
                 )}
-                <span className="post-card-author">{post.author.name}</span>
+                <div className="text-sm">
+                  <p className="text-gray-900 leading-none">
+                    {post.author.name}
+                  </p>
+                </div>
               </div>
-              {/* <div>
-                <span className="post-card-readtime">
-                  {post.reading_time.replace("read", "")}
-                </span>
-              </div> */}
+              <div>
+                <p className="text-gray-600 text-sm">
+                  {dateFormat(post.publishedAt)}
+                  <span className="separator mx-1">·</span>
+                  <span className="post-card-readtime">
+                    {post.reading_time.replace("read", "")}
+                  </span>
+                </p>
+              </div>
             </div>
-            <div>
-              {dateFormat(post.publishedAt)}
-              &nbsp;·&nbsp;
-              <span className="post-card-readtime">
-                {post.reading_time.replace("read", "")}
-              </span>
-            </div>
-          </footer>
+          </div>
         </div>
-      </div>
-      <style jsx>{styles}</style>
-    </>
+      </Link>
+    </div>
   );
 };
 
