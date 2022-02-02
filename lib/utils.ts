@@ -7,5 +7,5 @@ export function dateFormat(date: string) {
     })
     .split(" ")
     .join(" ")
-    .substr(0, 6);
+    .substr(0, 10);
 }
