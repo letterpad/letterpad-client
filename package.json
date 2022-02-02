@@ -4,8 +4,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "concurrently -k 'next -p 3001' 'graphql-codegen -w'",
-    "build": "yarn generate && next build",
-    "generate": "graphql-codegen",
+    "build": "yarn codegen && next build",
+    "codegen": "graphql-codegen",
     "type-check": "tsc --noEmit",
     "start": "next start -p 3001"
   },

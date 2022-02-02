@@ -13,7 +13,6 @@ export const tagFragment = gql`
   fragment tagFragment on TagResponse {
     ... on Tags {
       name
-      desc
       slug
     }
     ... on TagResultError {

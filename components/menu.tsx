@@ -12,6 +12,9 @@ export const menuFragment = gql`
           label
         }
       }
+      ... on SettingError {
+        message
+      }
       __typename
     }
   }
