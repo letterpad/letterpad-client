@@ -25,52 +25,53 @@ const ArticleItem = (props: IArticleItem) => {
   }
 
   return (
-    <div className="mt-16">
-      <Link href={post.slug}>
-        <div className="w-full md:max-w-7xl md:flex cursor-pointer">
-          <div className="h-48 md:h-auto md:w-64 flex-none bg-cover rounded-t md:rounded-t-none md:rounded-l text-center overflow-hidden">
-            <img
-              className={"h-48 object-cover " + className}
-              {...imgAttrs}
-              alt={post.title}
-            />
+    <Link href={post.slug}>
+      <div className="w-full lg:flex mb-8 cursor-pointer">
+        <div className="h-48 lg:h-auto lg:w-60 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
+          <img
+            className={"h-full object-cover " + className}
+            {...imgAttrs}
+            alt={post.title}
+          />
+        </div>
+        <div className="border-r border-b border-l border-gray-200 dark:border-gray-800 lg:border-l-0 lg:border-t lg:border-grey-light bg-white dark:bg-slate-800 rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+          <div className="mb-8">
+            <p className="text-xs flex items-center text-sky-500 uppercase mb-2 gap-2">
+              {post.tags.map((tag) => (
+                <Link href={tag.slug} key={tag.name}>
+                  <span>{tag.name}</span>
+                </Link>
+              ))}
+            </p>
+            <h1 className="font-bold text-xl mb-6">{post.title}</h1>
+            <p className="text-gray-400 text-base">{post.excerpt}</p>
           </div>
-          <div className=" bg-white rounded-b md:p-4 p-4 md:py-2 flex flex-col justify-between leading-normal">
-            <div className="mb-8">
-              <div className="text-gray-600 font-bold text-xl mb-2">
-                {post.title}
+          <div className="flex items-center justify-between flex-row">
+            <div>
+              {post.author.avatar && (
+                <img
+                  className="w-10 h-10 rounded-full mr-4"
+                  src={post.author.avatar}
+                  alt={`Avatar of ${post.author.name}`}
+                />
+              )}
+              <div className="text-sm">
+                <p className="leading-none">{post.author.name}</p>
               </div>
-              <p className="text-gray-700 text-base">{post.excerpt}</p>
             </div>
-            <div className="flex items-center justify-between flex-row">
-              <div className="flex items-center">
-                {post.author.avatar && (
-                  <img
-                    className="w-8 h-8 rounded-full mr-2"
-                    src={post.author.avatar}
-                    alt={`Avatar of ${post.author.name}`}
-                  />
-                )}
-                <div className="text-sm">
-                  <p className="text-gray-900 leading-none">
-                    {post.author.name}
-                  </p>
-                </div>
-              </div>
-              <div>
-                <p className="text-gray-600 text-sm">
-                  {dateFormat(post.publishedAt)}
-                  <span className="separator mx-1">·</span>
-                  <span className="post-card-readtime">
-                    {post.reading_time.replace("read", "")}
-                  </span>
-                </p>
-              </div>
+            <div>
+              <p className="text-gray-500 text-sm">
+                {dateFormat(post.publishedAt)}
+                <span className="separator mx-1">·</span>
+                <span className="post-card-readtime">
+                  {post.reading_time.replace("read", "")}
+                </span>
+              </p>
             </div>
           </div>
         </div>
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 

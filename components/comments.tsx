@@ -6,7 +6,7 @@ const Comments = ({ id, url }) => {
 
   return (
     <div className="py-8">
-      <hr className="divide-blue-500 divide-solid pt-16" />
+      <p className="pt-16" />
       <div id={divId}></div>
     </div>
   );

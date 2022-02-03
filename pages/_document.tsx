@@ -3,7 +3,12 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en" dir="ltr" className="">
+      <Html
+        lang="en"
+        dir="ltr"
+        style={{ colorScheme: "dark" }}
+        className="dark"
+      >
         <Head>
           <meta charSet="utf-8" />
           {/* PWA primary color */}
@@ -21,12 +26,12 @@ export default class MyDocument extends Document {
           ></script>
           <link
             rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-vsc-dark-plus.min.css"
+            href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.5.0/prism-duotone-sea.min.css"
           />
 
           <script src="/js/tiny-modal.min.js" async />
         </Head>
-        <body className="dark:bg-gray-800 dark:text-slate-300">
+        <body className="dark:bg-gray-900 dark:text-slate-300">
           <Main />
           <NextScript />
         </body>

@@ -39,6 +39,10 @@ export const postsFragment = gql`
         publishedAt
         reading_time
         excerpt
+        tags {
+          slug
+          name
+        }
       }
     }
   }

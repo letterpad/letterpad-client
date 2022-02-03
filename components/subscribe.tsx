@@ -29,14 +29,17 @@ const Subscribe = () => {
   };
 
   return (
-    <div id="subscribe" className="py-10 h-screen bg-gray-100 px-2">
+    <div
+      id="subscribe"
+      className="py-10 h-screen bg-gray-100 px-2 dark:bg-slate-800"
+    >
       <div className="max-w-md mx-auto rounded-lg overflow-hidden md:max-w-xl">
         <div className="md:flex">
           <div className="w-full p-3">
             <div className="relative">
               <input
                 type="text"
-                className="bg-white h-14 w-full px-4 pr-20 rounded-md focus:outline-none hover:cursor-pointer"
+                className="bg-white dark:bg-gray-700 h-14 w-full px-4 pr-20 rounded-md focus:outline-none hover:cursor-pointer"
                 placeholder="Enter your email id"
                 name=""
                 value={email}
@@ -44,7 +47,7 @@ const Subscribe = () => {
               />
               <button
                 onClick={doSubscribe}
-                className="h-10 rounded bg-black absolute top-2 text-sm right-2 px-3 text-white hover:bg-gray-900 "
+                className="h-10 rounded bg-black dark:bg-slate-900 absolute top-2 text-sm right-2 px-3 text-white hover:bg-gray-900 "
               >
                 Subscribe Now
               </button>

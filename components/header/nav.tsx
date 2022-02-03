@@ -1,6 +1,8 @@
+import ThemeSwitcher from "components/themeSwitcher";
 import { HeaderSettingsFragment } from "lib/graphql";
 
 import Link from "next/link";
+import { useState } from "react";
 
 interface IProps {
   settings: HeaderSettingsFragment;
@@ -11,6 +13,8 @@ interface IProps {
 const Nav = ({ settings, logoInline, showBanner }: IProps) => {
   const { site_title, site_logo, menu } = settings;
 
+  const [showMobileMenu, setMobileMenuDisplay] = useState(false);
+
   const navClass = ["site-nav", "container-fixed"];
   if (logoInline) navClass.push("logo-inline");
   else navClass.push("logo-hide");
@@ -18,7 +22,7 @@ const Nav = ({ settings, logoInline, showBanner }: IProps) => {
   if (showBanner) navClass.push("has-banner");
 
   return (
-    <div className="container-wrapper shadow-md">
+    <div className="container-wrapper shadow-md" id="nav">
       <nav className="wrapper py-6">
         <div className="px-5  flex justify-between items-center">
           <div className="logo">
@@ -41,27 +45,35 @@ const Nav = ({ settings, logoInline, showBanner }: IProps) => {
               </h1>
             </a>
           </div>
-          <div className="navbar hidden md:block uppercase text-xs font-medium">
-            {menu.map((item, i) => {
-              return item.type === "custom" ? (
-                <a
-                  key={item.slug}
-                  href={item.slug}
-                  className="text-sky-500 hover:text-sky-600 last:mr-0 mr-4"
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <Link key={item.slug} href={i === 0 ? "/" : item.slug}>
-                  <a className="text-gray-600 hover:text-gray-900 last:mr-0 mr-4">
+
+          {!showMobileMenu && (
+            <div className="navbar hidden md:flex capitalize font-medium items-center ">
+              {menu.map((item, i) => {
+                return item.type === "custom" ? (
+                  <a
+                    key={item.slug}
+                    href={item.slug}
+                    className="text-sky-500 hover:text-sky-600 last:mr-0 mr-4"
+                  >
                     {item.label}
                   </a>
-                </Link>
-              );
-            })}
-          </div>
+                ) : (
+                  <Link key={item.slug} href={i === 0 ? "/" : item.slug}>
+                    <a className="hover:text-gray-900 last:mr-0 mr-4">
+                      {item.label}
+                    </a>
+                  </Link>
+                );
+              })}
+              <ThemeSwitcher />
+            </div>
+          )}
+
           <div className="ml-3 flex md:hidden">
-            <button className="flex-center rounded-md">
+            <button
+              className="flex-center rounded-md"
+              onClick={() => setMobileMenuDisplay(!showMobileMenu)}
+            >
               <svg
                 stroke="currentColor"
                 fill="none"
@@ -96,27 +108,29 @@ const Nav = ({ settings, logoInline, showBanner }: IProps) => {
           </div>
         </div>
       </nav>
-      <div className="hidden md:hidden">
-        <div className="px-2 pt-2 pb-3 sm:px-3 bg-primary">
-          {menu.map((item, i) => {
-            return item.type === "custom" ? (
-              <a
-                key={item.slug}
-                href={item.slug}
-                className="mobile-link focus:outline-none hover:text-gray-500"
-              >
-                {item.label}
-              </a>
-            ) : (
-              <Link key={item.slug} href={i === 0 ? "/" : item.slug}>
-                <a className="mobile-link focus:outline-none hover:text-gray-500">
+      {showMobileMenu && (
+        <div className="md:hidden">
+          <div className="px-2 pt-2 pb-3 sm:px-3 bg-primary">
+            {menu.map((item, i) => {
+              return item.type === "custom" ? (
+                <a
+                  key={item.slug}
+                  href={item.slug}
+                  className="mobile-link focus:outline-none hover:text-gray-500"
+                >
                   {item.label}
                 </a>
-              </Link>
-            );
-          })}
+              ) : (
+                <Link key={item.slug} href={i === 0 ? "/" : item.slug}>
+                  <a className="mobile-link focus:outline-none hover:text-gray-500">
+                    {item.label}
+                  </a>
+                </Link>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
