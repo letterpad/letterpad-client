@@ -42,7 +42,7 @@ const Nav = ({ settings, logoInline, showBanner }: IProps) => {
                     style={{ height: 30 }}
                   />
                 )}
-                {site_title && (
+                {!site_logo.src && (
                   <span className="text-primary font-bold">{site_title}</span>
                 )}
               </h1>
