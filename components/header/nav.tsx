@@ -22,7 +22,10 @@ const Nav = ({ settings, logoInline, showBanner }: IProps) => {
   if (showBanner) navClass.push("has-banner");
 
   return (
-    <div className="container-wrapper shadow-md" id="nav">
+    <div
+      className="container-wrapper dark:bg-slate-800 border-b dark:border-slate-900"
+      id="nav"
+    >
       <nav className="wrapper py-6">
         <div className="px-5  flex justify-between items-center">
           <div className="logo">
@@ -31,16 +34,16 @@ const Nav = ({ settings, logoInline, showBanner }: IProps) => {
               aria-current="page"
               className="text-sky-500 hover:text-sky-600"
             >
-              <h1 className="text-2xl font-semibold text-gray-700">
-                {!site_logo.src && (
-                  <span className="text-primary font-bold">{site_title}</span>
-                )}
+              <h1 className="flex flex-row gap-2 items-center">
                 {site_logo.src && (
                   <img
                     src={site_logo.src}
                     alt={site_title}
                     style={{ height: 30 }}
                   />
+                )}
+                {site_title && (
+                  <span className="text-primary font-bold">{site_title}</span>
                 )}
               </h1>
             </a>
