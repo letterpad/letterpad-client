@@ -1,5 +1,5 @@
 import ThemeSwitcher from "components/themeSwitcher";
-import { HeaderSettingsFragment } from "lib/graphql";
+import { HeaderSettingsFragment, Navigation } from "lib/graphql";
 
 import Link from "next/link";
 import { useState } from "react";
@@ -48,23 +48,7 @@ const Nav = ({ settings, logoInline, showBanner }: IProps) => {
 
           {!showMobileMenu && (
             <div className="navbar hidden md:flex capitalize font-medium items-center ">
-              {menu.map((item, i) => {
-                return item.type === "custom" ? (
-                  <a
-                    key={item.slug}
-                    href={item.slug}
-                    className="text-sky-500 hover:text-sky-600 last:mr-0 mr-4"
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <Link key={item.slug} href={i === 0 ? "/" : item.slug}>
-                    <a className="hover:text-gray-900 last:mr-0 mr-4">
-                      {item.label}
-                    </a>
-                  </Link>
-                );
-              })}
+              {getMenu(menu)}
               <ThemeSwitcher />
             </div>
           )}
@@ -111,23 +95,7 @@ const Nav = ({ settings, logoInline, showBanner }: IProps) => {
       {showMobileMenu && (
         <div className="md:hidden">
           <div className="px-2 pt-2 pb-3 sm:px-3 bg-primary">
-            {menu.map((item, i) => {
-              return item.type === "custom" ? (
-                <a
-                  key={item.slug}
-                  href={item.slug}
-                  className="mobile-link focus:outline-none hover:text-gray-500"
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <Link key={item.slug} href={i === 0 ? "/" : item.slug}>
-                  <a className="mobile-link focus:outline-none hover:text-gray-500">
-                    {item.label}
-                  </a>
-                </Link>
-              );
-            })}
+            {getMenu(menu)}
           </div>
         </div>
       )}
@@ -136,3 +104,23 @@ const Nav = ({ settings, logoInline, showBanner }: IProps) => {
 };
 
 export default Nav;
+
+function getMenu(menu: Omit<Navigation, "original_name">[]) {
+  return menu.map((item, i) => {
+    return item.type === "custom" ? (
+      <a
+        key={item.slug}
+        href={item.slug}
+        className="text-sky-500 hover:text-sky-600 last:mr-0 mr-4"
+      >
+        {item.label}
+      </a>
+    ) : (
+      <Link key={item.slug} href={i === 0 ? "/" : item.slug}>
+        <a className="text-sky-500 hover:text-sky-600 last:mr-0 mr-4">
+          {item.label}
+        </a>
+      </Link>
+    );
+  });
+}

@@ -47,7 +47,7 @@ const ArticleItem = (props: IArticleItem) => {
             <p className="text-gray-400 text-base">{post.excerpt}</p>
           </div>
           <div className="flex items-center justify-between flex-row">
-            <div>
+            <div className="flex flex-row items-center">
               {post.author.avatar && (
                 <img
                   className="w-10 h-10 rounded-full mr-4"

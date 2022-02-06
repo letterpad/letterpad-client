@@ -9,6 +9,15 @@ module.exports = {
   darkMode: "class", // or 'media' or 'class'
   theme: {
     extend: {
+      spacing: {
+        "9/16": "56.25%",
+      },
+      lineHeight: {
+        11: "2.75rem",
+        12: "3rem",
+        13: "3.25rem",
+        14: "3.5rem",
+      },
       colors: {
         "light-blue": colors.sky,
         cyan: colors.cyan,
@@ -17,15 +26,25 @@ module.exports = {
         DEFAULT: {
           css: [
             {
-              color: theme("colors.gray.400"),
+              color: theme("colors.gray.800"),
+              fontSize: "1.1em",
+              h1: {
+                fontSize: "2em",
+              },
+              h2: {
+                fontSize: "1.9em",
+              },
+              h3: {
+                fontSize: "1.7em",
+              },
               '[class~="lead"]': {
                 color: theme("colors.gray.300"),
               },
               a: {
-                color: theme("colors.white"),
+                color: theme("colors.blue.500"),
               },
               strong: {
-                color: theme("colors.white"),
+                color: theme("colors.gray.600"),
               },
               "ol > li::before": {
                 color: theme("colors.gray.400"),
@@ -37,20 +56,11 @@ module.exports = {
                 borderColor: theme("colors.gray.600"),
               },
               blockquote: {
-                color: theme("colors.gray.200"),
-                borderLeftColor: theme("colors.gray.600"),
+                color: theme("colors.gray.600"),
+                borderLeftColor: "rgb(var(--color-accent))",
               },
-              h1: {
-                color: theme("colors.white"),
-              },
-              h2: {
-                color: theme("colors.white"),
-              },
-              h3: {
-                color: theme("colors.white"),
-              },
-              h4: {
-                color: theme("colors.white"),
+              "h1,h2,h3,h4,h5,h6": {
+                color: theme("colors.gray.600"),
               },
               "figure figcaption": {
                 color: theme("colors.gray.400"),
@@ -64,6 +74,7 @@ module.exports = {
               pre: {
                 color: theme("colors.gray.200"),
                 backgroundColor: theme("colors.gray.800"),
+                fontSize: "0.7em",
               },
               thead: {
                 color: theme("colors.white"),
@@ -78,15 +89,16 @@ module.exports = {
         dark: {
           css: [
             {
-              color: theme("colors.gray.400"),
+              color: theme("colors.gray.300"),
+              fontWeight: 300,
               '[class~="lead"]': {
                 color: theme("colors.gray.300"),
               },
               a: {
-                color: theme("colors.white"),
+                color: theme("colors.blue.500"),
               },
               strong: {
-                color: theme("colors.white"),
+                color: theme("colors.gray.300"),
               },
               "ol > li::before": {
                 color: theme("colors.gray.400"),
@@ -97,24 +109,12 @@ module.exports = {
               hr: {
                 borderColor: theme("colors.gray.500"),
               },
-              svg: {
-                fill: "red",
-              },
               blockquote: {
-                color: theme("colors.gray.200"),
+                color: theme("colors.gray.300"),
                 borderLeftColor: theme("colors.gray.600"),
               },
-              h1: {
-                color: theme("colors.white"),
-              },
-              h2: {
-                color: theme("colors.white"),
-              },
-              h3: {
-                color: theme("colors.white"),
-              },
-              h4: {
-                color: theme("colors.white"),
+              "h1,h2,h3,h4,h5,h6": {
+                color: theme("colors.gray.300"),
               },
               "figure figcaption": {
                 color: theme("colors.gray.400"),
@@ -128,7 +128,9 @@ module.exports = {
               pre: {
                 color: theme("colors.gray.200"),
                 backgroundColor: theme("colors.gray.800"),
+                fontSize: "0.7em",
               },
+              // fontSize: "0.8rem",
               thead: {
                 color: theme("colors.white"),
                 borderBottomColor: theme("colors.gray.400"),

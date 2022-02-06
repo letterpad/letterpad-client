@@ -91,8 +91,7 @@ export default function Tag({ data }: { data: CollectionQueryQuery }) {
         <h2 className="text-3xl font-light">
           Posts from <span className="font-bold">{router.query.slug}</span>
         </h2>
-        {/* <p className="text-sm text-slate-400 ml-2 mt-2">{data.tag.desc}</p> */}
-        <hr className="divide-solid mt-4" />
+        <hr className="divide-solid mt-4 mb-10" />
         {data.posts.rows.map((item, i) => (
           <ArticleItem post={item} key={i} />
         ))}

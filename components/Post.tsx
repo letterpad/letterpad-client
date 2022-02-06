@@ -77,7 +77,7 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
                 />
               )}
               <div>
-                <p className="text-gray-900 leading-none text-md">
+                <p className="leading-none text-md">
                   {postDetails.author.name}
                 </p>
                 <div className="mt-2 text-xs">
@@ -95,9 +95,9 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
           </section>
           <div className="tags-wrapper mt-4">
             {postDetails.tags.map((tag) => (
-              <span className="tag">
+              <span className="tag" key={tag.name}>
                 <Link href={tag.slug}>
-                  <span className="cursor-pointer inline-block rounded-full text-gray-600 bg-gray-100 px-2 py-1 text-xs font-bold mr-3">
+                  <span className="cursor-pointer inline-block rounded-full text-gray-600 bg-gray-100 dark:bg-slate-800 dark:text-gray-300 px-2 py-1 text-xs  mr-3">
                     {tag.name}
                   </span>
                 </Link>
@@ -113,8 +113,8 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
           />
         )}
 
-        <section className="post-full-content">
-          <article className="post-content  lg:prose-lg prose dark:prose-light">
+        <section className="post-full-content flex justify-center">
+          <article className="post-content  lg:prose-md prose dark:prose-dark">
             <div dangerouslySetInnerHTML={{ __html: content }} />
           </article>
         </section>

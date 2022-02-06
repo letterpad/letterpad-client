@@ -16,10 +16,6 @@ export default class MyDocument extends Document {
             src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"
             async
           />
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Fira+Code:400|Rubik:wght@300|Libre+Baskerville:400,400i,700,700i&display=swap"
-          />
           <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=UA-19390409-3"

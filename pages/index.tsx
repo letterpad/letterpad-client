@@ -93,6 +93,7 @@ export async function getServerSideProps(context) {
   if (!data.props.data.settings.__typename) {
     return { props: { data: {} } };
   }
+
   if (data.props.data.settings.__typename === "SettingError") return null;
 
   const { menu } = data.props.data.settings;
