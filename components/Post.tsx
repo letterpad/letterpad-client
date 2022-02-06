@@ -114,7 +114,7 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
         )}
 
         <section className="post-full-content flex justify-center">
-          <article className="post-content  lg:prose-md prose dark:prose-dark">
+          <article className="post-content  pt-10 pb-8 prose dark:prose-dark m-auto max-w-3xl">
             <div dangerouslySetInnerHTML={{ __html: content }} />
           </article>
         </section>

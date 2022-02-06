@@ -28,15 +28,6 @@ module.exports = {
             {
               color: theme("colors.gray.800"),
               fontSize: "1.1em",
-              h1: {
-                fontSize: "2em",
-              },
-              h2: {
-                fontSize: "1.9em",
-              },
-              h3: {
-                fontSize: "1.7em",
-              },
               '[class~="lead"]': {
                 color: theme("colors.gray.300"),
               },
@@ -75,6 +66,7 @@ module.exports = {
                 color: theme("colors.gray.200"),
                 backgroundColor: theme("colors.gray.800"),
                 fontSize: "0.7em",
+                maxWidth: "90vw",
               },
               thead: {
                 color: theme("colors.white"),
@@ -129,6 +121,7 @@ module.exports = {
                 color: theme("colors.gray.200"),
                 backgroundColor: theme("colors.gray.800"),
                 fontSize: "0.7em",
+                maxWidth: "90vw",
               },
               // fontSize: "0.8rem",
               thead: {
