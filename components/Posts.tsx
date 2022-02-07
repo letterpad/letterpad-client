@@ -42,7 +42,7 @@ export function Posts({
     return null;
   }
   return (
-    <div className="container mx-auto  md:max-w-3xl mb-40 mt-20">
+    <div className="container mx-auto  md:max-w-3xl mb-20">
       {allPosts.posts.rows.map((item, i) => (
         <ArticleItem post={item} key={i} isHome={isHome} />
       ))}

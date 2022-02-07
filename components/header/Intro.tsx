@@ -46,7 +46,7 @@ export const Intro: React.FC<{
   imgAttrs.className += " banner absolute -z-10 object-cover h-full";
 
   return (
-    <div className="mb-auto" id="intro">
+    <div className={imgAttrs.src ? "mb-20" : ""} id="intro">
       <div className="relative h-80 flex justify-center items-center">
         {imgAttrs.src && <img {...imgAttrs} alt={site_title} height="100%" />}
 

@@ -85,9 +85,13 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
                     className="post-full-meta-date"
                     dateTime={postDetails.publishedAt}
                   >
-                    {dateFormat(postDetails.publishedAt)}
+                    {postDetails.publishedAt
+                      ? dateFormat(postDetails.publishedAt)
+                      : ""}
                   </time>
-                  <span className="separator mx-1">·</span>
+                  {postDetails.publishedAt && (
+                    <span className="separator mx-1">·</span>
+                  )}
                   <span>{postDetails.reading_time}</span>
                 </div>
               </div>
