@@ -17,6 +17,10 @@ export default class MyDocument extends Document {
             async
           />
           <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"
+            async
+          />
+          <script
             async
             src="https://www.googletagmanager.com/gtag/js?id=UA-19390409-3"
           ></script>

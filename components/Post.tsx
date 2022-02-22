@@ -56,6 +56,14 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
     });
   }, []);
 
+  useEffect(() => {
+    //@ts-ignore
+    if (typeof window.Prism !== "undefined") {
+      //@ts-ignore
+      window.Prism.highlightAll();
+    }
+  }, [postDetails.html]);
+
   return (
     <>
       <Head>
