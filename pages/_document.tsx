@@ -24,10 +24,6 @@ export default class MyDocument extends Document {
             async
             src="https://www.googletagmanager.com/gtag/js?id=UA-19390409-3"
           ></script>
-          <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.5.0/prism-duotone-sea.min.css"
-          />
 
           <script src="/js/tiny-modal.min.js" async />
         </Head>

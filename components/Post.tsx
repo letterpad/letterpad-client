@@ -139,7 +139,7 @@ export function Post({ postDetails }: { postDetails: PostDetailsFragment }) {
             disqusConfig={disqusConfig}
             disqusShortname={disqusShortname}
           /> */}
-        <Comments id={postDetails.id} url={postDetails.slug} />
+        {/* <Comments id={postDetails.id} url={postDetails.slug} /> */}
       </div>
 
       <div id="tjm" className="tjm">
