@@ -19,10 +19,6 @@ export const layoutFragment = gql`
           src
         }
         subscribe_embed
-        social_github
-        social_facebook
-        social_twitter
-        social_instagram
         css
       }
 
@@ -31,6 +27,12 @@ export const layoutFragment = gql`
     me {
       ... on Author {
         name
+        social {
+          twitter
+          facebook
+          github
+          instagram
+        }
       }
     }
   }
@@ -105,7 +107,7 @@ export default function SiteLayout({
           logoInline={logoInline}
           showBanner={hasBanner}
         />
-        <Intro settings={settings} displayBanner={hasBanner}></Intro>
+        <Intro settings={settings} displayBanner={hasBanner} me={me}></Intro>
 
         <main className="container-wrapper">{children}</main>
 

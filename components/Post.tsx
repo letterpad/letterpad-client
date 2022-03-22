@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import "tiny-js-modal/dist/tiny-js-modal.min.css";
 import { dateFormat } from "lib/utils";
-import Comments from "./comments";
+// import Comments from "./comments";
 
 export const postDetailsFragment = gql`
   fragment postDetails on Post {

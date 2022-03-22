@@ -1,5 +1,5 @@
 import React from "react";
-import { HeaderSettingsFragment } from "lib/graphql";
+import { HeaderSettingsFragment, MeFragment } from "lib/graphql";
 import gql from "graphql-tag";
 import userBannerConfig from "../hooks/userBannerConfig";
 import { getImageAttrs } from "lib/imageUtils";
@@ -14,10 +14,6 @@ export const headerFragment = gql`
   fragment headerSettings on Setting {
     site_title
     site_description
-    social_facebook
-    social_twitter
-    social_github
-    social_instagram
     site_tagline
     banner {
       src
@@ -33,11 +29,25 @@ export const headerFragment = gql`
   }
 `;
 
+export const meFragment = gql`
+  fragment me on Author {
+    name
+    social {
+      twitter
+      facebook
+      github
+      instagram
+    }
+  }
+`;
+
 export const Intro: React.FC<{
   settings: HeaderSettingsFragment;
   displayBanner?: boolean;
-}> = ({ settings, displayBanner = true }) => {
+  me: MeFragment;
+}> = ({ settings, displayBanner = true, me }) => {
   const { banner, site_title, site_tagline, site_description } = settings;
+  const { social } = me;
   const { hasBanner } = userBannerConfig(displayBanner);
 
   if (!hasBanner) return null;
@@ -67,21 +77,13 @@ export const Intro: React.FC<{
             </div>
             <div className="wrapper text-center">
               <div className="flex gap-3 justify-center">
-                {settings.social_facebook && (
-                  <FacebookIcon link={settings.social_facebook} />
-                )}
+                {social.facebook && <FacebookIcon link={social.facebook} />}
 
-                {settings.social_twitter && (
-                  <TwitterIcon link={settings.social_twitter} />
-                )}
+                {social.twitter && <TwitterIcon link={social.twitter} />}
 
-                {settings.social_github && (
-                  <GithubIcon link={settings.social_github} />
-                )}
+                {social.github && <GithubIcon link={social.github} />}
 
-                {settings.social_instagram && (
-                  <InstagramIcon link={settings.social_instagram} />
-                )}
+                {social.instagram && <InstagramIcon link={social.instagram} />}
               </div>
             </div>
           </div>

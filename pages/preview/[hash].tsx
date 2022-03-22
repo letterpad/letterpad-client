@@ -9,6 +9,9 @@ export const previewQuery = gql`
     post(filters: { previewHash: $previewHash }) {
       ...postDetails
       __typename
+      ... on PostError {
+        message
+      }
     }
     ...layout
   }

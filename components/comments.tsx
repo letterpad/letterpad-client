@@ -1,15 +1,19 @@
-import useComments from "./hooks/useComments";
+import React, { useRef } from "react";
 
-const Comments = ({ id, url }) => {
-  const divId = "graphcomment";
-  useComments(id, url, divId);
+import useScript from "./hooks/useScript";
 
-  return (
-    <div className="py-8">
-      <p className="pt-16" />
-      <div id={divId}></div>
-    </div>
-  );
+const Comments = () => {
+  const comment = useRef(null);
+
+  const status = useScript({
+    url: "https://utteranc.es/client.js",
+    theme: "icy-dark",
+    issueTerm: "url",
+    repo: "letterpad/letterpad-website",
+    ref: comment,
+  });
+
+  return <div className="w-full">{<div ref={comment}></div>}</div>;
 };
 
 export default Comments;
