@@ -112,7 +112,7 @@ export default function SiteLayout({
         <main className="container-wrapper">{children}</main>
 
         <Subscribe />
-        <Footer settings={settings} />
+        <Footer settings={settings} me={me} />
       </div>
     </div>
   );

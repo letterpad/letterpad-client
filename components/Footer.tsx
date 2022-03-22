@@ -1,4 +1,4 @@
-import { LayoutFragment } from "lib/graphql";
+import { LayoutFragment, MeFragment } from "lib/graphql";
 import {
   FacebookIcon,
   GithubIcon,
@@ -6,7 +6,13 @@ import {
   TwitterIcon,
 } from "lib/icons";
 
-const Footer = ({ settings }: { settings: LayoutFragment["settings"] }) => {
+const Footer = ({
+  settings,
+  me,
+}: {
+  settings: LayoutFragment["settings"];
+  me: MeFragment;
+}) => {
   if (settings.__typename === "SettingError") return null;
   return (
     <>
@@ -21,20 +27,14 @@ const Footer = ({ settings }: { settings: LayoutFragment["settings"] }) => {
         />
 
         <div className="flex gap-3 justify-center">
-          {settings.social_facebook && (
-            <FacebookIcon link={settings.social_facebook} />
-          )}
+          {me.social?.facebook && <FacebookIcon link={me.social?.facebook} />}
 
-          {settings.social_twitter && (
-            <TwitterIcon link={settings.social_twitter} />
-          )}
+          {me.social?.twitter && <TwitterIcon link={me.social?.twitter} />}
 
-          {settings.social_github && (
-            <GithubIcon link={settings.social_github} />
-          )}
+          {me.social?.github && <GithubIcon link={me.social?.github} />}
 
-          {settings.social_instagram && (
-            <InstagramIcon link={settings.social_instagram} />
+          {me.social?.instagram && (
+            <InstagramIcon link={me.social?.instagram} />
           )}
         </div>
       </footer>
