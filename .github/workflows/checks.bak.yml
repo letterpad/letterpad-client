@@ -34,6 +34,9 @@ jobs:
         if: steps.yarn-cache.outputs.cache-hit == 'true'
         run: yarn install --frozen-lockfile --ignore-optional --offline
 
+      - name: Codegen
+        run: yarn codegen
+
       - name: Type check
         run: yarn type-check
 
